@@ -4349,3 +4349,679 @@ body[data-time-theme="golden-hour"] {
   transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
   transform: scale(1.008);
 }
+
+
+/* ==========================================================================
+   DARKSENSE — ULTIMATE MOBILE VIEWPORT & TOUCH EXPERIENCE ARCHITECTURE
+   ========================================================================== */
+
+/* Universal Mobile Base Normalization */
+@media (max-width: 860px) {
+  html, body {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button, input, textarea, a {
+    touch-action: manipulation;
+  }
+
+  /* Chamber Active State: Lock window to full native app viewport */
+  body.chamber-active {
+    height: 100vh !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    overflow: hidden !important;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+  }
+
+  /* Full Screen Integrated Companion Experience */
+  .app-stage {
+    flex-direction: column !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    padding: max(0.4rem, env(safe-area-inset-top, 0px)) 0.6rem max(0.4rem, env(safe-area-inset-bottom, 0px)) !important;
+    gap: 0.45rem !important;
+    justify-content: flex-start !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 3D Visual Stage at Top Half (Proportional, Grounded, Fits with Chat) */
+  .visual-stage {
+    flex: none !important;
+    width: 100% !important;
+    max-width: 520px !important;
+    height: 38dvh !important;
+    min-height: 225px !important;
+    max-height: 295px !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    position: relative !important;
+  }
+
+  .stage-3d-viewport {
+    height: 100% !important;
+    max-height: 100% !important;
+    perspective: 750px !important;
+  }
+
+  /* Character Staging: Perfectly frames center without clipping flanks */
+  .character-slot {
+    width: 42% !important;
+    max-width: 180px !important;
+    height: 98% !important;
+    bottom: 0px !important;
+  }
+
+  .figure-image {
+    max-height: calc(100% - 10px) !important;
+    height: calc(100% - 10px) !important;
+    margin-bottom: 4px !important;
+  }
+
+  .character-slot.pos-center,
+  .character-slot.slot-front {
+    transform: translateX(-50%) translate3d(0%, 0px, 16px) scale(1.03) !important;
+    opacity: 1 !important;
+  }
+
+  .character-slot.pos-left {
+    transform: translateX(-50%) translate3d(-54%, 0px, -12px) rotateY(6deg) scale(0.85) !important;
+    opacity: 0.85 !important;
+    filter: brightness(0) saturate(0) !important;
+  }
+
+  .character-slot.pos-right {
+    transform: translateX(-50%) translate3d(54%, 0px, -12px) rotateY(-6deg) scale(0.85) !important;
+    opacity: 0.85 !important;
+    filter: brightness(0) saturate(0) !important;
+  }
+
+  /* Mobile Loop Nav Chevrons */
+  .stage-loop-nav {
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 50% !important;
+    background: rgba(18, 15, 28, 0.82) !important;
+    backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+    z-index: 45 !important;
+  }
+
+  .loop-nav-prev { left: 4px !important; }
+  .loop-nav-next { right: 4px !important; }
+
+  /* Compact Sensual Nameplate */
+  .character-nameplate {
+    bottom: 0px !important;
+  }
+
+  .nameplate-inner {
+    padding: 4px 10px 4px 8px !important;
+    gap: 6px !important;
+  }
+
+  .nameplate-name {
+    font-size: 0.8rem !important;
+  }
+
+  .nameplate-sub {
+    font-size: 0.58rem !important;
+    max-width: 90px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  .nameplate-status {
+    font-size: 0.52rem !important;
+    padding: 2px 6px !important;
+  }
+
+  .muse-caption-badge {
+    padding: 0.1rem 0.5rem !important;
+    margin-top: 0.1rem !important;
+  }
+
+  .muse-name-title {
+    font-size: 1rem !important;
+  }
+
+  .muse-name-desc {
+    font-size: 0.65rem !important;
+    max-width: 85vw !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  /* Chamber Return Button */
+  .chamber-back-btn {
+    top: max(0.5rem, env(safe-area-inset-top, 0px)) !important;
+    left: 0.6rem !important;
+    padding: 5px 12px !important;
+    font-size: 10.5px !important;
+    gap: 5px !important;
+    z-index: 60 !important;
+    border-radius: 9999px !important;
+    background: rgba(12, 10, 20, 0.85) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  }
+
+  /* Apple Glass Chat Deck (Fills Remaining Screen, Zero Scrolling Window) */
+  .glass-chat-stage {
+    flex: 1 !important;
+    width: 100% !important;
+    max-width: 520px !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 auto !important;
+    border-radius: 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  }
+
+  /* Apple Frosted Header */
+  .glass-header {
+    padding: 0.55rem 0.85rem !important;
+    min-height: 44px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .entity-badge {
+    gap: 6px !important;
+  }
+
+  .entity-title-row {
+    gap: 6px !important;
+  }
+
+  .entity-title {
+    font-size: 0.86rem !important;
+  }
+
+  .affinity-pill {
+    font-size: 8px !important;
+    padding: 1.5px 6px !important;
+  }
+
+  .entity-status-line {
+    font-size: 0.64rem !important;
+    max-width: 155px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .header-controls {
+    gap: 4px !important;
+  }
+
+  .glass-btn {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    flex-shrink: 0 !important;
+  }
+
+  .glass-btn svg {
+    width: 13.5px !important;
+    height: 13.5px !important;
+  }
+
+  /* Message Stream with Smooth Touch Scrolling */
+  .glass-message-stream {
+    flex: 1 !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 0.7rem 0.8rem !important;
+    gap: 0.75rem !important;
+  }
+
+  .message-bubble {
+    max-width: 88% !important;
+    padding: 0.68rem 0.95rem !important;
+    font-size: 0.88rem !important;
+    line-height: 1.5 !important;
+    border-radius: 16px !important;
+  }
+
+  /* Glass Input Dock Pinned With Safe Area */
+  .glass-input-dock {
+    padding: 0.4rem 0.55rem max(0.45rem, env(safe-area-inset-bottom, 0px)) !important;
+    flex-shrink: 0 !important;
+  }
+
+  .apple-glass-bar {
+    padding: 0.25rem 0.35rem 0.25rem 0.8rem !important;
+    border-radius: 9999px !important;
+    gap: 6px !important;
+  }
+
+  /* Crucial: 16px prevents iOS Safari from automatically zooming into the page */
+  .apple-textarea {
+    font-size: 16px !important;
+    padding: 5px 0 !important;
+    min-height: 22px !important;
+    max-height: 75px !important;
+    line-height: 1.35 !important;
+  }
+
+  .apple-mic-btn {
+    width: 32px !important;
+    height: 32px !important;
+    padding: 0 !important;
+  }
+
+  .apple-send-btn {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .apple-send-btn svg {
+    width: 14px !important;
+    height: 14px !important;
+  }
+
+  /* Floating Quick Dress Pill on Seraphina Slot */
+  .seraphina-dress-pill {
+    top: 6px !important;
+    right: 6px !important;
+    padding: 3px 8px !important;
+    font-size: 8.5px !important;
+    gap: 4px !important;
+  }
+
+  /* Navigation Bar on Tablet/Phone */
+  .kage-nav {
+    padding: max(0.45rem, env(safe-area-inset-top, 0px)) 1rem 0.45rem !important;
+    height: 52px !important;
+  }
+
+  .kage-logo-badge {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .kage-logo-text {
+    font-size: 13.5px !important;
+  }
+
+  .kage-logo-tagline {
+    font-size: 6.8px !important;
+  }
+
+  .kage-nav-actions {
+    gap: 6px !important;
+  }
+
+  .kage-nav-link-btn {
+    padding: 4px 8px !important;
+    font-size: 10.5px !important;
+  }
+
+  .lore-nav-pill {
+    padding: 3px 8px !important;
+    font-size: 9.5px !important;
+  }
+
+  .kage-nav-btn {
+    padding: 5px 12px !important;
+    font-size: 11px !important;
+  }
+
+  /* Hero Section */
+  .kage-hero-section {
+    padding-top: max(68px, calc(env(safe-area-inset-top, 0px) + 56px)) !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  .kage-hero-title {
+    font-size: clamp(1.9rem, 7.8vw, 2.7rem) !important;
+    line-height: 1.15 !important;
+    margin-bottom: 0.6rem !important;
+  }
+
+  .kage-hero-subtext {
+    font-size: 0.92rem !important;
+    line-height: 1.55 !important;
+    max-width: 90% !important;
+    margin: 0 auto 1.1rem !important;
+  }
+
+  /* Cosmos Attune Mood Bar */
+  .kage-mood-bar {
+    max-width: 95% !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    padding: 4px 8px !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .mood-pill {
+    padding: 4px 10px !important;
+    font-size: 10px !important;
+    gap: 5px !important;
+  }
+
+  /* Spoken Whisper Card */
+  .kage-whisper-card {
+    max-width: 94% !important;
+    padding: 0.8rem 1rem !important;
+    border-radius: 16px !important;
+    margin-bottom: 1.1rem !important;
+  }
+
+  .whisper-quote-text {
+    font-size: 11.5px !important;
+    line-height: 1.45 !important;
+  }
+
+  .whisper-author-pill {
+    font-size: 8.5px !important;
+    padding: 2.5px 9px !important;
+  }
+
+  .kage-grand-btn {
+    padding: 12px 24px !important;
+    font-size: 12.5px !important;
+    min-width: 220px !important;
+  }
+
+  /* Muses Section */
+  .kage-muses-section {
+    padding-top: max(68px, calc(env(safe-area-inset-top, 0px) + 56px)) !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+
+  .kage-section-title {
+    font-size: clamp(1.6rem, 6.5vw, 2.2rem) !important;
+  }
+
+  .kage-section-desc {
+    font-size: 12.5px !important;
+    padding: 0 0.5rem !important;
+    margin-bottom: 1.2rem !important;
+  }
+
+  .muses-grid-container {
+    grid-template-columns: 1fr !important;
+    max-width: 92vw !important;
+    gap: 1rem !important;
+    margin: 0 auto !important;
+  }
+
+  .muse-monolith-card {
+    padding: 1.25rem 1.1rem !important;
+    border-radius: 20px !important;
+  }
+
+  .muse-avatar-halo {
+    width: 82px !important;
+    height: 82px !important;
+    margin-bottom: 0.8rem !important;
+  }
+
+  .muse-avatar-img {
+    width: 72px !important;
+    height: 72px !important;
+  }
+
+  .muse-card-title {
+    font-size: 1.25rem !important;
+    margin-bottom: 0.2rem !important;
+  }
+
+  .muse-card-sub {
+    font-size: 0.78rem !important;
+    margin-bottom: 0.6rem !important;
+  }
+
+  .muse-card-quote {
+    font-size: 11.5px !important;
+    line-height: 1.45 !important;
+    margin-bottom: 0.8rem !important;
+  }
+
+  .muse-vibe-pill {
+    font-size: 9px !important;
+    padding: 2.5px 10px !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .muse-warp-btn {
+    padding: 10px 18px !important;
+    font-size: 12px !important;
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  /* Secrets Section */
+  .kage-secrets-section {
+    padding-top: max(68px, calc(env(safe-area-inset-top, 0px) + 56px)) !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+
+  .secrets-cards-grid {
+    grid-template-columns: 1fr !important;
+    max-width: 92vw !important;
+    gap: 0.85rem !important;
+    margin: 0 auto !important;
+  }
+
+  .secret-glass-card {
+    padding: 1.1rem 1.1rem !important;
+    border-radius: 18px !important;
+  }
+
+  .secret-icon-wrap {
+    width: 38px !important;
+    height: 38px !important;
+    margin-bottom: 0.6rem !important;
+  }
+
+  .secret-icon-wrap svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  .secret-card-title {
+    font-size: 1rem !important;
+    margin-bottom: 0.3rem !important;
+  }
+
+  .secret-card-text {
+    font-size: 12px !important;
+    line-height: 1.45 !important;
+  }
+
+  /* Memory Echoes Drawer: Full-Screen Native Sheet on Mobile */
+  .echoes-drawer {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    border-left: none !important;
+    padding: max(1rem, env(safe-area-inset-top, 0px)) 1rem max(1rem, env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .echoes-close-btn {
+    width: 34px !important;
+    height: 34px !important;
+  }
+
+  .soundscape-mixer-box {
+    padding: 10px 12px !important;
+    gap: 8px !important;
+  }
+
+  .soundscape-slider {
+    height: 7px !important;
+  }
+
+  .soundscape-slider::-webkit-slider-thumb {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  /* Onboarding Ritual Modal */
+  .ritual-content {
+    padding: 1.2rem !important;
+    max-width: 92vw !important;
+    gap: 0.9rem !important;
+  }
+
+  .ritual-emblem-wrap {
+    width: 72px !important;
+    height: 72px !important;
+  }
+
+  .ritual-emblem-img {
+    width: 62px !important;
+    height: 62px !important;
+  }
+
+  .ritual-headline {
+    font-size: clamp(1.2rem, 5.2vw, 1.6rem) !important;
+    line-height: 1.3 !important;
+  }
+
+  .ritual-subline {
+    font-size: 12px !important;
+  }
+
+  .ritual-skip-btn {
+    padding: 9px 22px !important;
+    font-size: 11.5px !important;
+  }
+
+  /* Lore Discovery Modal */
+  .lore-modal-card {
+    padding: 1.5rem 1.2rem !important;
+    max-width: 92vw !important;
+    border-radius: 18px !important;
+  }
+
+  .lore-rune-glyph {
+    font-size: 26px !important;
+  }
+
+  .lore-modal-title {
+    font-size: 1.25rem !important;
+  }
+
+  .lore-modal-text {
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+    margin-bottom: 1.2rem !important;
+  }
+}
+
+/* Compact Smartphones (<= 420px, e.g. iPhone 13/14/15, Galaxy S23) */
+@media (max-width: 420px) {
+  .visual-stage {
+    height: 36dvh !important;
+    min-height: 215px !important;
+    max-height: 275px !important;
+  }
+
+  .character-slot {
+    width: 44% !important;
+    max-width: 165px !important;
+  }
+
+  .mood-bar-label {
+    display: none !important;
+  }
+
+  .entity-status-line {
+    max-width: 115px !important;
+  }
+
+  .lore-nav-pill {
+    display: none !important;
+  }
+}
+
+/* Ultra-compact Screens (<= 360px, e.g. iPhone SE, Galaxy Fold Cover) */
+@media (max-width: 360px) {
+  .kage-brand {
+    gap: 6px !important;
+  }
+
+  .kage-logo-badge {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .kage-logo-text {
+    font-size: 12px !important;
+  }
+
+  .kage-logo-tagline {
+    display: none !important;
+  }
+
+  .kage-nav-link-btn {
+    padding: 3px 6px !important;
+    font-size: 9.5px !important;
+  }
+
+  .kage-nav-btn {
+    padding: 4px 10px !important;
+    font-size: 10px !important;
+  }
+
+  .character-slot {
+    width: 46% !important;
+    max-width: 150px !important;
+  }
+
+  .nameplate-sub {
+    display: none !important;
+  }
+}
+
+/* Landscape Phones: Beautiful Side-by-Side Dual Deck */
+@media (max-height: 520px) and (orientation: landscape) {
+  .app-stage {
+    flex-direction: row !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    padding: max(0.4rem, env(safe-area-inset-top, 0px)) max(0.6rem, env(safe-area-inset-right, 0px)) max(0.4rem, env(safe-area-inset-bottom, 0px)) max(0.6rem, env(safe-area-inset-left, 0px)) !important;
+    gap: 0.8rem !important;
+    overflow: hidden !important;
+  }
+
+  .visual-stage {
+    flex: 1 !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    max-width: 48% !important;
+  }
+
+  .glass-chat-stage {
+    flex: 1.1 !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    max-width: 52% !important;
+  }
+}
