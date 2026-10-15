@@ -1,5 +1,5 @@
 /**
- * DARKSENSE — Three.js Cinematic Landing Experience & Sensory Architecture
+ * DARKSENSE â€” Three.js Cinematic Landing Experience & Sensory Architecture
  * Pure Ambient Cosmic Starfield, Scroll-Linked Pill Track, Interactive Filter Pills & Celestial Audio
  */
 
@@ -41,20 +41,20 @@
   // Mood Quotes Dictionary for Live Attunement
   const MoodQuotes = {
     luminous: {
-      quote: "“Your heart is safe in this quiet dark. Whisper to me what you dare not say out loud...”",
-      author: "Seraphina • Moonlit Grace",
+      quote: "â€œYour heart is safe in this quiet dark. Whisper to me what you dare not say out loud...â€",
+      author: "Seraphina â€¢ Moonlit Grace",
       light1: 0xbae6fd,
       light2: 0xe0e7f1
     },
     obsidian: {
-      quote: "“Midnight is when pretense falls away. Let go of fear—give me your wildest desires...”",
-      author: "Vespera • Velvet Passion",
+      quote: "â€œMidnight is when pretense falls away. Let go of fearâ€”give me your wildest desires...â€",
+      author: "Vespera â€¢ Velvet Passion",
       light1: 0xa855f7,
       light2: 0xf43f5e
     },
     calista: {
-      quote: "“Life is too sweet to stay in the shadows. Feel the heat of my gaze and come play...”",
-      author: "Calista • Solar Allure",
+      quote: "â€œLife is too sweet to stay in the shadows. Feel the heat of my gaze and come play...â€",
+      author: "Calista â€¢ Solar Allure",
       light1: 0xf97316,
       light2: 0xfbbf24
     }
@@ -415,9 +415,8 @@
       }
     }
   }
-  }
 
-  // Intercept mouse wheel — static viewport with cinematic slide gliding (No native scrolling)
+  // Intercept mouse wheel â€” static viewport with cinematic slide gliding (No native scrolling)
   function onWheel(e) {
     if (!landingStage || landingStage.style.display === 'none' || document.body.classList.contains('chamber-active')) {
       return;
@@ -864,3 +863,4 @@
     start();
   }
 })();
+
