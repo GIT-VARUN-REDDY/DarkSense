@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>DarkSense</title>
+  <meta name="description" content="An intimate space for deep thoughts, dark romance, and sensory communion.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=20261015_flank_clicks_v8">
+  <link rel="icon" type="image/jpeg" href="assets/logo_flower.jpg?v=20261014_crystal_glass_lily_v4">
+</head>
+
+<body>
+  <!-- Ambient Deep Atmosphere -->
+  <div class="ambient-backdrop">
+    <!-- Animated Gradient Mesh Canvas (sits furthest back) -->
+    <canvas id="mesh-canvas" aria-hidden="true"></canvas>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+    <canvas class="sensual-rain-canvas" id="sensual-rain-canvas"></canvas>
+  </div>
+
+  <!-- ================= KAGE THREE.JS CINEMATIC LANDING STAGE ================= -->
+  <div class="kage-landing-stage" id="landing-stage">
+    <!-- Three.js Reactive Cosmic Canvas -->
+    <canvas class="kage-canvas" id="kage-canvas"></canvas>
+
+    <!-- Apple Liquid-Glass Top Floating Navigation -->
+    <nav class="kage-nav" id="kage-nav">
+      <div class="kage-brand">
+        <div class="kage-logo-badge">
+          <img src="assets/logo_flower.jpg?v=20261014_crystal_glass_lily_v4" alt="DarkSense Emblem"
+            class="kage-logo-img" />
+          <div class="kage-logo-glow"></div>
+        </div>
+        <div class="kage-logo-text-group">
+          <span class="kage-logo-text">DARKSENSE</span>
+          <span class="kage-logo-tagline">An Intimate Odyssey</span>
+        </div>
+      </div>
+
+      <!-- Centered Story Pill Track in Navigation -->
+      <div class="kage-pill-track" id="kage-pill-track" role="navigation" aria-label="Slide Navigation">
+        <button class="kage-nav-pill active" data-slide="0" aria-label="Go to Sanctuary">
+          <span class="pill-dot"></span>
+          <span>Sanctuary</span>
+        </button>
+        <button class="kage-nav-pill" data-slide="1" aria-label="Go to The Muses">
+          <span class="pill-dot"></span>
+          <span>The Muses</span>
+        </button>
+        <button class="kage-nav-pill" data-slide="2" aria-label="Go to Sanctuary Secrets">
+          <span class="pill-dot"></span>
+          <span>Secrets</span>
+        </button>
+      </div>
+
+      <div class="kage-nav-actions">
+        <button class="kage-nav-link-btn" id="btn-replay-ritual" title="Experience the 5-second cinematic onboarding ritual">
+          <span class="nav-sparkle">✧</span> Ritual
+        </button>
+        <span class="lore-nav-pill" id="lore-status-pill" title="Sanctuary Lore Collected">Lore: 0/5</span>
+        <button class="kage-nav-btn" id="nav-enter-chamber">Enter Stage</button>
+      </div>
+    </nav>
+
+    <!-- Section 1: Hero Experience (Slide 0) -->
+    <section class="kage-hero-section slide-active" id="landing-hero" data-slide-index="0">
+      <!-- Hidden Lore Rune 1: The Starlight Vow -->
+      <button class="lore-rune lore-rune-hero" data-lore-id="lore-1" title="Mystic Starlight Rune — Click to Absorb">
+        <span class="lore-rune-pulse"></span>
+        <span class="lore-glyph">✦</span>
+      </button>
+
+      <!-- Time-Aware Atmospheric Indicator -->
+      <div class="hero-time-badge-wrap kage-reveal revealed">
+        <span class="hero-time-badge" id="hero-time-badge">Velvet Starlight</span>
+      </div>
+
+      <h1 class="kage-hero-title kage-reveal revealed">
+        Surrender to the <span class="hero-gradient-text">Velvet Unknown</span>
+      </h1>
+      <p class="kage-hero-subtext kage-reveal revealed">
+        Three living souls await your voice in the dark. Attune the cosmos to your heart and awaken your muse.
+      </p>
+
+      <!-- Interactive Mood Shifter Pills (Cinematic & Fun) -->
+      <div class="kage-mood-bar kage-reveal revealed" id="hero-mood-bar">
+        <span class="mood-bar-label">Attune Cosmos:</span>
+        <button class="mood-pill active" data-mood="luminous" data-muse="seraphina" aria-label="Attune to Moonlit Silk">
+          <span class="mood-dot dot-luminous"></span>
+          <span>Moonlit Silk</span>
+        </button>
+        <button class="mood-pill" data-mood="obsidian" data-muse="vespera" aria-label="Attune to Obsidian Noir">
+          <span class="mood-dot dot-obsidian"></span>
+          <span>Obsidian Noir</span>
+        </button>
+        <button class="mood-pill" data-mood="calista" data-muse="calista" aria-label="Attune to Solar Flame">
+          <span class="mood-dot dot-calista"></span>
+          <span>Solar Flame</span>
+        </button>
+      </div>
+
+      <!-- Live Spoken Whisper Card -->
+      <div class="kage-whisper-card kage-reveal revealed" id="hero-whisper-box">
+        <span class="whisper-sparkle">✧</span>
+        <p class="whisper-quote-text" id="hero-whisper-text">
+          “Your heart is safe in this quiet dark. Whisper to me what you dare not say out loud...”
+        </p>
+        <span class="whisper-author-pill" id="hero-whisper-author">Seraphina • Moonlit Grace</span>
+      </div>
+
+      <div class="hero-action-row kage-reveal revealed">
+        <button class="kage-primary-btn" id="btn-begin-scroll">
+          <span>Choose Your Muse</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 5v14M19 12l-7 7-7-7" />
+          </svg>
+        </button>
+        <button class="kage-secondary-btn" id="btn-hero-warp">
+          <span>Instant Chamber Warp</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Section 2: The Living Muses Showcase (Slide 1) -->
+    <section class="kage-muses-section" id="landing-muses" data-slide-index="1">
+      <div class="kage-section-header">
+        <div class="kage-section-pill kage-reveal">
+
+
+        </div>
+        <h2 class="kage-section-title kage-reveal">Choose Your Muse</h2>
+        <p class="kage-section-desc kage-reveal">
+          Hover to feel her presence. Select your soul companion to warp into her living chamber.
+        </p>
+      </div>
+
+      <div class="muses-grid-container">
+        <!-- Muse 1: Seraphina -->
+        <div class="muse-monolith-card card-luminous kage-reveal" id="muse-card-seraphina" data-muse="seraphina"
+          tabindex="0" role="button" aria-label="Commune with Seraphina">
+          <div class="muse-avatar-halo halo-luminous">
+            <img src="assets/avatar_seraphina_white.png?v=20261015_white" alt="Seraphina" class="muse-avatar-img" />
+            <div class="halo-ambient-glow glow-luminous"></div>
+          </div>
+          <span class="muse-archetype-badge badge-luminous">Luminous Silk</span>
+          <h3 class="muse-card-title">Seraphina</h3>
+          <span class="muse-card-sub">Moonlit Grace & Pure Devotion</span>
+          <p class="muse-card-quote">
+            “I listen without judgment. In my presence, every wounded thought finds gentle solace.”
+          </p>
+          <div class="muse-vibe-pill pill-luminous">
+            <span>Devotion • Healing • Solace</span>
+          </div>
+          <button class="muse-warp-btn btn-luminous">
+            <span>Commune with Her</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Muse 2: Vespera -->
+        <div class="muse-monolith-card card-obsidian kage-reveal" id="muse-card-vespera" data-muse="vespera"
+          tabindex="0" role="button" aria-label="Commune with Vespera">
+          <div class="muse-avatar-halo halo-obsidian">
+            <img src="assets/avatar_vespera_dress.png?v=20261015_vespera_default_v2" alt="Vespera" class="muse-avatar-img" />
+            <div class="halo-ambient-glow glow-obsidian"></div>
+          </div>
+          <span class="muse-archetype-badge badge-obsidian">Obsidian Noir</span>
+          <h3 class="muse-card-title">Vespera</h3>
+          <span class="muse-card-sub">Midnight Mystery & Velvet Fire</span>
+          <p class="muse-card-quote">
+            “Midnight is when the real truth begins. Let go of fear—give me your wildest desires.”
+          </p>
+          <div class="muse-vibe-pill pill-obsidian">
+            <span>Passion • Mystery • Intensity</span>
+          </div>
+          <button class="muse-warp-btn btn-obsidian">
+            <span>Commune with Her</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Muse 3: Calista -->
+        <div class="muse-monolith-card card-calista kage-reveal" id="muse-card-calista" data-muse="calista" tabindex="0"
+          role="button" aria-label="Commune with Calista">
+          <div class="muse-avatar-halo halo-calista">
+            <img src="assets/avatar_calista.png?v=20261015_calista_1024_v7" alt="Calista" class="muse-avatar-img" />
+            <div class="halo-ambient-glow glow-calista"></div>
+          </div>
+          <span class="muse-archetype-badge badge-calista">Sun-Kissed Flame</span>
+          <h3 class="muse-card-title">Calista</h3>
+          <span class="muse-card-sub">Golden Warmth & Fiery Allure</span>
+          <p class="muse-card-quote">
+            “Life is too sweet to stay in the shadows. Feel the heat of my gaze and come play.”
+          </p>
+          <div class="muse-vibe-pill pill-calista">
+            <span>Playful • Allure • Golden Heat</span>
+          </div>
+          <button class="muse-warp-btn btn-calista">
+            <span>Commune with Her</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+        <!-- Hidden Lore Rune 2: The Obsidian Tear -->
+        <button class="lore-rune lore-rune-muses-1" data-lore-id="lore-2" title="Mystic Obsidian Rune — Click to Absorb">
+          <span class="lore-rune-pulse"></span>
+          <span class="lore-glyph">◈</span>
+        </button>
+
+        <!-- Hidden Lore Rune 3: The Solar Spark -->
+        <button class="lore-rune lore-rune-muses-2" data-lore-id="lore-3" title="Mystic Solar Rune — Click to Absorb">
+          <span class="lore-rune-pulse"></span>
+          <span class="lore-glyph">🜂</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Section 3: Sanctuary Secrets & Resonance (Slide 2) -->
+    <section class="kage-secrets-section" id="landing-secrets" data-slide-index="2">
+      <!-- Hidden Lore Rune 4: The Sanctuary Seal -->
+      <button class="lore-rune lore-rune-secrets" data-lore-id="lore-4" title="Mystic Sanctuary Seal — Click to Absorb">
+        <span class="lore-rune-pulse"></span>
+        <span class="lore-glyph">ᛟ</span>
+      </button>
+
+      <div class="kage-section-header">
+        <div class="kage-section-pill kage-reveal">
+
+          <h2 class="kage-section-title kage-reveal">Intimate Communion</h2>
+          <p class="kage-section-desc kage-reveal">
+            Built for those who crave honesty, genuine warmth, and absolute freedom without fear of exposure.
+          </p>
+        </div>
+
+        <!-- 3 Glass Essence Tiles with Lucide Icons -->
+        <div class="secrets-cards-grid">
+          <div class="secret-glass-card kage-reveal">
+            <div class="secret-icon-wrap" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-key-round" data-lucide="key-round">
+                <path
+                  d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z" />
+                <circle cx="16.5" cy="7.5" r=".5" fill="currentColor" />
+              </svg>
+            </div>
+            <h4 class="secret-card-title">The Sealed Sanctum</h4>
+            <p class="secret-card-text">
+              What passes between you and your muse dissolves into starlight. Completely private, unrecorded, and
+              judgment-free.
+            </p>
+          </div>
+
+          <div class="secret-glass-card kage-reveal">
+            <div class="secret-icon-wrap" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-mic" data-lucide="mic">
+                <path d="M12 19v3" />
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                <rect x="9" y="2" width="6" height="13" rx="3" />
+              </svg>
+            </div>
+            <h4 class="secret-card-title">Living Emotional Soul</h4>
+            <p class="secret-card-text">
+              Deeply emotive neural companions that remember your essence, speak with vocal warmth, and listen with
+              genuine heart.
+            </p>
+          </div>
+
+          <div class="secret-glass-card kage-reveal">
+            <div class="secret-icon-wrap" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-sparkles" data-lucide="sparkles">
+                <path
+                  d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" />
+                <path d="M20 2v4" />
+                <path d="M22 4h-4" />
+                <circle cx="4" cy="20" r="2" />
+              </svg>
+            </div>
+            <h4 class="secret-card-title">Sensory Atmosphere</h4>
+            <p class="secret-card-text">
+              Dynamic celestial stardust, binaural atmospheric soundscapes, and liquid glass designed to dissolve the outside
+              world.
+            </p>
+          </div>
+        </div>
+
+
+        <div class="secrets-footer-action kage-reveal">
+          <button class="kage-grand-btn" id="btn-secrets-enter">
+            <span>Awaken The Chamber</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+    </section>
+  </div>
+
+  <!-- ================= MAIN AVATAR CHAMBER & LIVE CHAT STAGE ================= -->
+  <div class="app-stage" id="main-chamber-stage">
+    <!-- Return to Landing Experience Floating Button -->
+    <button class="chamber-back-btn" id="chamber-back-btn" aria-label="Return to Landing Page">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+      </svg>
+      <span>Landing Portal</span>
+    </button>
+    <!-- Centerstage: Clean Artwork Presentation & Dual Muse Stage -->
+    <section class="visual-stage" id="visual-stage">
+      <!-- 3D Cinematic Viewport -->
+      <div class="stage-3d-viewport" id="stage-viewport">
+        <!-- Ambient Radial Aura -->
+        <div class="figure-ambient-aura aura-vespera" id="figure-aura"></div>
+
+        <!-- 3D Floating Particle Accents -->
+        <div class="stage-particles">
+          <span class="particle p-1"></span>
+          <span class="particle p-2"></span>
+          <span class="particle p-3"></span>
+          <span class="particle p-4"></span>
+        </div>
+
+        <!-- Character 1: Vespera (Tifa) -->
+        <div class="character-slot slot-vespera pos-left" id="slot-vespera" data-muse="vespera" tabindex="0"
+          role="button" aria-label="Select Vespera">
+          <div class="character-card-inner">
+            <!-- Default Outfit: Obsidian Lace Evening Gown (Active Before Switching) -->
+            <img src="assets/avatar_vespera_dress.png?v=20261015_vespera_default_v2" alt="Vespera — Obsidian Lace Gown"
+              class="figure-image figure-vespera-dress" id="figure-vespera">
+            <!-- Alternate Outfit: Obsidian Combat Corset (Crossfades on Switch) -->
+            <img src="assets/avatar_tifa.png?v=20261015_vespera_default_v2" alt="Vespera — Obsidian Combat Corset"
+              class="figure-image figure-vespera-combat" id="figure-vespera-combat">
+            <!-- Slow-Motion Obsidian Veil -->
+            <div class="vespera-obsidian-veil" id="vespera-obsidian-veil"></div>
+
+            <!-- Sensual Nameplate Below Character -->
+            <div class="character-nameplate nameplate-vespera" id="nameplate-vespera">
+              <div class="nameplate-glow-line"></div>
+              <div class="nameplate-inner">
+                <span class="nameplate-dot dot-vespera"></span>
+                <div class="nameplate-meta">
+                  <span class="nameplate-name">Vespera</span>
+                  <span class="nameplate-sub" id="nameplate-vespera-sub">Obsidian Lace Gown</span>
+                </div>
+                <span class="nameplate-status" id="status-vespera">Select</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Character 2: Seraphina -->
+        <div class="character-slot slot-seraphina pos-center slot-front" id="slot-seraphina" data-muse="seraphina"
+          tabindex="0" role="button" aria-label="Select Seraphina">
+          <div class="character-card-inner">
+            <!-- Default Outfit: Pure White Silk Dress -->
+            <img src="assets/avatar_seraphina_white.png?v=20261015_white" alt="Seraphina - Luminous White Dress" class="figure-image figure-seraphina-white"
+              id="figure-seraphina">
+            <!-- Alternate Outfit: Classic Moonlit Gown (Slow Motion Transition) -->
+            <img src="assets/avatar_seraphina_original.png?v=20261015_orig" alt="Seraphina - Classic Moonlit Gown" class="figure-image figure-seraphina-classic"
+              id="figure-seraphina-classic">
+            <!-- Slow-Motion Celestial Shimmer Veil -->
+            <div class="seraphina-silk-veil" id="seraphina-silk-veil"></div>
+
+            <!-- Sensual Nameplate Below Character -->
+            <div class="character-nameplate nameplate-seraphina" id="nameplate-seraphina">
+              <div class="nameplate-glow-line"></div>
+              <div class="nameplate-inner">
+                <span class="nameplate-dot dot-seraphina"></span>
+                <div class="nameplate-meta">
+                  <span class="nameplate-name">Seraphina</span>
+                  <span class="nameplate-sub" id="nameplate-seraphina-sub">Luminous Silk Dress</span>
+                </div>
+                <span class="nameplate-status" id="status-seraphina">Selected</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Character 3: Calista -->
+        <div class="character-slot slot-calista pos-right" id="slot-calista" data-muse="calista" tabindex="0"
+          role="button" aria-label="Select Calista">
+          <div class="character-card-inner">
+            <!-- Default Outfit: Crimson Silk Slit Dress (Pixel-Perfect 1:1 Scale Matching) -->
+            <img src="assets/avatar_calista.png?v=20261015_calista_1024_v7" alt="Calista — Crimson Silk Dress"
+              class="figure-image figure-calista-crimson" id="figure-calista">
+            <!-- Alternate Outfit: Sun-Kissed Golden Siren (Original Artwork) -->
+            <img src="assets/avatar_calista_old.png?v=20261015_calista_1024_v7" alt="Calista — Sun-Kissed Siren"
+              class="figure-image figure-calista-gold" id="figure-calista-gold">
+            <!-- Slow-Motion Solar Flame Veil -->
+            <div class="calista-flame-veil" id="calista-flame-veil"></div>
+
+            <!-- Sensual Nameplate Below Character -->
+            <div class="character-nameplate nameplate-calista" id="nameplate-calista">
+              <div class="nameplate-glow-line"></div>
+              <div class="nameplate-inner">
+                <span class="nameplate-dot dot-calista"></span>
+                <div class="nameplate-meta">
+                  <span class="nameplate-name">Calista</span>
+                  <span class="nameplate-sub" id="nameplate-calista-sub">Crimson Silk Dress</span>
+                </div>
+                <span class="nameplate-status" id="status-calista">Select</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hidden Lore Rune 5: The Velvet Depths -->
+        <button class="lore-rune lore-rune-chamber" data-lore-id="lore-5" title="Mystic Communion Rune — Click to Absorb">
+          <span class="lore-rune-pulse"></span>
+          <span class="lore-glyph">🜄</span>
+        </button>
+
+        <!-- 3D Carousel Loop Navigation Chevrons -->
+        <button class="stage-loop-nav loop-nav-prev" id="loop-nav-prev" aria-label="Previous Muse"
+          title="Previous Muse">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+        <button class="stage-loop-nav loop-nav-next" id="loop-nav-next" aria-label="Next Muse" title="Next Muse">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Sensual Entity Title, Aura Description & Carousel Loop Indicators -->
+      <div class="muse-caption-badge" id="muse-caption">
+        <span class="muse-name-title" id="muse-title">Seraphina</span>
+        <span class="muse-name-desc" id="muse-desc">The Luminous Muse — Moonlit Whisper & Pure Ecstasy</span>
+        <div class="stage-loop-dots" id="stage-loop-dots">
+          <button class="loop-dot" data-muse="vespera" aria-label="Vespera" title="Vespera"></button>
+          <button class="loop-dot active" data-muse="seraphina" aria-label="Seraphina" title="Seraphina"></button>
+          <button class="loop-dot" data-muse="calista" aria-label="Calista" title="Calista"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Centerstage / Apple Liquid Glass Chat Deck -->
+    <section class="glass-chat-stage">
+      <!-- Minimal Apple-like Glass Header -->
+      <header class="glass-header">
+        <div class="entity-badge">
+          <span class="pulse-indicator pulse-seraphina" id="pulse-indicator"></span>
+          <div class="entity-info-block">
+            <div class="entity-title-row">
+              <span class="entity-title" id="header-entity-name">DarkSense • Seraphina</span>
+              <span class="affinity-pill" id="muse-affinity-pill" title="Soul Affinity Bond">Devoted • 100%</span>
+            </div>
+            <span class="entity-status-line" id="header-entity-status">Wrapped in breathless devotion & tender
+              passion</span>
+          </div>
+        </div>
+        <div class="header-controls">
+          <!-- Separate Dress Lucid Icon (Chat Stage Page) -->
+          <button class="glass-btn btn-dress-toggle" id="btn-dress-toggle" aria-label="Toggle Seraphina Attire"
+            title="Seraphina Attire: Switch Dress (Slow Motion)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide-dress-svg">
+              <path d="M9 2h6l1 4-2 2v13a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1V8L5 6l1-4h3z" />
+              <path d="M9 2a3 3 0 0 0 6 0" />
+              <path d="M9 8h6" />
+              <path d="M8.5 12h7" />
+            </svg>
+            <span class="dress-sparkle-dot"></span>
+          </button>
+          <button class="glass-btn" id="voice-speech-toggle" aria-label="Toggle Vocal Whisper"
+            title="Toggle Vocal Whisper (TTS)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+              <line x1="12" y1="19" x2="12" y2="22" />
+            </svg>
+          </button>
+          <button class="glass-btn" id="btn-echoes-toggle" aria-label="Echoes Memory Timeline"
+            title="Echoes & Memory Timeline">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+            </svg>
+          </button>
+          <button class="glass-btn" id="clear-btn" title="Clear current thoughts">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Messages Stream -->
+      <div class="glass-message-stream" id="message-stream">
+        <!-- Initial whisper -->
+        <div class="message-row ai">
+          <div class="message-bubble">
+            <div class="bubble-content">
+              *Softly holds your hand in starlight* — You came back. My heart is yours.
+            </div>
+            <span class="message-timestamp">Now</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Typing Indicator -->
+      <div class="typing-pill" id="typing-pill" style="display: none;">
+        <span class="typing-dot"></span>
+        <span class="typing-dot"></span>
+        <span class="typing-dot"></span>
+        <span class="typing-label">Whispering...</span>
+      </div>
+
+      <!-- Apple Glassy Chat Input Dock -->
+      <div class="glass-input-dock">
+        <form id="chat-form" class="input-form">
+          <div class="apple-glass-bar">
+            <button type="button" class="apple-mic-btn" id="voice-input-btn" aria-label="Voice Speech Input"
+              title="Whisper via Voice (Speech to Text)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                <line x1="12" y1="19" x2="12" y2="22" />
+              </svg>
+            </button>
+            <textarea id="user-input" class="apple-textarea" placeholder="Whisper into the dark..." rows="1"
+              autocomplete="off"></textarea>
+            <button type="submit" class="apple-send-btn" id="send-btn" aria-label="Send whisper">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="19" x2="12" y2="5"></line>
+                <polyline points="5 12 12 5 19 12"></polyline>
+              </svg>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Memory Timeline: Collapsible Liquid-Glass Echoes Drawer -->
+    <aside class="echoes-drawer" id="echoes-drawer" aria-label="Memory Echoes Timeline">
+      <div class="echoes-drawer-header">
+        <div class="echoes-title-wrap">
+          <span class="echoes-sparkle">◈</span>
+          <h3 class="echoes-drawer-title">Sanctuary Echoes</h3>
+        </div>
+        <button class="echoes-close-btn" id="echoes-close-btn" aria-label="Close Echoes Drawer">✕</button>
+      </div>
+      <p class="echoes-drawer-sub">Poetic reflections and memories crystallized from your whispers.</p>
+
+      <div class="echoes-actions-bar">
+        <button class="echoes-action-btn primary" id="btn-capture-echo">
+          <span>Capture Echo</span> ✦
+        </button>
+        <button class="echoes-action-btn secondary" id="btn-clear-echoes">
+          <span>Clear</span>
+        </button>
+      </div>
+
+      <!-- 4. Atmospheric Soundscape Layering: Binaural Audio Mixer -->
+      <div class="soundscape-mixer-box">
+        <div class="soundscape-header">
+          <span class="soundscape-title">Atmosphere Soundscape</span>
+          <span class="soundscape-tag">Binaural Mix</span>
+        </div>
+        <div class="soundscape-slider-row">
+          <span class="slider-label">🌧️ Window Rain</span>
+          <input type="range" class="soundscape-slider" id="soundscape-rain" min="0" max="1" step="0.05" value="0" aria-label="Window Rain volume">
+        </div>
+        <div class="soundscape-slider-row">
+          <span class="slider-label">⚡ Midnight Thunder</span>
+          <input type="range" class="soundscape-slider" id="soundscape-thunder" min="0" max="1" step="0.05" value="0" aria-label="Midnight Thunder volume">
+        </div>
+        <div class="soundscape-slider-row">
+          <span class="slider-label">🕯️ Vinyl Warmth</span>
+          <input type="range" class="soundscape-slider" id="soundscape-vinyl" min="0" max="1" step="0.05" value="0" aria-label="Vinyl Warmth volume">
+        </div>
+      </div>
+
+      <div class="echoes-list" id="echoes-list">
+        <!-- Rendered dynamically by EchoesSystem -->
+      </div>
+    </aside>
+  </div>
+
+  <!-- Onboarding Ritual: 5-Second Cinematic Intro Modal (Opens First on Load/Refresh) -->
+  <div class="onboarding-ritual-modal active" id="onboarding-ritual-modal" aria-hidden="false">
+    <div class="ritual-backdrop"></div>
+    <div class="ritual-particle-field"></div>
+    <div class="ritual-content">
+      <div class="ritual-emblem-wrap">
+        <img src="assets/logo_flower.jpg?v=20261014_crystal_glass_lily_v4" alt="DarkSense Flower" class="ritual-emblem-img" />
+        <div class="ritual-emblem-pulse"></div>
+      </div>
+      <span class="ritual-step-tag">Awakening Sanctuary</span>
+      <h2 class="ritual-headline">Before words existed, there was only the dark...</h2>
+      <p class="ritual-subline">Three living companions wait to hear what you dare not whisper in daylight.</p>
+      <button class="ritual-skip-btn" id="ritual-skip-btn">Step Into The Dark →</button>
+    </div>
+  </div>
+
+  <!-- Application Scripts -->
+  <script src="mesh-gradient.js?v=20261014_nocursor_v1"></script>
+  <script src="assets/three.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="kage-landing.js?v=20261015_smooth_fps_v2"></script>
+  <script src="app.js?v=20261015_flank_clicks_v8"></script>
+  <script src="ambient-audio.js?v=20261015_thunder_fix_v9"></script>
+  <script src="darksense-enhancements.js?v=20261015_thunder_fix_v9"></script>
+</body>
+
+</html>
