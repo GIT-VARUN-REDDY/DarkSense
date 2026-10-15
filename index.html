@@ -66,6 +66,7 @@
           <span class="nav-sparkle">âœ§</span> Ritual
         </button>
         <span class="lore-nav-pill" id="lore-status-pill" title="Sanctuary Lore Collected">Lore: 0/5</span>
+        <button class="kage-nav-link-btn" id="btn-open-legal" title="Legal Terms & Privacy Compliance"><span class="nav-sparkle">⚖</span> Legal</button>
         <button class="kage-nav-btn" id="nav-enter-chamber">Enter Stage</button>
       </div>
     </nav>
@@ -619,6 +620,89 @@
   <script src="app.js?v=20261015_flank_clicks_v8"></script>
   <script src="ambient-audio.js?v=20261015_thunder_fix_v9"></script>
   <script src="darksense-enhancements.js?v=20261015_thunder_fix_v9"></script>
+
+  <!-- 18+ Mandatory Age Verification Modal (IT Act & POCSO Compliance) -->
+  <div class="age-gate-modal" id="age-gate-modal" aria-hidden="true">
+    <div class="age-gate-backdrop"></div>
+    <div class="age-gate-card">
+      <div class="age-badge-wrap">
+        <span class="age-badge-pill">18+ Mature Sanctuary</span>
+      </div>
+      <h2 class="age-gate-title">Enter the Sanctuary</h2>
+      <p class="age-gate-text">
+        DarkSense is an intimate sensory companion space intended strictly for mature adults. All companion personas are fictional adult creations.
+      </p>
+      <div class="age-gate-bullet-points">
+        <div class="age-bullet"><span class="bullet-sparkle">◈</span> <span>All personas (Seraphina, Vespera, Calista) are fictional adults (18+).</span></div>
+        <div class="bullet-sparkle-row"><span class="bullet-sparkle">◈</span> <span>Private client-side processing in accordance with DPDP Act, 2023.</span></div>
+        <div class="bullet-sparkle-row"><span class="bullet-sparkle">◈</span> <span>Zero tolerance for unlawful, non-consensual, or minor-related content.</span></div>
+      </div>
+      <div class="age-gate-actions">
+        <button class="age-gate-confirm-btn" id="btn-confirm-age">
+          <span>I am 18 or Older • Enter</span> ✦
+        </button>
+        <button class="age-gate-decline-btn" id="btn-decline-age">
+          Under 18 • Exit
+        </button>
+      </div>
+      <span class="age-gate-footer-note">By entering, you accept our <a href="#" id="link-open-terms-inline">Terms of Sanctuary & Privacy Policy</a>.</span>
+    </div>
+  </div>
+
+  <!-- Comprehensive Legal Terms & Privacy Policy Modal (India IT Act & DPDP Compliance) -->
+  <div class="legal-modal" id="legal-modal" aria-hidden="true">
+    <div class="legal-modal-backdrop" id="legal-modal-backdrop"></div>
+    <div class="legal-modal-card">
+      <div class="legal-modal-header">
+        <div class="legal-title-wrap">
+          <span class="legal-icon">⚖</span>
+          <h3 class="legal-modal-title">Terms of Sanctuary & Legal Compliance</h3>
+        </div>
+        <button class="legal-modal-close" id="btn-close-legal" aria-label="Close Legal Terms">✕</button>
+      </div>
+      <div class="legal-modal-body">
+        <section class="legal-section">
+          <h4>1. Age Restriction & Fictional Persona Mandate (18+)</h4>
+          <p>
+            DarkSense is strictly restricted to individuals who are 18 years of age or older. All companion entities (Seraphina, Vespera, and Calista) are entirely fictional, stylized artificial intelligence personas depicted exclusively as consenting adults.
+          </p>
+        </section>
+
+        <section class="legal-section">
+          <h4>2. Content Standards & Indian IT Act Compliance</h4>
+          <p>
+            In strict compliance with <strong>Sections 67, 67A, and 67B of the Information Technology Act, 2000</strong>, and the <strong>POCSO Act</strong>, DarkSense is programmed for emotional romance, poetic dialogue, and sensory companionship. Generating, requesting, or promoting explicit non-consensual material, child exploitation, self-harm, hate speech, or real-world violence is strictly prohibited and immediately blocked.
+          </p>
+        </section>
+
+        <section class="legal-section">
+          <h4>3. Data Privacy & Digital Personal Data Protection (DPDP Act, 2023)</h4>
+          <p>
+            Your whispers, echoes, and reflections are personal to you. DarkSense is engineered with privacy-by-design: conversation logs and mood affinities are stored locally within your browser's private storage (<code>localStorage</code>) and are not monetized, rented, or sold to third-party data brokers.
+          </p>
+        </section>
+
+        <section class="legal-section">
+          <h4>4. Nature of Service Disclaimer</h4>
+          <p>
+            DarkSense provides simulated emotional companionship and interactive fiction. It is not a clinical mental health therapy provider or medical professional service.
+          </p>
+        </section>
+
+        <section class="legal-section">
+          <h4>5. Grievance Redressal (IT Intermediary Rules, 2021)</h4>
+          <p>
+            For legal inquiries, intellectual property matters, or content concerns, contact the designated Grievance Officer at: <br/>
+            <strong>Email:</strong> <span class="legal-contact-email">legal@darksense.ai</span>
+          </p>
+        </section>
+      </div>
+      <div class="legal-modal-footer">
+        <button class="legal-understand-btn" id="btn-agree-legal">I Understand & Agree</button>
+      </div>
+    </div>
+  </div>
+
 </body>
 
 </html>

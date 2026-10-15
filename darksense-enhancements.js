@@ -1398,7 +1398,74 @@
     }
   };
 
+  
+  // =========================================================================
+  // LEGAL COMPLIANCE & 18+ AGE GATE ENGINE (IT ACT & DPDP COMPLIANCE)
+  // =========================================================================
+  const LegalComplianceEngine = {
+    init() {
+      const ageModal = document.getElementById('age-gate-modal');
+      const legalModal = document.getElementById('legal-modal');
+      const confirmAgeBtn = document.getElementById('btn-confirm-age');
+      const declineAgeBtn = document.getElementById('btn-decline-age');
+      const openLegalBtn = document.getElementById('btn-open-legal');
+      const closeLegalBtn = document.getElementById('btn-close-legal');
+      const agreeLegalBtn = document.getElementById('btn-agree-legal');
+      const legalBackdrop = document.getElementById('legal-modal-backdrop');
+      const inlineTermsLink = document.getElementById('link-open-terms-inline');
+
+      // Check if user previously verified age
+      let isAgeVerified = false;
+      try {
+        isAgeVerified = localStorage.getItem('darksense_age_verified') === 'true';
+      } catch (_) {}
+
+      // Prompt 18+ verification modal if not yet verified
+      if (!isAgeVerified && ageModal) {
+        setTimeout(() => {
+          ageModal.classList.add('visible');
+        }, 800);
+      }
+
+      if (confirmAgeBtn && ageModal) {
+        confirmAgeBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          try {
+            localStorage.setItem('darksense_age_verified', 'true');
+          } catch (_) {}
+          ageModal.classList.remove('visible');
+        });
+      }
+
+      if (declineAgeBtn) {
+        declineAgeBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          // Gentle redirect to safe family page
+          window.location.href = 'https://www.google.com';
+        });
+      }
+
+      // Legal Terms Modal Handlers
+      const openLegal = (e) => {
+        if (e) e.preventDefault();
+        if (legalModal) legalModal.classList.add('visible');
+      };
+
+      const closeLegal = (e) => {
+        if (e) e.preventDefault();
+        if (legalModal) legalModal.classList.remove('visible');
+      };
+
+      if (openLegalBtn) openLegalBtn.addEventListener('click', openLegal);
+      if (inlineTermsLink) inlineTermsLink.addEventListener('click', openLegal);
+      if (closeLegalBtn) closeLegalBtn.addEventListener('click', closeLegal);
+      if (agreeLegalBtn) agreeLegalBtn.addEventListener('click', closeLegal);
+      if (legalBackdrop) legalBackdrop.addEventListener('click', closeLegal);
+    }
+  };
+
   function initAll() {
+    LegalComplianceEngine.init();
     MuseWardrobeEngine.init();
     initTimeTheme();
     AffinitySystem.load();

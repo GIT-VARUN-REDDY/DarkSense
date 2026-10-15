@@ -5025,3 +5025,344 @@ body[data-time-theme="golden-hour"] {
     max-width: 52% !important;
   }
 }
+
+
+/* ==========================================================================
+   DARKSENSE — LEGAL COMPLIANCE & 18+ AGE GATE ARCHITECTURE
+   ========================================================================== */
+
+/* ── 18+ Mandatory Age Gate Modal ── */
+.age-gate-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.age-gate-modal.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.age-gate-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(3, 4, 8, 0.88);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+}
+
+.age-gate-card {
+  position: relative;
+  z-index: 2;
+  background: rgba(14, 12, 22, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 24px;
+  padding: 2.2rem 2.4rem;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 40px var(--mood-accent-glow, rgba(186, 230, 253, 0.25));
+  transform: translateY(20px) scale(0.96);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.age-gate-modal.visible .age-gate-card {
+  transform: translateY(0) scale(1);
+}
+
+.age-badge-wrap {
+  margin-bottom: 0.8rem;
+}
+
+.age-badge-pill {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #fb7185;
+  background: rgba(244, 63, 94, 0.12);
+  border: 1px solid rgba(244, 63, 94, 0.35);
+  padding: 4px 14px;
+  border-radius: 9999px;
+  box-shadow: 0 0 16px rgba(244, 63, 94, 0.3);
+}
+
+.age-gate-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 4.2vw, 1.9rem);
+  color: #ffffff;
+  margin: 0 0 0.6rem;
+  letter-spacing: 0.03em;
+}
+
+.age-gate-text {
+  font-size: 13px;
+  line-height: 1.55;
+  color: #cbd5e1;
+  margin-bottom: 1.2rem;
+}
+
+.age-gate-bullet-points {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 12px 16px;
+  margin-bottom: 1.5rem;
+  font-size: 11.5px;
+  color: #94a3b8;
+  line-height: 1.45;
+}
+
+.age-bullet, .bullet-sparkle-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.bullet-sparkle {
+  color: var(--mood-accent, #bae6fd);
+  font-size: 11px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.age-gate-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.age-gate-confirm-btn {
+  flex: 1.4;
+  padding: 12px 20px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(186, 230, 253, 0.15) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 20px rgba(186, 230, 253, 0.3);
+  transition: all 0.3s ease;
+}
+
+.age-gate-confirm-btn:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.32) 0%, rgba(186, 230, 253, 0.28) 100%);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.6), 0 0 30px rgba(186, 230, 253, 0.5);
+  transform: translateY(-1px);
+}
+
+.age-gate-decline-btn {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 9999px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #64748b;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.age-gate-decline-btn:hover {
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.4);
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.age-gate-footer-note {
+  font-size: 10.5px;
+  color: #64748b;
+}
+
+.age-gate-footer-note a {
+  color: var(--mood-accent, #bae6fd);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ── Full Legal Terms & Privacy Modal ── */
+.legal-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 51000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.legal-modal.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.legal-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 3, 6, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+.legal-modal-card {
+  position: relative;
+  z-index: 2;
+  background: rgba(16, 13, 24, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 22px;
+  max-width: 620px;
+  width: 92%;
+  max-height: 84vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.85);
+  transform: translateY(20px) scale(0.97);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.legal-modal.visible .legal-modal-card {
+  transform: translateY(0) scale(1);
+}
+
+.legal-modal-header {
+  padding: 1.3rem 1.6rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.legal-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.legal-icon {
+  font-size: 18px;
+}
+
+.legal-modal-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+.legal-modal-close {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #94a3b8;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.legal-modal-close:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+.legal-modal-body {
+  padding: 1.4rem 1.6rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  scrollbar-width: thin;
+}
+
+.legal-section h4 {
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #e2e8f0;
+  margin: 0 0 0.35rem;
+}
+
+.legal-section p {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.legal-section code {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #bae6fd;
+}
+
+.legal-contact-email {
+  color: var(--mood-accent, #bae6fd);
+  font-weight: 600;
+}
+
+.legal-modal-footer {
+  padding: 1rem 1.6rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.legal-understand-btn {
+  padding: 9px 24px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.legal-understand-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 480px) {
+  .age-gate-card {
+    padding: 1.5rem 1.2rem;
+  }
+  .age-gate-actions {
+    flex-direction: column;
+  }
+  .legal-modal-card {
+    width: 95%;
+    max-height: 90vh;
+  }
+  .legal-modal-header, .legal-modal-body, .legal-modal-footer {
+    padding-left: 1.1rem;
+    padding-right: 1.1rem;
+  }
+}
