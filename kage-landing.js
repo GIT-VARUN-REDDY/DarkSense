@@ -398,7 +398,15 @@
       const deltaY = e.changedTouches[0].clientY - touchStartY;
       const deltaX = e.changedTouches[0].clientX - touchStartX;
 
-      if (Math.abs(deltaY) > 35 && Math.abs(deltaY) > Math.abs(deltaX)) {
+      // Check if touch originated from inside horizontal scroll containers (cards)
+      const targetEl = e.target;
+      const isCardCarousel = targetEl && targetEl.closest('.muses-grid-container, .secrets-cards-grid, .echoes-drawer, .legal-modal');
+      if (isCardCarousel && Math.abs(deltaX) > 20) {
+        return; // User is scrolling horizontally through character cards!
+      }
+
+      // Vertical slide change with clean intentional threshold
+      if (Math.abs(deltaY) > 48 && Math.abs(deltaY) > Math.abs(deltaX) * 1.5) {
         if (deltaY < 0 && currentSlideIndex < 2) {
           goToSlide(currentSlideIndex + 1);
         } else if (deltaY > 0 && currentSlideIndex > 0) {
@@ -406,6 +414,7 @@
         }
       }
     }
+  }
   }
 
   // Intercept mouse wheel — static viewport with cinematic slide gliding (No native scrolling)
@@ -818,6 +827,15 @@
     initDOMElements();
     initThree();
     setupEvents();
+
+    // Mobile slide dots navigation click
+    document.querySelectorAll('.mobile-dot').forEach(dot => {
+      dot.addEventListener('click', (e) => {
+        e.preventDefault();
+        const slideIdx = parseInt(dot.getAttribute('data-slide') || '0', 10);
+        goToSlide(slideIdx);
+      });
+    });
     // 14. Muse Affinity System: Auto-bias landing theme to highest affinity muse
     let initialMood = 'luminous';
     try {
