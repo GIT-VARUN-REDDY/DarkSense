@@ -4,7 +4,7 @@ import urllib.request
 import json
 import os
 
-PORT = 8080
+PORT = int(os.environ.get("PORT", 8080))
 NGROK_TARGET = "https://cupid-elope-plaything.ngrok-free.dev"
 
 class ProxyHandler(http.server.SimpleHTTPRequestHandler):
