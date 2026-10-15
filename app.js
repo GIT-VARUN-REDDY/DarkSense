@@ -396,7 +396,9 @@ function commitMuseSelection(targetKey, isAmbient = false, event = null) {
   }
 
   // Update Header Entity Badge
-  if (DOM.headerEntityName) DOM.headerEntityName.textContent = target.fullName;
+  if (DOM.headerEntityName) {
+    DOM.headerEntityName.innerHTML = `<span class="header-brand-prefix">DarkSense • </span><span class="header-muse-name">${target.name}</span>`;
+  }
   if (DOM.headerEntityStatus) DOM.headerEntityStatus.textContent = target.status;
   if (DOM.pulseIndicator) DOM.pulseIndicator.className = `pulse-indicator ${target.pulseClass}`;
 
