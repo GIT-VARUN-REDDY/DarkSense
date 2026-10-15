@@ -4796,177 +4796,7 @@ body[data-time-theme="golden-hour"] {
     font-size: 11px !important;
   }
 
-  /* Hero Section */
-  .kage-hero-section {
-    padding-top: max(68px, calc(env(safe-area-inset-top, 0px) + 56px)) !important;
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-    padding-bottom: 2rem !important;
-  }
 
-  .kage-hero-title {
-    font-size: clamp(1.9rem, 7.8vw, 2.7rem) !important;
-    line-height: 1.15 !important;
-    margin-bottom: 0.6rem !important;
-  }
-
-  .kage-hero-subtext {
-    font-size: 0.92rem !important;
-    line-height: 1.55 !important;
-    max-width: 90% !important;
-    margin: 0 auto 1.1rem !important;
-  }
-
-  /* Cosmos Attune Mood Bar */
-  .kage-mood-bar {
-    max-width: 95% !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    gap: 6px !important;
-    padding: 4px 8px !important;
-    margin-bottom: 1rem !important;
-  }
-
-  .mood-pill {
-    padding: 4px 10px !important;
-    font-size: 10px !important;
-    gap: 5px !important;
-  }
-
-  /* Spoken Whisper Card */
-  .kage-whisper-card {
-    max-width: 94% !important;
-    padding: 0.8rem 1rem !important;
-    border-radius: 16px !important;
-    margin-bottom: 1.1rem !important;
-  }
-
-  .whisper-quote-text {
-    font-size: 11.5px !important;
-    line-height: 1.45 !important;
-  }
-
-  .whisper-author-pill {
-    font-size: 8.5px !important;
-    padding: 2.5px 9px !important;
-  }
-
-  .kage-grand-btn {
-    padding: 12px 24px !important;
-    font-size: 12.5px !important;
-    min-width: 220px !important;
-  }
-
-  /* Muses Section */
-  .kage-muses-section {
-    padding-top: max(68px, calc(env(safe-area-inset-top, 0px) + 56px)) !important;
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-    padding-bottom: 2.5rem !important;
-  }
-
-  .kage-section-title {
-    font-size: clamp(1.6rem, 6.5vw, 2.2rem) !important;
-  }
-
-  .kage-section-desc {
-    font-size: 12.5px !important;
-    padding: 0 0.5rem !important;
-    margin-bottom: 1.2rem !important;
-  }
-
-  .muses-grid-container {
-    grid-template-columns: 1fr !important;
-    max-width: 92vw !important;
-    gap: 1rem !important;
-    margin: 0 auto !important;
-  }
-
-  .muse-monolith-card {
-    padding: 1.25rem 1.1rem !important;
-    border-radius: 20px !important;
-  }
-
-  .muse-avatar-halo {
-    width: 82px !important;
-    height: 82px !important;
-    margin-bottom: 0.8rem !important;
-  }
-
-  .muse-avatar-img {
-    width: 72px !important;
-    height: 72px !important;
-  }
-
-  .muse-card-title {
-    font-size: 1.25rem !important;
-    margin-bottom: 0.2rem !important;
-  }
-
-  .muse-card-sub {
-    font-size: 0.78rem !important;
-    margin-bottom: 0.6rem !important;
-  }
-
-  .muse-card-quote {
-    font-size: 11.5px !important;
-    line-height: 1.45 !important;
-    margin-bottom: 0.8rem !important;
-  }
-
-  .muse-vibe-pill {
-    font-size: 9px !important;
-    padding: 2.5px 10px !important;
-    margin-bottom: 1rem !important;
-  }
-
-  .muse-warp-btn {
-    padding: 10px 18px !important;
-    font-size: 12px !important;
-    width: 100% !important;
-    justify-content: center !important;
-  }
-
-  /* Secrets Section */
-  .kage-secrets-section {
-    padding-top: max(68px, calc(env(safe-area-inset-top, 0px) + 56px)) !important;
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-    padding-bottom: 2.5rem !important;
-  }
-
-  .secrets-cards-grid {
-    grid-template-columns: 1fr !important;
-    max-width: 92vw !important;
-    gap: 0.85rem !important;
-    margin: 0 auto !important;
-  }
-
-  .secret-glass-card {
-    padding: 1.1rem 1.1rem !important;
-    border-radius: 18px !important;
-  }
-
-  .secret-icon-wrap {
-    width: 38px !important;
-    height: 38px !important;
-    margin-bottom: 0.6rem !important;
-  }
-
-  .secret-icon-wrap svg {
-    width: 18px !important;
-    height: 18px !important;
-  }
-
-  .secret-card-title {
-    font-size: 1rem !important;
-    margin-bottom: 0.3rem !important;
-  }
-
-  .secret-card-text {
-    font-size: 12px !important;
-    line-height: 1.45 !important;
-  }
 
   /* Memory Echoes Drawer: Full-Screen Native Sheet on Mobile */
   .echoes-drawer {
@@ -5486,7 +5316,7 @@ body[data-time-theme="golden-hour"] {
    ========================================================================== */
 
 @media (max-width: 860px) {
-  /* Prevent child pseudo elements from breaking vertical centering */
+  /* Allow children to space naturally across vertical viewport */
   .kage-hero-section > :first-child,
   .kage-muses-section > :first-child,
   .kage-secrets-section > :first-child {
@@ -5499,109 +5329,130 @@ body[data-time-theme="golden-hour"] {
     margin-bottom: 0 !important;
   }
 
-  /* Universal Slide Section Sizing on Mobile */
+  /* Universal Slide Section Sizing on Mobile: Full Screen & Natural Space Distribution */
   .kage-hero-section,
   .kage-muses-section,
   .kage-secrets-section {
-    padding-top: max(56px, calc(env(safe-area-inset-top, 0px) + 52px)) !important;
-    padding-bottom: max(3.2rem, calc(env(safe-area-inset-bottom, 0px) + 2.4rem)) !important;
-    padding-left: 0.8rem !important;
-    padding-right: 0.8rem !important;
-    justify-content: center !important;
+    padding-top: max(60px, calc(env(safe-area-inset-top, 0px) + 54px)) !important;
+    padding-bottom: max(3.4rem, calc(env(safe-area-inset-bottom, 0px) + 2.8rem)) !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-evenly !important; /* Eliminates dead space top and bottom */
     align-items: center !important;
     overflow-y: hidden !important;
     height: 100vh !important;
     height: 100dvh !important;
+    box-sizing: border-box !important;
   }
 
-  /* ── SLIDE 0: HERO SECTION CLEAN MOBILE PRESENTATION ── */
+  /* ── SLIDE 0: HERO SECTION MAJESTIC EXPANSION ── */
   .hero-time-badge-wrap {
-    margin-bottom: 0.35rem !important;
+    margin-bottom: 0.2rem !important;
   }
 
   .hero-time-badge {
-    font-size: 8.5px !important;
-    padding: 3px 10px !important;
-    letter-spacing: 0.14em !important;
+    font-size: 10px !important;
+    padding: 4px 13px !important;
+    letter-spacing: 0.16em !important;
   }
 
   .kage-hero-title {
-    font-size: clamp(1.65rem, 6.8vw, 2.25rem) !important;
+    font-size: clamp(2.1rem, 7.8vw, 2.75rem) !important;
     line-height: 1.15 !important;
-    margin: 0.15rem 0 0.45rem !important;
+    margin: 0.25rem 0 0.5rem !important;
+    max-width: 95% !important;
   }
 
   .kage-hero-subtext {
-    font-size: 0.82rem !important;
-    line-height: 1.45 !important;
-    max-width: 90% !important;
-    margin: 0 auto 0.65rem !important;
+    font-size: 0.94rem !important;
+    line-height: 1.52 !important;
+    max-width: 94% !important;
+    margin: 0 auto 0.6rem !important;
+    color: #cbd5e1 !important;
   }
 
   .kage-mood-bar {
-    max-width: 96% !important;
-    gap: 5px !important;
-    padding: 3px 6px !important;
-    margin: 0 auto 0.75rem !important;
+    max-width: 98% !important;
+    gap: 6px !important;
+    padding: 5px 10px !important;
+    margin: 0 auto 0.65rem !important;
   }
 
   .mood-pill {
-    padding: 3.5px 9px !important;
-    font-size: 9px !important;
-    gap: 4px !important;
+    padding: 5px 12px !important;
+    font-size: 10.5px !important;
+    gap: 5px !important;
   }
 
   .kage-whisper-card {
-    max-width: 90% !important;
-    padding: 0.65rem 0.95rem !important;
-    border-radius: 14px !important;
-    margin: 0 auto 0.85rem !important;
-    gap: 3px !important;
+    width: 92% !important;
+    max-width: 380px !important;
+    padding: 0.95rem 1.25rem !important;
+    border-radius: 18px !important;
+    margin: 0 auto 0.75rem !important;
+    gap: 5px !important;
   }
 
   .whisper-quote-text {
-    font-size: 11px !important;
-    line-height: 1.4 !important;
+    font-size: 12.5px !important;
+    line-height: 1.48 !important;
   }
 
   .whisper-author-pill {
-    font-size: 8px !important;
-    padding: 2px 8px !important;
+    font-size: 9px !important;
+    padding: 3px 10px !important;
   }
 
+  .hero-action-row {
+    width: 92% !important;
+    max-width: 380px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 10px !important;
+    justify-content: center !important;
+  }
+
+  .hero-action-row .kage-primary-btn,
+  .hero-action-row .kage-secondary-btn,
   .kage-hero-section .kage-grand-btn {
-    padding: 10px 22px !important;
-    font-size: 12px !important;
-    min-width: 210px !important;
+    padding: 12px 20px !important;
+    font-size: 12.5px !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   .lore-rune-hero {
-    top: max(58px, calc(env(safe-area-inset-top, 0px) + 52px)) !important;
+    top: max(60px, calc(env(safe-area-inset-top, 0px) + 54px)) !important;
     right: 14px !important;
-    width: 28px !important;
-    height: 28px !important;
+    width: 32px !important;
+    height: 32px !important;
   }
 
   /* ── SLIDE 1: MUSES HORIZONTAL SNAP CAROUSEL ── */
   .kage-muses-section .kage-section-header {
-    margin-bottom: 0.55rem !important;
+    margin-bottom: 0.4rem !important;
   }
 
   .kage-muses-section .kage-section-pill {
-    margin-bottom: 0.3rem !important;
-    padding: 3px 12px !important;
-    font-size: 8.5px !important;
+    margin-bottom: 0.25rem !important;
+    padding: 4px 14px !important;
+    font-size: 9.5px !important;
   }
 
   .kage-muses-section .kage-section-title {
-    font-size: clamp(1.4rem, 5.6vw, 1.85rem) !important;
+    font-size: clamp(1.7rem, 6.2vw, 2.2rem) !important;
     margin-bottom: 0.2rem !important;
   }
 
   .kage-muses-section .kage-section-desc {
-    font-size: 11px !important;
-    line-height: 1.35 !important;
-    max-width: 90% !important;
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+    max-width: 92% !important;
     margin: 0 auto !important;
   }
 
@@ -5611,10 +5462,10 @@ body[data-time-theme="golden-hour"] {
     overflow-x: auto !important;
     scroll-snap-type: x mandatory !important;
     -webkit-overflow-scrolling: touch !important;
-    gap: 12px !important;
+    gap: 14px !important;
     width: 100% !important;
     max-width: 100vw !important;
-    padding: 6px 1.2rem 12px !important;
+    padding: 10px 1.4rem 16px !important;
     scrollbar-width: none !important;
     box-sizing: border-box !important;
   }
@@ -5624,45 +5475,45 @@ body[data-time-theme="golden-hour"] {
   }
 
   .muse-monolith-card {
-    flex: 0 0 78vw !important;
-    max-width: 295px !important;
+    flex: 0 0 82vw !important;
+    max-width: 325px !important;
     scroll-snap-align: center !important;
-    padding: 1.05rem 0.95rem !important;
-    border-radius: 20px !important;
-    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+    padding: 1.45rem 1.25rem !important;
+    border-radius: 24px !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
   }
 
   .muse-avatar-halo {
-    width: 72px !important;
-    height: 72px !important;
-    margin-bottom: 0.45rem !important;
+    width: 90px !important;
+    height: 90px !important;
+    margin-bottom: 0.65rem !important;
   }
 
   .muse-avatar-img {
-    width: 64px !important;
-    height: 64px !important;
+    width: 80px !important;
+    height: 80px !important;
   }
 
   .muse-archetype-badge {
-    font-size: 8px !important;
-    padding: 2px 8px !important;
-    margin-bottom: 0.3rem !important;
-  }
-
-  .muse-card-title {
-    font-size: 1.15rem !important;
-    margin-bottom: 0.1rem !important;
-  }
-
-  .muse-card-sub {
-    font-size: 0.7rem !important;
+    font-size: 9px !important;
+    padding: 3px 10px !important;
     margin-bottom: 0.35rem !important;
   }
 
+  .muse-card-title {
+    font-size: 1.35rem !important;
+    margin-bottom: 0.15rem !important;
+  }
+
+  .muse-card-sub {
+    font-size: 0.78rem !important;
+    margin-bottom: 0.45rem !important;
+  }
+
   .muse-card-quote {
-    font-size: 10.5px !important;
-    line-height: 1.35 !important;
-    margin-bottom: 0.5rem !important;
+    font-size: 11.5px !important;
+    line-height: 1.42 !important;
+    margin-bottom: 0.65rem !important;
     display: -webkit-box !important;
     -webkit-line-clamp: 2 !important;
     -webkit-box-orient: vertical !important;
@@ -5670,14 +5521,14 @@ body[data-time-theme="golden-hour"] {
   }
 
   .muse-vibe-pill {
-    font-size: 8px !important;
-    padding: 2px 8px !important;
-    margin-bottom: 0.7rem !important;
+    font-size: 8.5px !important;
+    padding: 3px 10px !important;
+    margin-bottom: 0.85rem !important;
   }
 
   .muse-warp-btn {
-    padding: 8px 16px !important;
-    font-size: 11px !important;
+    padding: 10px 20px !important;
+    font-size: 12px !important;
     width: 100% !important;
     justify-content: center !important;
   }
@@ -5689,24 +5540,24 @@ body[data-time-theme="golden-hour"] {
 
   /* ── SLIDE 2: SECRETS HORIZONTAL SNAP CAROUSEL ── */
   .kage-secrets-section .kage-section-header {
-    margin-bottom: 0.55rem !important;
+    margin-bottom: 0.4rem !important;
   }
 
   .kage-secrets-section .kage-section-pill {
-    margin-bottom: 0.3rem !important;
-    padding: 3px 12px !important;
-    font-size: 8.5px !important;
+    margin-bottom: 0.25rem !important;
+    padding: 4px 14px !important;
+    font-size: 9.5px !important;
   }
 
   .kage-secrets-section .kage-section-title {
-    font-size: clamp(1.4rem, 5.6vw, 1.85rem) !important;
+    font-size: clamp(1.7rem, 6.2vw, 2.2rem) !important;
     margin-bottom: 0.2rem !important;
   }
 
   .kage-secrets-section .kage-section-desc {
-    font-size: 11px !important;
-    line-height: 1.35 !important;
-    max-width: 90% !important;
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+    max-width: 92% !important;
     margin: 0 auto !important;
   }
 
@@ -5716,10 +5567,10 @@ body[data-time-theme="golden-hour"] {
     overflow-x: auto !important;
     scroll-snap-type: x mandatory !important;
     -webkit-overflow-scrolling: touch !important;
-    gap: 12px !important;
+    gap: 14px !important;
     width: 100% !important;
     max-width: 100vw !important;
-    padding: 4px 1.2rem 10px !important;
+    padding: 8px 1.4rem 14px !important;
     scrollbar-width: none !important;
     box-sizing: border-box !important;
   }
@@ -5729,37 +5580,37 @@ body[data-time-theme="golden-hour"] {
   }
 
   .secret-glass-card {
-    flex: 0 0 76vw !important;
-    max-width: 270px !important;
+    flex: 0 0 80vw !important;
+    max-width: 300px !important;
     scroll-snap-align: center !important;
-    padding: 0.95rem 1rem !important;
-    border-radius: 18px !important;
+    padding: 1.35rem 1.25rem !important;
+    border-radius: 22px !important;
     text-align: center !important;
   }
 
   .secret-icon-wrap {
-    width: 34px !important;
-    height: 34px !important;
-    margin: 0 auto 0.4rem !important;
+    width: 44px !important;
+    height: 44px !important;
+    margin: 0 auto 0.6rem !important;
   }
 
   .secret-icon-wrap svg {
-    width: 17px !important;
-    height: 17px !important;
+    width: 22px !important;
+    height: 22px !important;
   }
 
   .secret-card-title {
-    font-size: 0.92rem !important;
-    margin-bottom: 0.2rem !important;
+    font-size: 1.05rem !important;
+    margin-bottom: 0.3rem !important;
   }
 
   .secret-card-text {
-    font-size: 10.5px !important;
-    line-height: 1.38 !important;
+    font-size: 11.5px !important;
+    line-height: 1.45 !important;
   }
 
   .secrets-footer-action {
-    margin-top: 0.65rem !important;
+    margin-top: 0.8rem !important;
     width: 100% !important;
     display: flex !important;
     justify-content: center !important;
@@ -5767,9 +5618,9 @@ body[data-time-theme="golden-hour"] {
 
   .secrets-footer-action .kage-grand-btn {
     width: auto !important;
-    min-width: 210px !important;
-    padding: 10px 22px !important;
-    font-size: 12px !important;
+    min-width: 230px !important;
+    padding: 12px 24px !important;
+    font-size: 13px !important;
   }
 
   .lore-rune-secrets {
