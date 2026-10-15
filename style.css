@@ -4393,15 +4393,15 @@ body[data-time-theme="golden-hour"] {
     box-sizing: border-box !important;
   }
 
-  /* 3D Visual Stage at Top Half (Proportional, Grounded, Fits with Chat) */
+  /* 3D Visual Stage at Top Half (Majestic Companion Viewport) */
   .visual-stage {
     flex: none !important;
     width: 100% !important;
     max-width: 520px !important;
-    height: 38dvh !important;
-    min-height: 225px !important;
-    max-height: 295px !important;
-    padding: 0 !important;
+    height: 45dvh !important;
+    min-height: 310px !important;
+    max-height: 410px !important;
+    padding: max(6px, env(safe-area-inset-top, 0px)) 0 0 !important;
     margin: 0 auto !important;
     position: relative !important;
   }
@@ -4412,18 +4412,20 @@ body[data-time-theme="golden-hour"] {
     perspective: 750px !important;
   }
 
-  /* Character Staging: Perfectly frames center without clipping flanks */
+  /* Character Staging: Majestic proportions without head clipping */
   .character-slot {
-    width: 42% !important;
-    max-width: 180px !important;
-    height: 98% !important;
+    width: 46% !important;
+    max-width: 210px !important;
+    height: 95% !important;
     bottom: 0px !important;
   }
 
   .figure-image {
-    max-height: calc(100% - 10px) !important;
-    height: calc(100% - 10px) !important;
-    margin-bottom: 4px !important;
+    max-height: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: center bottom !important;
+    margin-bottom: 0 !important;
   }
 
   .character-slot.pos-center,
@@ -4488,13 +4490,13 @@ body[data-time-theme="golden-hour"] {
   .character-slot.pos-center .character-nameplate {
     display: flex !important;
     opacity: 1 !important;
-    bottom: 4px !important;
+    bottom: 2px !important;
     z-index: 30 !important;
   }
 
   .nameplate-inner {
-    padding: 5px 12px 5px 10px !important;
-    gap: 7px !important;
+    padding: 5px 13px 5px 11px !important;
+    gap: 8px !important;
     border-radius: 9999px !important;
     background: rgba(9, 13, 24, 0.94) !important;
     backdrop-filter: blur(16px) !important;
@@ -4504,14 +4506,16 @@ body[data-time-theme="golden-hour"] {
   .nameplate-name {
     font-size: 0.84rem !important;
     font-weight: 600 !important;
+    letter-spacing: 0.08em !important;
   }
 
   .nameplate-sub {
     font-size: 0.58rem !important;
-    max-width: 105px !important;
+    max-width: 145px !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     white-space: nowrap !important;
+    letter-spacing: 0.04em !important;
   }
 
   .nameplate-status {
@@ -4522,27 +4526,35 @@ body[data-time-theme="golden-hour"] {
   .muse-caption-badge {
     padding: 0.1rem 0.5rem !important;
     margin-top: 0.1rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 3px !important;
   }
 
-  .muse-name-title {
-    font-size: 1rem !important;
+  /* Hide redundant second companion title on mobile (already displayed in active nameplate) */
+  .muse-caption-badge .muse-name-title {
+    display: none !important;
   }
 
   .muse-name-desc {
-    font-size: 0.65rem !important;
-    max-width: 85vw !important;
+    font-size: 0.66rem !important;
+    max-width: 88vw !important;
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
+    opacity: 0.72 !important;
+    color: #e2e8f0 !important;
   }
 
   /* Chamber Return Button */
   .chamber-back-btn {
-    top: max(0.5rem, env(safe-area-inset-top, 0px)) !important;
-    left: 0.6rem !important;
-    padding: 6px 14px !important;
-    font-size: 11px !important;
-    gap: 6px !important;
+    top: max(0.4rem, env(safe-area-inset-top, 0px)) !important;
+    left: 0.5rem !important;
+    padding: 5px 12px !important;
+    font-size: 10.5px !important;
+    gap: 5px !important;
+    height: 28px !important;
     z-index: 60 !important;
     border-radius: 9999px !important;
     background: rgba(12, 10, 20, 0.9) !important;
@@ -5039,14 +5051,14 @@ body[data-time-theme="golden-hour"] {
 /* Compact Smartphones (<= 420px, e.g. iPhone 13/14/15, Galaxy S23) */
 @media (max-width: 420px) {
   .visual-stage {
-    height: 36dvh !important;
-    min-height: 215px !important;
-    max-height: 275px !important;
+    height: 45dvh !important;
+    min-height: 300px !important;
+    max-height: 410px !important;
   }
 
   .character-slot {
-    width: 44% !important;
-    max-width: 165px !important;
+    width: 46% !important;
+    max-width: 195px !important;
   }
 
   .mood-bar-label {
