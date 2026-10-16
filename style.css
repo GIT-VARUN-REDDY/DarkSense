@@ -410,7 +410,7 @@ body {
 #figure-calista,
 #figure-calista-crimson,
 #figure-calista-gold {
-  transform: translateX(-50%) scale(1.387);
+  transform: translateX(-50%) scale(1.34539);
 }
 
 /* Ground shadow underneath the character */
@@ -4084,7 +4084,7 @@ body[data-time-theme="golden-hour"] {
 
 /* Calista Primary Outfit: Crimson Silk Slit Dress (Default) */
 #figure-calista {
-  transform: translateX(-50%) scale(1.387);
+  transform: translateX(-50%) scale(1.34539);
   opacity: 1;
   pointer-events: auto;
   transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1),
@@ -4094,7 +4094,7 @@ body[data-time-theme="golden-hour"] {
 
 /* Calista Alternate Outfit: Sun-Kissed Golden Siren */
 #figure-calista-gold {
-  transform: translateX(-50%) scale(1.387);
+  transform: translateX(-50%) scale(1.34539);
   opacity: 0;
   pointer-events: none;
   filter: blur(10px) brightness(1.15);
@@ -4107,20 +4107,20 @@ body[data-time-theme="golden-hour"] {
 .slot-calista.wardrobe-alt #figure-calista {
   opacity: 0;
   pointer-events: none;
-  transform: translateX(-50%) scale(1.387);
+  transform: translateX(-50%) scale(1.34539);
   filter: blur(10px) brightness(1.15);
 }
 
 .slot-calista.wardrobe-alt #figure-calista-gold {
   opacity: 1;
   pointer-events: auto;
-  transform: translateX(-50%) scale(1.387);
+  transform: translateX(-50%) scale(1.34539);
   filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.88)) drop-shadow(0 0 38px rgba(251, 146, 60, 0.45));
 }
 
 .character-slot.pos-center.slot-calista.wardrobe-alt:hover #figure-calista-gold {
   filter: drop-shadow(0 18px 42px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 48px rgba(251, 146, 60, 0.6));
-  transform: translateX(-50%) scale(1.387);
+  transform: translateX(-50%) scale(1.34539);
 }
 
 /* Solar Flame Slow-Motion Shimmer Veil */
@@ -4357,7 +4357,7 @@ body[data-time-theme="golden-hour"] {
 }
 
 #slot-calista .figure-peek-img {
-  transform: translateX(-50%) scale(1.387) !important;
+  transform: translateX(-50%) scale(1.34539) !important;
 }
 
 #slot-vespera .figure-peek-img {
