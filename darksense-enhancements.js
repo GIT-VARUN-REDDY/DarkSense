@@ -846,34 +846,70 @@
       let modal = document.getElementById('onboarding-ritual-modal');
       if (!modal) return;
 
+      modal.style.display = 'flex';
+      modal.style.visibility = 'visible';
+      modal.style.pointerEvents = 'auto';
       modal.classList.add('active');
 
       const skipBtn = document.getElementById('ritual-skip-btn');
-      const endRitual = () => {
-        if (!modal.classList.contains('active')) return;
+      const endRitual = (enterChamberNow = false) => {
         modal.classList.remove('active');
+        modal.style.display = 'none';
+        modal.style.visibility = 'hidden';
+        modal.style.pointerEvents = 'none';
+
+        // Also ensure age gate modal is not blocking
+        const ageModal = document.getElementById('age-gate-modal');
+        if (ageModal && enterChamberNow) {
+          ageModal.classList.remove('visible');
+          ageModal.style.display = 'none';
+          ageModal.style.visibility = 'hidden';
+          ageModal.style.pointerEvents = 'none';
+        }
+
         if (window.DarkSenseAudio) window.DarkSenseAudio.playChime('pill');
+
+        if (enterChamberNow) {
+          if (typeof window.enterChamber === 'function') {
+            window.enterChamber('seraphina');
+          } else {
+            setTimeout(() => {
+              if (typeof window.enterChamber === 'function') {
+                window.enterChamber('seraphina');
+              } else {
+                const landing = document.getElementById('landing-stage');
+                const chamber = document.getElementById('main-chamber-stage');
+                if (landing) landing.style.display = 'none';
+                if (chamber) chamber.classList.add('visible');
+                document.body.classList.add('chamber-active');
+              }
+            }, 120);
+          }
+        }
       };
 
       if (skipBtn) {
         skipBtn.onclick = (e) => {
           e.preventDefault();
           e.stopPropagation();
-          endRitual();
+          try {
+            localStorage.setItem('darksense_age_verified', 'true');
+          } catch (_) {}
+          endRitual(true); // Step into the dark -> warp directly to Avatar Chamber!
         };
       }
 
-      // Also allow clicking anywhere on modal backdrop to step in
+      // Also allow clicking anywhere on modal backdrop to dismiss
       modal.onclick = (e) => {
         if (e.target === modal || e.target.classList.contains('ritual-backdrop') || e.target.classList.contains('ritual-particle-field')) {
-          endRitual();
+          endRitual(false);
         }
       };
 
       // Auto dismiss after 6 seconds if untouched
       setTimeout(() => {
         if (modal.classList.contains('active')) {
-          endRitual();
+          endRitual(false);
         }
       }, 6200);
     }
@@ -1680,11 +1716,23 @@
         isAgeVerified = localStorage.getItem('darksense_age_verified') === 'true';
       } catch (_) {}
 
-      // Prompt 18+ verification modal if not yet verified
+      // Prompt 18+ verification modal only if not yet verified and onboarding ritual is not active
       if (!isAgeVerified && ageModal) {
         setTimeout(() => {
-          ageModal.classList.add('visible');
-        }, 800);
+          const ritualModal = document.getElementById('onboarding-ritual-modal');
+          const isRitualActive = ritualModal && (ritualModal.classList.contains('active') || ritualModal.style.display === 'flex');
+          let verified = false;
+          try {
+            verified = localStorage.getItem('darksense_age_verified') === 'true';
+          } catch (_) {}
+
+          if (!verified && !isRitualActive) {
+            ageModal.style.display = 'flex';
+            ageModal.style.visibility = 'visible';
+            ageModal.style.pointerEvents = 'auto';
+            ageModal.classList.add('visible');
+          }
+        }, 7000);
       }
 
       if (confirmAgeBtn && ageModal) {
@@ -1694,6 +1742,13 @@
             localStorage.setItem('darksense_age_verified', 'true');
           } catch (_) {}
           ageModal.classList.remove('visible');
+          ageModal.style.display = 'none';
+          ageModal.style.visibility = 'hidden';
+          ageModal.style.pointerEvents = 'none';
+
+          if (typeof window.enterChamber === 'function') {
+            window.enterChamber('seraphina');
+          }
         });
       }
 
@@ -1708,12 +1763,22 @@
       // Legal Terms Modal Handlers
       const openLegal = (e) => {
         if (e) e.preventDefault();
-        if (legalModal) legalModal.classList.add('visible');
+        if (legalModal) {
+          legalModal.style.display = 'flex';
+          legalModal.style.visibility = 'visible';
+          legalModal.style.pointerEvents = 'auto';
+          legalModal.classList.add('visible');
+        }
       };
 
       const closeLegal = (e) => {
         if (e) e.preventDefault();
-        if (legalModal) legalModal.classList.remove('visible');
+        if (legalModal) {
+          legalModal.classList.remove('visible');
+          legalModal.style.display = 'none';
+          legalModal.style.visibility = 'hidden';
+          legalModal.style.pointerEvents = 'none';
+        }
       };
 
       if (openLegalBtn) openLegalBtn.addEventListener('click', openLegal);
