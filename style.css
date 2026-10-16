@@ -4531,14 +4531,14 @@ body[data-time-theme="golden-hour"] {
     box-sizing: border-box !important;
   }
 
-  /* 3D Visual Stage at Top Half (Majestic Companion Viewport) */
+  /* 3D Visual Stage at Top Half (Majestic Companion Viewport - Balanced 40dvh) */
   .visual-stage {
     flex: none !important;
     width: 100% !important;
     max-width: 520px !important;
-    height: 45dvh !important;
-    min-height: 310px !important;
-    max-height: 410px !important;
+    height: 40dvh !important;
+    min-height: 250px !important;
+    max-height: 335px !important;
     padding: max(6px, env(safe-area-inset-top, 0px)) 0 0 !important;
     margin: 0 auto !important;
     position: relative !important;
@@ -4564,13 +4564,15 @@ body[data-time-theme="golden-hour"] {
     object-fit: contain !important;
     object-position: center bottom !important;
     margin-bottom: 0 !important;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
   }
 
   .character-slot.pos-center,
   .character-slot.slot-front {
     width: 56% !important;
     max-width: 295px !important;
-    transform: translateX(-50%) translate3d(0%, 0px, 16px) scale(1.03) !important;
+    transform: translateX(-50%) translate3d(0%, 0px, 16px) scale(1.02) !important;
     opacity: 1 !important;
   }
 
@@ -4630,32 +4632,36 @@ body[data-time-theme="golden-hour"] {
   .character-slot.pos-center .character-nameplate {
     display: flex !important;
     opacity: 1 !important;
-    bottom: 2px !important;
+    bottom: 0px !important;
     z-index: 30 !important;
   }
 
   .nameplate-inner {
-    padding: 5px 13px 5px 11px !important;
+    padding: 6px 14px 6px 12px !important;
     gap: 8px !important;
     border-radius: 9999px !important;
-    background: rgba(9, 13, 24, 0.94) !important;
+    background: rgba(12, 10, 24, 0.96) !important;
     backdrop-filter: blur(16px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+    border: 1px solid rgba(255, 255, 255, 0.26) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.16) !important;
   }
 
   .nameplate-name {
-    font-size: 0.84rem !important;
-    font-weight: 600 !important;
+    font-size: 0.88rem !important;
+    font-weight: 700 !important;
     letter-spacing: 0.08em !important;
+    color: #ffffff !important;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6) !important;
   }
 
   .nameplate-sub {
-    font-size: 0.58rem !important;
-    max-width: 145px !important;
+    font-size: 0.62rem !important;
+    max-width: 155px !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     white-space: nowrap !important;
     letter-spacing: 0.04em !important;
+    color: #e2e8f0 !important;
   }
 
   .nameplate-status {
@@ -4704,7 +4710,7 @@ body[data-time-theme="golden-hour"] {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7) !important;
   }
 
-  /* Apple Glass Chat Deck (Fills Remaining Screen, Zero Scrolling Window) */
+  /* Apple Glass Chat Deck (Balanced 60dvh Fluid Messages Viewport) */
   .glass-chat-stage {
     flex: 1 1 0 !important;
     width: 100% !important;
@@ -4712,23 +4718,29 @@ body[data-time-theme="golden-hour"] {
     height: auto !important;
     min-height: 0 !important;
     margin: 0 auto !important;
-    border-radius: 20px !important;
+    border-radius: 22px !important;
     display: flex !important;
     flex-direction: column !important;
     overflow: hidden !important;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    background: rgba(14, 11, 24, 0.94) !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
   }
 
   /* Apple Frosted Header with Complete Control Icons Visibility */
   .glass-header {
-    padding: 0.55rem 0.75rem !important;
-    min-height: 48px !important;
+    padding: 0.6rem 0.85rem !important;
+    min-height: 50px !important;
     flex-shrink: 0 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
     gap: 6px !important;
     overflow: visible !important;
+    background: rgba(18, 14, 30, 0.98) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
   }
 
   .entity-badge {
@@ -4840,28 +4852,58 @@ body[data-time-theme="golden-hour"] {
     min-height: 0 !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
-    padding: 0.7rem 0.8rem !important;
-    gap: 0.75rem !important;
+    padding: 0.85rem 0.95rem !important;
+    gap: 0.85rem !important;
   }
 
   .message-bubble {
     max-width: 88% !important;
-    padding: 0.68rem 0.95rem !important;
-    font-size: 0.88rem !important;
-    line-height: 1.5 !important;
-    border-radius: 16px !important;
+    padding: 0.75rem 1.1rem !important;
+    font-size: 0.92rem !important;
+    line-height: 1.55 !important;
+    border-radius: 18px !important;
+    -webkit-font-smoothing: antialiased !important;
+  }
+
+  .message-row.ai .message-bubble {
+    background: rgba(22, 17, 36, 0.96) !important;
+    border: 1px solid rgba(192, 132, 252, 0.25) !important;
+    color: #f8fafc !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.14) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .message-row.ai .bubble-content em,
+  .message-row.ai .bubble-content i {
+    color: #c084fc !important;
+    font-weight: 500 !important;
+  }
+
+  .message-row.user .message-bubble {
+    background: linear-gradient(135deg, rgba(88, 28, 135, 0.92), rgba(126, 34, 206, 0.88)) !important;
+    border: 1px solid rgba(216, 180, 254, 0.38) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 18px rgba(88, 28, 135, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.28) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 
   /* Glass Input Dock Pinned With Safe Area */
   .glass-input-dock {
-    padding: 0.4rem 0.55rem max(0.45rem, env(safe-area-inset-bottom, 0px)) !important;
+    padding: 0.45rem 0.6rem max(0.5rem, env(safe-area-inset-bottom, 0px)) !important;
     flex-shrink: 0 !important;
+    background: rgba(14, 11, 24, 0.98) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.10) !important;
   }
 
   .apple-glass-bar {
-    padding: 0.25rem 0.35rem 0.25rem 0.8rem !important;
+    padding: 0.3rem 0.45rem 0.3rem 0.9rem !important;
     border-radius: 9999px !important;
-    gap: 6px !important;
+    gap: 8px !important;
+    background: rgba(22, 18, 38, 0.96) !important;
+    border: 1px solid rgba(255, 255, 255, 0.20) !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.14) !important;
   }
 
   /* Crucial: 16px prevents iOS Safari from automatically zooming into the page */
@@ -4871,6 +4913,8 @@ body[data-time-theme="golden-hour"] {
     min-height: 22px !important;
     max-height: 75px !important;
     line-height: 1.35 !important;
+    color: #ffffff !important;
+    -webkit-font-smoothing: antialiased !important;
   }
 
   .apple-mic-btn {
@@ -5493,6 +5537,42 @@ body[data-time-theme="golden-hour"] {
     box-sizing: border-box !important;
   }
 
+  /* ── 60FPS HARDWARE-ACCELERATED MOBILE SLIDE TRANSITIONS (NO BLUR JANK) ── */
+  .kage-hero-section,
+  .kage-muses-section,
+  .kage-secrets-section {
+    filter: none !important;
+    -webkit-filter: none !important;
+    transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 0.45s ease !important;
+    will-change: transform, opacity !important;
+  }
+
+  .kage-hero-section.slide-active,
+  .kage-muses-section.slide-active,
+  .kage-secrets-section.slide-active {
+    filter: none !important;
+    -webkit-filter: none !important;
+    transform: translate3d(0, 0, 0) scale(1) !important;
+  }
+
+  .kage-hero-section.slide-prev,
+  .kage-muses-section.slide-prev,
+  .kage-secrets-section.slide-prev {
+    filter: none !important;
+    -webkit-filter: none !important;
+    transform: translate3d(0, -25px, 0) scale(0.98) !important;
+  }
+
+  .kage-hero-section.slide-next,
+  .kage-muses-section.slide-next,
+  .kage-secrets-section.slide-next {
+    filter: none !important;
+    -webkit-filter: none !important;
+    transform: translate3d(0, 25px, 0) scale(0.98) !important;
+  }
+
   /* ── SLIDE 0: HERO SECTION MAJESTIC EXPANSION ── */
   .hero-time-badge-wrap {
     margin-bottom: 0.2rem !important;
@@ -5502,6 +5582,9 @@ body[data-time-theme="golden-hour"] {
     font-size: 10px !important;
     padding: 4px 13px !important;
     letter-spacing: 0.16em !important;
+    background: rgba(14, 11, 24, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+    color: #f1f5f9 !important;
   }
 
   .kage-hero-title {
@@ -5509,14 +5592,21 @@ body[data-time-theme="golden-hour"] {
     line-height: 1.15 !important;
     margin: 0.25rem 0 0.5rem !important;
     max-width: 95% !important;
+    color: #ffffff !important;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9), 0 0 35px rgba(168, 85, 247, 0.35) !important;
+    letter-spacing: 0.05em !important;
+    -webkit-font-smoothing: antialiased !important;
   }
 
   .kage-hero-subtext {
-    font-size: 0.94rem !important;
-    line-height: 1.52 !important;
+    font-size: 0.95rem !important;
+    line-height: 1.55 !important;
     max-width: 94% !important;
     margin: 0 auto 0.6rem !important;
-    color: #cbd5e1 !important;
+    color: #f1f5f9 !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8) !important;
+    font-weight: 400 !important;
+    -webkit-font-smoothing: antialiased !important;
   }
 
   .kage-mood-bar {
@@ -5524,6 +5614,9 @@ body[data-time-theme="golden-hour"] {
     gap: 6px !important;
     padding: 5px 10px !important;
     margin: 0 auto 0.65rem !important;
+    background: rgba(14, 11, 24, 0.92) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.65) !important;
   }
 
   .mood-pill {
@@ -5535,20 +5628,32 @@ body[data-time-theme="golden-hour"] {
   .kage-whisper-card {
     width: 92% !important;
     max-width: 380px !important;
-    padding: 0.95rem 1.25rem !important;
+    padding: 1rem 1.3rem !important;
     border-radius: 18px !important;
     margin: 0 auto 0.75rem !important;
-    gap: 5px !important;
+    gap: 6px !important;
+    background: rgba(14, 11, 24, 0.94) !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.16) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
   }
 
   .whisper-quote-text {
-    font-size: 12.5px !important;
-    line-height: 1.48 !important;
+    font-size: 13.5px !important;
+    line-height: 1.5 !important;
+    color: #ffffff !important;
+    font-weight: 500 !important;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6) !important;
+    -webkit-font-smoothing: antialiased !important;
   }
 
   .whisper-author-pill {
-    font-size: 9px !important;
-    padding: 3px 10px !important;
+    font-size: 9.5px !important;
+    padding: 3px 11px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: #e2e8f0 !important;
   }
 
   .hero-action-row {
@@ -5563,13 +5668,17 @@ body[data-time-theme="golden-hour"] {
   .hero-action-row .kage-primary-btn,
   .hero-action-row .kage-secondary-btn,
   .kage-hero-section .kage-grand-btn {
-    padding: 12px 20px !important;
-    font-size: 12.5px !important;
+    padding: 13px 22px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.06em !important;
     flex: 1 1 auto !important;
     min-width: 0 !important;
+    min-height: 46px !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
   }
 
   .lore-rune-hero {

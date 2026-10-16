@@ -67,9 +67,10 @@
   const LERP_FRAMES = 140; // ~2.3 s at 60 fps
 
   function resize() {
-    // Render at half-res for ambient blurry background blobs - cuts GPU shading by 75%!
-    W = canvas.width  = Math.max(320, Math.floor(window.innerWidth * 0.5));
-    H = canvas.height = Math.max(240, Math.floor(window.innerHeight * 0.5));
+    // Sharp high-fidelity background mesh resolution: 0.75x on mobile, 0.6x on desktop
+    const scale = window.innerWidth <= 860 ? 0.75 : 0.6;
+    W = canvas.width  = Math.max(390, Math.floor(window.innerWidth * scale));
+    H = canvas.height = Math.max(300, Math.floor(window.innerHeight * scale));
     canvas.style.width = '100vw';
     canvas.style.height = '100vh';
   }
