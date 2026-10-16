@@ -109,7 +109,7 @@
         if (pct >= 60) bondTitle = 'Devoted Soulmate';
         else if (pct >= 40) bondTitle = 'Intimate Companion';
         else if (pct >= 25) bondTitle = 'Kindred Spirit';
-        pill.textContent = `${bondTitle} • ${pct}%`;
+        pill.innerHTML = `<span class="affinity-level-text">${bondTitle} • </span><span class="affinity-pct-badge">${pct}%</span>`;
         pill.title = `Your soul affinity bond with ${currentMuse.toUpperCase()} is ${pct}%`;
       }
     }
