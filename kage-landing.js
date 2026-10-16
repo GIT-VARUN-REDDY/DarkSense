@@ -532,16 +532,20 @@
 
     const elapsedTime = clock ? clock.getElapsedTime() : Date.now() * 0.001;
 
-    // Smooth Damping for Camera
-    mouseX += (targetMouseX - mouseX) * 0.05;
-    mouseY += (targetMouseY - mouseY) * 0.05;
+    // Smooth Damping for Camera (snappier on mobile for instant gyro response)
+    const isMobileViewport = window.innerWidth <= 860;
+    const damping = isMobileViewport ? 0.16 : 0.05;
+    mouseX += (targetMouseX - mouseX) * damping;
+    mouseY += (targetMouseY - mouseY) * damping;
     currentCameraZ += (targetCameraZ - currentCameraZ) * 0.06;
     currentCameraY += (targetCameraY - currentCameraY) * 0.06;
 
     if (!isWarping) {
-      // Gentle camera parallax and depth that keeps cosmic background alive
-      camera.position.x = mouseX * 4.0;
-      camera.position.y = -mouseY * 2.5 + currentCameraY;
+      // Camera parallax: generous reach on mobile so device tilt creates distinct depth
+      const camAmpX = isMobileViewport ? 12.0 : 4.0;
+      const camAmpY = isMobileViewport ? 8.0 : 2.5;
+      camera.position.x = mouseX * camAmpX;
+      camera.position.y = -mouseY * camAmpY + currentCameraY;
       camera.position.z = currentCameraZ;
 
       camera.lookAt(0, currentCameraY * 0.75, 0);
@@ -568,9 +572,15 @@
         }
         particleGeo.attributes.position.needsUpdate = true;
 
-        particles.rotation.y += 0.0006 + mouseX * 0.0006;
-        particles.rotation.x = -mouseY * 0.12;
-        particles.rotation.z += 0.0002;
+        if (isMobileViewport) {
+          particles.rotation.y += 0.0008 + mouseX * 0.003;
+          particles.rotation.x = -mouseY * 0.38;
+          particles.rotation.z = mouseX * 0.18;
+        } else {
+          particles.rotation.y += 0.0006 + mouseX * 0.0006;
+          particles.rotation.x = -mouseY * 0.12;
+          particles.rotation.z += 0.0002;
+        }
       }
     } else {
       // Warp Flight Effect
