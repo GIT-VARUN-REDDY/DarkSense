@@ -4,7 +4,7 @@
    Cinematic Transitions & Direct / Proxied LLM Engine
    ======================================================== */
 
-const DIRECT_API_ENDPOINT = 'https://cupid-elope-plaything.ngrok-free.dev/api/chat';
+const DIRECT_API_ENDPOINT = 'https://cupid-elope-plaything.ngrok-free.dev/api/chat?ngrok-skip-browser-warning=69420';
 const PROXY_API_ENDPOINT = '/api/chat';
 const MODEL_NAME = 'my-taco:latest';
 
@@ -758,27 +758,38 @@ DOM.clearBtn.addEventListener('click', () => {
 
 async function callChatApi(payload) {
   const endpoints = [PROXY_API_ENDPOINT, DIRECT_API_ENDPOINT];
+  let lastError = null;
 
   for (const url of endpoints) {
     try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 90000);
+
       const response = await fetch(url, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'ngrok-skip-browser-warning': 'true'
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
+        signal: controller.signal
       });
+
+      clearTimeout(timeoutId);
 
       if (response.ok) {
         return await response.json();
+      } else {
+        const errText = await response.text().catch(() => '');
+        console.warn(`Endpoint ${url} returned ${response.status}:`, errText);
+        lastError = new Error(`Server status ${response.status}`);
       }
     } catch (e) {
       console.warn(`Endpoint ${url} failed, trying next...`, e);
+      lastError = e;
     }
   }
 
-  throw new Error('All connection attempts to https://cupid-elope-plaything.ngrok-free.dev failed.');
+  throw (lastError || new Error('Connection to the AI realm timed out. Please ensure Ollama and ngrok are active.'));
 }
 
 function enforceMaxWords(text, maxWords = 15) {

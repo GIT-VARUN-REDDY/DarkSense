@@ -28,10 +28,18 @@ class ProxyHandler(http.server.SimpleHTTPRequestHandler):
             content_length = int(self.headers.get('Content-Length', 0))
             body = self.rfile.read(content_length)
 
-            targets = [
-                f"http://127.0.0.1:11434{self.path}",
-                f"{NGROK_TARGET}{self.path}"
-            ]
+            # Cloud vs Local target resolution
+            targets = []
+            if os.environ.get("RENDER") or os.environ.get("PORT"):
+                # On cloud hosting (Render), prioritize the active ngrok tunnel
+                sep = '&' if '?' in self.path else '?'
+                targets.append(f"{NGROK_TARGET}{self.path}{sep}ngrok-skip-browser-warning=69420")
+                targets.append(f"http://127.0.0.1:11434{self.path}")
+            else:
+                # Locally, try local Ollama first, then ngrok tunnel
+                targets.append(f"http://127.0.0.1:11434{self.path}")
+                sep = '&' if '?' in self.path else '?'
+                targets.append(f"{NGROK_TARGET}{self.path}{sep}ngrok-skip-browser-warning=69420")
 
             success = False
             last_err = None
@@ -43,18 +51,18 @@ class ProxyHandler(http.server.SimpleHTTPRequestHandler):
                     data=body,
                     headers={
                         'Content-Type': 'application/json',
-                        'ngrok-skip-browser-warning': 'true',
                         'User-Agent': 'DarkSenseClient/1.0'
                     },
                     method='POST'
                 )
 
                 try:
-                    with urllib.request.urlopen(req, timeout=45) as resp:
+                    with urllib.request.urlopen(req, timeout=90) as resp:
                         resp_data = resp.read()
                         print(f"[PROXY] Received {len(resp_data)} bytes from {target_url}")
                         self.send_response(resp.status)
                         self.send_header('Content-Type', 'application/json; charset=utf-8')
+                        self.send_header('Access-Control-Allow-Origin', '*')
                         self.end_headers()
                         self.wfile.write(resp_data)
                         success = True
@@ -67,6 +75,7 @@ class ProxyHandler(http.server.SimpleHTTPRequestHandler):
                 print(f"[PROXY ERROR] All endpoints failed: {last_err}")
                 self.send_response(502)
                 self.send_header('Content-Type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
                 self.end_headers()
                 err_payload = json.dumps({"error": str(last_err)}).encode('utf-8')
                 self.wfile.write(err_payload)
