@@ -4246,6 +4246,8 @@ body[data-time-theme="golden-hour"] {
     transform: scale(1.45) translateY(-18px);
     filter: blur(40px) brightness(1);
   }
+}
+
 /* ==========================================================================
    DYNAMIC SILK VEIL PEEK LENS PORTAL (INVERSE ATTIRE REVEAL)
    ========================================================================== */
