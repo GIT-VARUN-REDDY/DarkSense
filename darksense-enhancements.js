@@ -1492,8 +1492,14 @@
       this.targetOpacity = 0;
       this.currentRadius = 0;
       this.currentOpacity = 0;
-      if (this.activePortal) this.activePortal.classList.remove('peek-active');
-      if (this.activeAura) this.activeAura.classList.remove('peek-active');
+      if (this.activePortal) {
+        this.activePortal.classList.remove('peek-active');
+        this.activePortal.style.opacity = '0';
+      }
+      if (this.activeAura) {
+        this.activeAura.classList.remove('peek-active');
+        this.activeAura.style.opacity = '0';
+      }
     },
 
     attachCenterSlot() {
@@ -1510,6 +1516,9 @@
       this.syncPeekImage(muse);
       if (this.activeInner) {
         this.bindSlotListeners(this.activeInner);
+      }
+      if (slot) {
+        this.bindSlotListeners(slot);
       }
     },
 
@@ -1538,15 +1547,17 @@
       }
     },
 
-    bindSlotListeners(innerEl) {
-      if (!innerEl || innerEl._peekBound) return;
-      innerEl._peekBound = true;
+    bindSlotListeners(targetElement) {
+      if (!targetElement || targetElement._peekBound) return;
+      targetElement._peekBound = true;
 
       const handlePointerEnter = (e) => {
-        if (!innerEl.closest('.character-slot.pos-center')) return;
+        const inner = this.activeInner || targetElement.querySelector?.('.character-card-inner') || targetElement;
+        const centerSlot = targetElement.closest?.('.character-slot.pos-center') || document.querySelector('.character-slot.pos-center');
+        if (!centerSlot) return;
 
         this.syncPeekImage(this.activeMuse);
-        const rect = innerEl.getBoundingClientRect();
+        const rect = inner.getBoundingClientRect();
         const clientX = e.clientX || (e.touches && e.touches[0]?.clientX) || (rect.left + rect.width / 2);
         const clientY = e.clientY || (e.touches && e.touches[0]?.clientY) || (rect.top + rect.height / 2);
 
@@ -1558,7 +1569,7 @@
         }
 
         const isMobile = window.innerWidth <= 860;
-        this.targetRadius = isMobile ? 68 : 84;
+        this.targetRadius = isMobile ? 75 : 95;
         this.targetOpacity = 1;
         this.isHovered = true;
 
@@ -1576,13 +1587,16 @@
       };
 
       const handlePointerMove = (e) => {
-        if (!innerEl.closest('.character-slot.pos-center')) return;
+        const inner = this.activeInner || targetElement.querySelector?.('.character-card-inner') || targetElement;
+        const centerSlot = targetElement.closest?.('.character-slot.pos-center') || document.querySelector('.character-slot.pos-center');
+        if (!centerSlot) return;
+
         if (!this.isHovered) {
           handlePointerEnter(e);
           return;
         }
 
-        const rect = innerEl.getBoundingClientRect();
+        const rect = inner.getBoundingClientRect();
         const clientX = e.clientX || (e.touches && e.touches[0]?.clientX);
         const clientY = e.clientY || (e.touches && e.touches[0]?.clientY);
         if (clientX === undefined || clientY === undefined) return;
@@ -1600,21 +1614,21 @@
       };
 
       // Desktop Pointer
-      innerEl.addEventListener('mouseenter', handlePointerEnter, { passive: true });
-      innerEl.addEventListener('mousemove', handlePointerMove, { passive: true });
-      innerEl.addEventListener('mouseleave', handlePointerLeave, { passive: true });
+      targetElement.addEventListener('mouseenter', handlePointerEnter, { passive: true });
+      targetElement.addEventListener('mousemove', handlePointerMove, { passive: true });
+      targetElement.addEventListener('mouseleave', handlePointerLeave, { passive: true });
 
       // Mobile Touch Interaction
-      innerEl.addEventListener('touchstart', (e) => {
+      targetElement.addEventListener('touchstart', (e) => {
         handlePointerEnter(e);
       }, { passive: true });
 
-      innerEl.addEventListener('touchmove', (e) => {
+      targetElement.addEventListener('touchmove', (e) => {
         handlePointerMove(e);
       }, { passive: true });
 
-      innerEl.addEventListener('touchend', handlePointerLeave, { passive: true });
-      innerEl.addEventListener('touchcancel', handlePointerLeave, { passive: true });
+      targetElement.addEventListener('touchend', handlePointerLeave, { passive: true });
+      targetElement.addEventListener('touchcancel', handlePointerLeave, { passive: true });
     },
 
     bindGlobalHandlers() {
@@ -1625,6 +1639,66 @@
           this.targetY = Math.min(Math.max(this.targetY, 0), rect.height);
         }
       }, { passive: true });
+
+      // Global viewport mouse & touch tracking to guarantee zero-deadzone peek activation
+      const viewport = document.getElementById('stage-viewport');
+      if (viewport) {
+        const updateFromCoords = (clientX, clientY) => {
+          if (!this.activeInner) return;
+          const rect = this.activeInner.getBoundingClientRect();
+          // Check if cursor is over center avatar
+          if (clientX >= (rect.left - 8) && clientX <= (rect.right + 8) &&
+              clientY >= (rect.top - 8) && clientY <= (rect.bottom + 8)) {
+            this.syncPeekImage(this.activeMuse);
+            this.targetX = clientX - rect.left;
+            this.targetY = clientY - rect.top;
+            if (!this.isHovered) {
+              this.currentX = this.targetX;
+              this.currentY = this.targetY;
+              this.playWhisperChime();
+              if (navigator.vibrate) try { navigator.vibrate(8); } catch(err) {}
+            }
+            const isMobile = window.innerWidth <= 860;
+            this.targetRadius = isMobile ? 75 : 95;
+            this.targetOpacity = 1;
+            this.isHovered = true;
+            this.startLoop();
+          } else if (this.isHovered) {
+            this.isHovered = false;
+            this.targetRadius = 0;
+            this.targetOpacity = 0;
+            this.startLoop();
+          }
+        };
+
+        viewport.addEventListener('mousemove', (e) => {
+          updateFromCoords(e.clientX, e.clientY);
+        }, { passive: true });
+
+        viewport.addEventListener('touchmove', (e) => {
+          if (e.touches && e.touches[0]) {
+            updateFromCoords(e.touches[0].clientX, e.touches[0].clientY);
+          }
+        }, { passive: true });
+
+        viewport.addEventListener('mouseleave', () => {
+          if (this.isHovered) {
+            this.isHovered = false;
+            this.targetRadius = 0;
+            this.targetOpacity = 0;
+            this.startLoop();
+          }
+        }, { passive: true });
+
+        viewport.addEventListener('touchend', () => {
+          if (this.isHovered) {
+            this.isHovered = false;
+            this.targetRadius = 0;
+            this.targetOpacity = 0;
+            this.startLoop();
+          }
+        }, { passive: true });
+      }
     },
 
     startLoop() {
@@ -1634,11 +1708,11 @@
     },
 
     tick() {
-      const ease = 0.18; // Ultra-smooth silky inertia
+      const ease = 0.22; // Ultra-smooth silky inertia
       this.currentX += (this.targetX - this.currentX) * ease;
       this.currentY += (this.targetY - this.currentY) * ease;
-      this.currentRadius += (this.targetRadius - this.currentRadius) * 0.15;
-      this.currentOpacity += (this.targetOpacity - this.currentOpacity) * 0.18;
+      this.currentRadius += (this.targetRadius - this.currentRadius) * 0.20;
+      this.currentOpacity += (this.targetOpacity - this.currentOpacity) * 0.22;
 
       const portal = this.activePortal || document.getElementById(`peek-portal-${this.activeMuse}`);
       const aura = this.activeAura || document.getElementById(`peek-aura-${this.activeMuse}`);
