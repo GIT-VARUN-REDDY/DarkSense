@@ -1351,6 +1351,8 @@
         if (subEl) {
           subEl.textContent = isCombat ? 'Obsidian Noir Corset' : 'Obsidian Lace Evening Gown';
         }
+      }
+
       this.updateButtonUI();
       if (typeof SensualPeekLens !== 'undefined' && SensualPeekLens.syncPeekImage) {
         SensualPeekLens.syncPeekImage(muse);
