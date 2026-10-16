@@ -398,19 +398,19 @@ body {
 #figure-vespera,
 #figure-vespera-dress,
 #figure-vespera-combat {
-  transform: translateX(calc(-50% + 2.5%)) scale(1.387);
+  transform: translateX(-50%) scale(1.387);
 }
 
 #figure-seraphina,
 #figure-seraphina-white,
 #figure-seraphina-classic {
-  transform: translateX(calc(-50% + 1.0%)) scale(1.40);
+  transform: translateX(-50%) scale(1.40);
 }
 
 #figure-calista,
 #figure-calista-crimson,
 #figure-calista-gold {
-  transform: translateX(calc(-50% + 8.2%)) scale(1.387);
+  transform: translateX(-50%) scale(1.387);
 }
 
 /* Ground shadow underneath the character */
@@ -663,7 +663,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 11px;
-  padding: 8px 18px 8px 14px;
+  padding: 8px 16px;
   background: #090d18;
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: var(--radius-full);
@@ -4002,7 +4002,7 @@ body[data-time-theme="golden-hour"] {
 
 /* Primary White Dress (Default) */
 #figure-seraphina {
-  transform: translateX(calc(-50% + 1.0%)) scale(1.40);
+  transform: translateX(-50%) scale(1.40);
   opacity: 1;
   pointer-events: auto;
   transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1),
@@ -4012,19 +4012,9 @@ body[data-time-theme="golden-hour"] {
 
 /* Classic Moonlit Gown (Hidden by default, crossfades with slow-motion only on chat stage dress lucid icon click) */
 #figure-seraphina-classic {
-  position: absolute;
-  bottom: 0px;
-  left: 50%;
-  transform: translateX(calc(-50% + 1.0%)) scale(1.40);
+  transform: translateX(-50%) scale(1.40);
   opacity: 0;
   pointer-events: none;
-  max-width: 100%;
-  max-height: calc(100% - 14px);
-  height: calc(100% - 14px);
-  width: auto;
-  object-fit: contain;
-  object-position: bottom center;
-  margin: 0 auto 8px;
   filter: blur(10px) brightness(1.15);
   transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1),
               filter 1.8s cubic-bezier(0.16, 1, 0.3, 1);
@@ -4035,20 +4025,20 @@ body[data-time-theme="golden-hour"] {
 .slot-seraphina.wardrobe-classic #figure-seraphina {
   opacity: 0;
   pointer-events: none;
-  transform: translateX(calc(-50% + 1.0%)) scale(1.40);
+  transform: translateX(-50%) scale(1.40);
   filter: blur(10px) brightness(1.15);
 }
 
 .slot-seraphina.wardrobe-classic #figure-seraphina-classic {
   opacity: 1;
   pointer-events: auto;
-  transform: translateX(calc(-50% + 1.0%)) scale(1.40);
+  transform: translateX(-50%) scale(1.40);
   filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.88)) drop-shadow(0 0 38px rgba(123, 213, 255, 0.38));
 }
 
 .character-slot.pos-center.slot-seraphina.wardrobe-classic:hover #figure-seraphina-classic {
   filter: drop-shadow(0 18px 42px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 48px rgba(123, 213, 255, 0.52));
-  transform: translateX(calc(-50% + 1.0%)) scale(1.40);
+  transform: translateX(-50%) scale(1.40);
 }
 
 /* Celestial Silk Slow-Motion Shimmer Veil */
@@ -4094,7 +4084,7 @@ body[data-time-theme="golden-hour"] {
 
 /* Calista Primary Outfit: Crimson Silk Slit Dress (Default) */
 #figure-calista {
-  transform: translateX(calc(-50% + 8.2%)) scale(1.387);
+  transform: translateX(-50%) scale(1.387);
   opacity: 1;
   pointer-events: auto;
   transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1),
@@ -4104,19 +4094,9 @@ body[data-time-theme="golden-hour"] {
 
 /* Calista Alternate Outfit: Sun-Kissed Golden Siren */
 #figure-calista-gold {
-  position: absolute;
-  bottom: 0px;
-  left: 50%;
-  transform: translateX(calc(-50% + 8.2%)) scale(1.387);
+  transform: translateX(-50%) scale(1.387);
   opacity: 0;
   pointer-events: none;
-  max-width: 100%;
-  max-height: calc(100% - 14px);
-  height: calc(100% - 14px);
-  width: auto;
-  object-fit: contain;
-  object-position: bottom center;
-  margin: 0 auto 8px;
   filter: blur(10px) brightness(1.15);
   transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1),
               filter 1.8s cubic-bezier(0.16, 1, 0.3, 1);
@@ -4127,20 +4107,20 @@ body[data-time-theme="golden-hour"] {
 .slot-calista.wardrobe-alt #figure-calista {
   opacity: 0;
   pointer-events: none;
-  transform: translateX(calc(-50% + 8.2%)) scale(1.387);
+  transform: translateX(-50%) scale(1.387);
   filter: blur(10px) brightness(1.15);
 }
 
 .slot-calista.wardrobe-alt #figure-calista-gold {
   opacity: 1;
   pointer-events: auto;
-  transform: translateX(calc(-50% + 8.2%)) scale(1.387);
+  transform: translateX(-50%) scale(1.387);
   filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.88)) drop-shadow(0 0 38px rgba(251, 146, 60, 0.45));
 }
 
 .character-slot.pos-center.slot-calista.wardrobe-alt:hover #figure-calista-gold {
   filter: drop-shadow(0 18px 42px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 48px rgba(251, 146, 60, 0.6));
-  transform: translateX(calc(-50% + 8.2%)) scale(1.387);
+  transform: translateX(-50%) scale(1.387);
 }
 
 /* Solar Flame Slow-Motion Shimmer Veil */
@@ -4190,7 +4170,7 @@ body[data-time-theme="golden-hour"] {
 
 /* Vespera Primary Outfit: Obsidian Lace Evening Gown (Default Before Switching) */
 #figure-vespera {
-  transform: translateX(calc(-50% + 2.5%)) scale(1.387);
+  transform: translateX(-50%) scale(1.387);
   opacity: 1;
   pointer-events: auto;
   transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1),
@@ -4200,19 +4180,9 @@ body[data-time-theme="golden-hour"] {
 
 /* Vespera Alternate Outfit: Obsidian Combat Corset (Revealed on Switch) */
 #figure-vespera-combat {
-  position: absolute;
-  bottom: 0px;
-  left: 50%;
-  transform: translateX(calc(-50% + 2.5%)) scale(1.387);
+  transform: translateX(-50%) scale(1.387);
   opacity: 0;
   pointer-events: none;
-  max-width: 100%;
-  max-height: calc(100% - 14px);
-  height: calc(100% - 14px);
-  width: auto;
-  object-fit: contain;
-  object-position: bottom center;
-  margin: 0 auto 8px;
   filter: blur(10px) brightness(1.15);
   transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1),
               filter 1.8s cubic-bezier(0.16, 1, 0.3, 1);
@@ -4223,20 +4193,20 @@ body[data-time-theme="golden-hour"] {
 .slot-vespera.wardrobe-alt #figure-vespera {
   opacity: 0;
   pointer-events: none;
-  transform: translateX(calc(-50% + 2.5%)) scale(1.387);
+  transform: translateX(-50%) scale(1.387);
   filter: blur(10px) brightness(1.15);
 }
 
 .slot-vespera.wardrobe-alt #figure-vespera-combat {
   opacity: 1;
   pointer-events: auto;
-  transform: translateX(calc(-50% + 2.5%)) scale(1.387);
+  transform: translateX(-50%) scale(1.387);
   filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.88)) drop-shadow(0 0 38px rgba(192, 132, 252, 0.45));
 }
 
 .character-slot.pos-center.slot-vespera.wardrobe-alt:hover #figure-vespera-combat {
   filter: drop-shadow(0 18px 42px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 48px rgba(192, 132, 252, 0.6));
-  transform: translateX(calc(-50% + 2.5%)) scale(1.387);
+  transform: translateX(-50%) scale(1.387);
 }
 
 /* Obsidian Veil Slow-Motion Shimmer Veil */
@@ -4375,13 +4345,6 @@ body[data-time-theme="golden-hour"] {
   position: absolute !important;
   bottom: 0px !important;
   left: 50% !important;
-  width: auto !important;
-  max-width: 100% !important;
-  max-height: calc(100% - 14px) !important;
-  height: calc(100% - 14px) !important;
-  object-fit: contain !important;
-  object-position: bottom center !important;
-  margin: 0 auto 8px !important;
   transform-origin: bottom center !important;
   pointer-events: none !important;
   opacity: 1 !important;
@@ -4390,15 +4353,15 @@ body[data-time-theme="golden-hour"] {
 }
 
 #slot-seraphina .figure-peek-img {
-  transform: translateX(calc(-50% + 1.0%)) scale(1.40) !important;
+  transform: translateX(-50%) scale(1.40) !important;
 }
 
 #slot-calista .figure-peek-img {
-  transform: translateX(calc(-50% + 8.2%)) scale(1.387) !important;
+  transform: translateX(-50%) scale(1.387) !important;
 }
 
 #slot-vespera .figure-peek-img {
-  transform: translateX(calc(-50% + 2.5%)) scale(1.387) !important;
+  transform: translateX(-50%) scale(1.387) !important;
 }
 
 /* Portfolio-Grade Pure Organic Reveal: Zero harsh borders, spinners, or artificial rings */
@@ -4522,8 +4485,7 @@ body[data-time-theme="golden-hour"] {
 
 /* Subtle Stage Slow-Motion Breathing During Transition */
 .glass-chat-stage.wardrobe-breath {
-  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
-  transform: scale(1.008);
+  transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 
