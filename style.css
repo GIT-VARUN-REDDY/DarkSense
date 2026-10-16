@@ -228,8 +228,6 @@ body {
   pointer-events: none;
   z-index: 3;
   transform-style: preserve-3d;
-  transform: translate3d(calc(var(--gyro-x, 0) * 14px), calc(var(--gyro-y, 0) * 10px), 0);
-  will-change: transform;
 }
 
 .particle {

@@ -368,12 +368,6 @@
     targetMouseY = (e.clientY / window.innerHeight - 0.5) * 2;
   }
 
-  // Mobile Gyroscope & Accelerometer Input Hook
-  window.setLandingGyroTilt = function (gx, gy) {
-    targetMouseX = gx;
-    targetMouseY = gy;
-  };
-
   function onTouchStart(e) {
     if (e.touches && e.touches.length > 0) {
       touchStartY = e.touches[0].clientY;
@@ -568,8 +562,7 @@
         }
         particleGeo.attributes.position.needsUpdate = true;
 
-        particles.rotation.y += 0.0006 + mouseX * 0.0006;
-        particles.rotation.x = -mouseY * 0.12;
+        particles.rotation.y += 0.0006;
         particles.rotation.z += 0.0002;
       }
     } else {

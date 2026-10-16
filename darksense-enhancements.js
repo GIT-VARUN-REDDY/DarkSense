@@ -294,12 +294,6 @@
       targetY = (e.clientY / window.innerHeight - 0.5) * 2;
     }, { passive: true });
 
-    // Mobile Gyroscope Hook for Hero Elements Parallax
-    window.setHeroGyroTilt = function (gx, gy) {
-      targetX = gx;
-      targetY = gy;
-    };
-
     function tickParallax() {
       curX += (targetX - curX) * 0.05;
       curY += (targetY - curY) * 0.05;
