@@ -858,13 +858,22 @@
         modal.style.visibility = 'hidden';
         modal.style.pointerEvents = 'none';
 
-        // Also ensure age gate modal is not blocking
+        // Also ensure age gate modal is cleanly dismissed
         const ageModal = document.getElementById('age-gate-modal');
-        if (ageModal && enterChamberNow) {
+        if (ageModal) {
           ageModal.classList.remove('visible');
           ageModal.style.display = 'none';
           ageModal.style.visibility = 'hidden';
           ageModal.style.pointerEvents = 'none';
+        }
+
+        // Guarantee Landing Stage is active and visible
+        const landing = document.getElementById('landing-stage');
+        if (landing && !enterChamberNow) {
+          landing.style.display = 'block';
+          landing.style.opacity = '1';
+          landing.style.visibility = 'visible';
+          landing.classList.remove('transition-out');
         }
 
         if (window.DarkSenseAudio) window.DarkSenseAudio.playChime('pill');
@@ -877,9 +886,8 @@
               if (typeof window.enterChamber === 'function') {
                 window.enterChamber('seraphina');
               } else {
-                const landing = document.getElementById('landing-stage');
-                const chamber = document.getElementById('main-chamber-stage');
                 if (landing) landing.style.display = 'none';
+                const chamber = document.getElementById('main-chamber-stage');
                 if (chamber) chamber.classList.add('visible');
                 document.body.classList.add('chamber-active');
               }
@@ -895,7 +903,7 @@
           try {
             localStorage.setItem('darksense_age_verified', 'true');
           } catch (_) {}
-          endRitual(true); // Step into the dark -> warp directly to Avatar Chamber!
+          endRitual(false); // Step into the dark -> Lands directly on the Landing Stage!
         };
       }
 
@@ -1563,13 +1571,14 @@
 
         this.targetX = clientX - rect.left;
         this.targetY = clientY - rect.top;
+        const isMobile = window.innerWidth <= 860;
+        this.targetRadius = isMobile ? 88 : 118;
         if (!this.isHovered) {
           this.currentX = this.targetX;
           this.currentY = this.targetY;
+          this.currentRadius = 24;
+          this.currentOpacity = 0.4;
         }
-
-        const isMobile = window.innerWidth <= 860;
-        this.targetRadius = isMobile ? 75 : 95;
         this.targetOpacity = 1;
         this.isHovered = true;
 
@@ -1655,11 +1664,13 @@
             if (!this.isHovered) {
               this.currentX = this.targetX;
               this.currentY = this.targetY;
+              this.currentRadius = 24;
+              this.currentOpacity = 0.4;
               this.playWhisperChime();
               if (navigator.vibrate) try { navigator.vibrate(8); } catch(err) {}
             }
             const isMobile = window.innerWidth <= 860;
-            this.targetRadius = isMobile ? 75 : 95;
+            this.targetRadius = isMobile ? 88 : 118;
             this.targetOpacity = 1;
             this.isHovered = true;
             this.startLoop();
@@ -1708,11 +1719,14 @@
     },
 
     tick() {
-      const ease = 0.22; // Ultra-smooth silky inertia
-      this.currentX += (this.targetX - this.currentX) * ease;
-      this.currentY += (this.targetY - this.currentY) * ease;
-      this.currentRadius += (this.targetRadius - this.currentRadius) * 0.20;
-      this.currentOpacity += (this.targetOpacity - this.currentOpacity) * 0.22;
+      const posEase = 0.58; // High-responsiveness instant follow with smooth micro-damping
+      const radiusEase = 0.35; // Snappy bloom
+      const opacityEase = 0.45;
+
+      this.currentX += (this.targetX - this.currentX) * posEase;
+      this.currentY += (this.targetY - this.currentY) * posEase;
+      this.currentRadius += (this.targetRadius - this.currentRadius) * radiusEase;
+      this.currentOpacity += (this.targetOpacity - this.currentOpacity) * opacityEase;
 
       const portal = this.activePortal || document.getElementById(`peek-portal-${this.activeMuse}`);
       const aura = this.activeAura || document.getElementById(`peek-aura-${this.activeMuse}`);
@@ -1822,8 +1836,13 @@
           ageModal.style.visibility = 'hidden';
           ageModal.style.pointerEvents = 'none';
 
-          if (typeof window.enterChamber === 'function') {
-            window.enterChamber('seraphina');
+          // Stay on landing page so user can explore the landing experience!
+          const landing = document.getElementById('landing-stage');
+          if (landing) {
+            landing.style.display = 'block';
+            landing.style.opacity = '1';
+            landing.style.visibility = 'visible';
+            landing.classList.remove('transition-out');
           }
         });
       }
