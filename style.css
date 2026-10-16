@@ -375,6 +375,9 @@ body {
 }
 
 .figure-image {
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
   display: block;
   max-width: 100%;
   max-height: calc(100% - 14px);
@@ -393,28 +396,19 @@ body {
 
 /* Individual Character Scale Multipliers (Anchored to ground & Perfectly Centered to Nameplate) */
 #figure-vespera,
-#figure-vespera-dress {
-  transform: translateX(2.5%) scale(1.387);
-}
-
+#figure-vespera-dress,
 #figure-vespera-combat {
   transform: translateX(calc(-50% + 2.5%)) scale(1.387);
 }
 
 #figure-seraphina,
-#figure-seraphina-white {
-  transform: translateX(1.0%) scale(1.40);
-}
-
+#figure-seraphina-white,
 #figure-seraphina-classic {
-  transform: translateX(calc(-50% + 1.0%)) scale(1.36);
+  transform: translateX(calc(-50% + 1.0%)) scale(1.40);
 }
 
 #figure-calista,
-#figure-calista-crimson {
-  transform: translateX(8.2%) scale(1.387);
-}
-
+#figure-calista-crimson,
 #figure-calista-gold {
   transform: translateX(calc(-50% + 8.2%)) scale(1.387);
 }
@@ -4008,13 +4002,12 @@ body[data-time-theme="golden-hour"] {
 
 /* Primary White Dress (Default) */
 #figure-seraphina {
-  transform: translateX(1.0%) scale(1.40);
+  transform: translateX(calc(-50% + 1.0%)) scale(1.40);
   opacity: 1;
   pointer-events: auto;
   transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 1.8s cubic-bezier(0.16, 1, 0.3, 1),
               filter 1.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform, filter;
+  will-change: opacity, filter;
 }
 
 /* Classic Moonlit Gown (Hidden by default, crossfades with slow-motion only on chat stage dress lucid icon click) */
@@ -4022,7 +4015,7 @@ body[data-time-theme="golden-hour"] {
   position: absolute;
   bottom: 0px;
   left: 50%;
-  transform: translateX(calc(-50% + 1.0%)) scale(1.36);
+  transform: translateX(calc(-50% + 1.0%)) scale(1.40);
   opacity: 0;
   pointer-events: none;
   max-width: 100%;
@@ -4034,16 +4027,15 @@ body[data-time-theme="golden-hour"] {
   margin: 0 auto 8px;
   filter: blur(10px) brightness(1.15);
   transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 1.8s cubic-bezier(0.16, 1, 0.3, 1),
               filter 1.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform, filter;
+  will-change: opacity, filter;
 }
 
 /* When Classic Outfit is Active */
 .slot-seraphina.wardrobe-classic #figure-seraphina {
   opacity: 0;
   pointer-events: none;
-  transform: translateX(1.0%) scale(1.36);
+  transform: translateX(calc(-50% + 1.0%)) scale(1.40);
   filter: blur(10px) brightness(1.15);
 }
 
@@ -4102,13 +4094,12 @@ body[data-time-theme="golden-hour"] {
 
 /* Calista Primary Outfit: Crimson Silk Slit Dress (Default) */
 #figure-calista {
-  transform: translateX(8.2%) scale(1.387);
+  transform: translateX(calc(-50% + 8.2%)) scale(1.387);
   opacity: 1;
   pointer-events: auto;
   transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 1.8s cubic-bezier(0.16, 1, 0.3, 1),
               filter 1.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform, filter;
+  will-change: opacity, filter;
 }
 
 /* Calista Alternate Outfit: Sun-Kissed Golden Siren */
@@ -4128,16 +4119,15 @@ body[data-time-theme="golden-hour"] {
   margin: 0 auto 8px;
   filter: blur(10px) brightness(1.15);
   transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 1.8s cubic-bezier(0.16, 1, 0.3, 1),
               filter 1.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform, filter;
+  will-change: opacity, filter;
 }
 
 /* When Calista Golden Siren Outfit is Active */
 .slot-calista.wardrobe-alt #figure-calista {
   opacity: 0;
   pointer-events: none;
-  transform: translateX(8.2%) scale(1.387);
+  transform: translateX(calc(-50% + 8.2%)) scale(1.387);
   filter: blur(10px) brightness(1.15);
 }
 
@@ -4200,13 +4190,12 @@ body[data-time-theme="golden-hour"] {
 
 /* Vespera Primary Outfit: Obsidian Lace Evening Gown (Default Before Switching) */
 #figure-vespera {
-  transform: translateX(2.5%) scale(1.387);
+  transform: translateX(calc(-50% + 2.5%)) scale(1.387);
   opacity: 1;
   pointer-events: auto;
   transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 1.8s cubic-bezier(0.16, 1, 0.3, 1),
               filter 1.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform, filter;
+  will-change: opacity, filter;
 }
 
 /* Vespera Alternate Outfit: Obsidian Combat Corset (Revealed on Switch) */
@@ -4226,16 +4215,15 @@ body[data-time-theme="golden-hour"] {
   margin: 0 auto 8px;
   filter: blur(10px) brightness(1.15);
   transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 1.8s cubic-bezier(0.16, 1, 0.3, 1),
               filter 1.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform, filter;
+  will-change: opacity, filter;
 }
 
 /* When Vespera Combat Corset Outfit is Active (Switched) */
 .slot-vespera.wardrobe-alt #figure-vespera {
   opacity: 0;
   pointer-events: none;
-  transform: translateX(2.5%) scale(1.387);
+  transform: translateX(calc(-50% + 2.5%)) scale(1.387);
   filter: blur(10px) brightness(1.15);
 }
 
