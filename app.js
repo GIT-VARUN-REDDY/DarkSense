@@ -662,23 +662,20 @@ let isMouseInsideStage = false;
 let parallaxRafId = null;
 
 function updateStageParallax() {
-  const isMobile = window.innerWidth <= 860;
-  const lerpSpeed = isMobile ? 0.16 : 0.04;
-  mouseCurrentX += (mouseTargetX - mouseCurrentX) * lerpSpeed;
-  mouseCurrentY += (mouseTargetY - mouseCurrentY) * lerpSpeed;
+  // Ultra smooth buttery lerp (0.04 damping)
+  mouseCurrentX += (mouseTargetX - mouseCurrentX) * 0.04;
+  mouseCurrentY += (mouseTargetY - mouseCurrentY) * 0.04;
 
-  // Mobile gets full holographic 3D tilt (pitch: ±8deg, yaw: ±14deg) matching handheld motion
-  const maxPitch = isMobile ? 8.0 : 2.0;
-  const maxYaw = isMobile ? 14.0 : 3.5;
-  const rx = -mouseCurrentY * maxPitch;
-  const ry = mouseCurrentX * maxYaw;
+  // Gentle Three.js camera tilt (pitch: ±1.0deg, yaw: ±1.75deg)
+  const rx = -mouseCurrentY * 2.0;
+  const ry = mouseCurrentX * 3.5;
 
   if (DOM.stageViewport) {
     DOM.stageViewport.style.setProperty('--stage-rx', `${rx.toFixed(2)}deg`);
     DOM.stageViewport.style.setProperty('--stage-ry', `${ry.toFixed(2)}deg`);
   }
 
-  // Continue loop if cursor/gyro is active or not yet settled
+  // Continue loop if cursor is active or not yet settled
   if (isMouseInsideStage || Math.abs(mouseTargetX - mouseCurrentX) > 0.0004 || Math.abs(mouseTargetY - mouseCurrentY) > 0.0004) {
     parallaxRafId = requestAnimationFrame(updateStageParallax);
   } else {
@@ -688,8 +685,8 @@ function updateStageParallax() {
 
 // Mobile Gyroscope Hook for 3D Stage Viewport Parallax
 window.setStageGyroTilt = function (gx, gy) {
-  mouseTargetX = Math.max(-0.85, Math.min(0.85, gx * 0.85));
-  mouseTargetY = Math.max(-0.85, Math.min(0.85, gy * 0.85));
+  mouseTargetX = Math.max(-0.6, Math.min(0.6, gx * 0.5));
+  mouseTargetY = Math.max(-0.6, Math.min(0.6, gy * 0.5));
   isMouseInsideStage = true;
   if (!parallaxRafId) {
     parallaxRafId = requestAnimationFrame(updateStageParallax);
