@@ -558,10 +558,11 @@ if (DOM.stageViewport) {
     const leftSlot = DOM.stageViewport.querySelector('.pos-left');
     const rightSlot = DOM.stageViewport.querySelector('.pos-right');
 
+    // Center avatar inspection zone widened by 5% on either side (left: 0.38 -> 0.33, right: 0.62 -> 0.67)
     let targetSlot = null;
-    if (relX < 0.38 && leftSlot) {
+    if (relX < 0.33 && leftSlot) {
       targetSlot = leftSlot;
-    } else if (relX > 0.62 && rightSlot) {
+    } else if (relX > 0.67 && rightSlot) {
       targetSlot = rightSlot;
     }
 
@@ -603,17 +604,17 @@ if (DOM.stageViewport) {
       return;
     }
 
-    // Fallback zone detection across stage viewport with zero dead zone
+    // Fallback zone detection across stage viewport (center slot widened by 5% on either side)
     const rect = DOM.stageViewport.getBoundingClientRect();
     const relX = (e.clientX - rect.left) / rect.width;
 
-    if (relX < 0.44) {
+    if (relX < 0.39) {
       const leftSlot = DOM.stageViewport.querySelector('.pos-left');
       if (leftSlot && leftSlot.dataset.muse) {
         clearFlankHover();
         commitMuseSelection(leftSlot.dataset.muse, false, e);
       }
-    } else if (relX > 0.56) {
+    } else if (relX > 0.61) {
       const rightSlot = DOM.stageViewport.querySelector('.pos-right');
       if (rightSlot && rightSlot.dataset.muse) {
         clearFlankHover();

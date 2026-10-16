@@ -1655,9 +1655,9 @@
         const updateFromCoords = (clientX, clientY) => {
           if (!this.activeInner) return;
           const rect = this.activeInner.getBoundingClientRect();
-          // Check if cursor is over center avatar
-          if (clientX >= (rect.left - 8) && clientX <= (rect.right + 8) &&
-              clientY >= (rect.top - 8) && clientY <= (rect.bottom + 8)) {
+          // Check if cursor is over center avatar (accommodating 5% wider slot on either side)
+          if (clientX >= (rect.left - 16) && clientX <= (rect.right + 16) &&
+              clientY >= (rect.top - 10) && clientY <= (rect.bottom + 10)) {
             this.syncPeekImage(this.activeMuse);
             this.targetX = clientX - rect.left;
             this.targetY = clientY - rect.top;

@@ -466,15 +466,37 @@ body {
    3-CHARACTER THREE.JS STAGING: CENTER HERO & FLANKING COMPANIONS
    ------------------------------------------------------------- */
 
-/* Center Hero Spotlight */
+/* Center Hero Spotlight (Widened by 5% on either side: 52% -> 62%, max-width 390px -> 440px) */
 .character-slot.pos-center,
 .character-slot.slot-front {
+  width: 62% !important;
+  max-width: 440px !important;
   z-index: 25;
   opacity: 1;
   pointer-events: auto;
   transform-origin: bottom center;
   transform: translateX(-50%) translate3d(0%, 0px, 20px) scale(1.05);
   filter: brightness(1) saturate(1);
+  transition:
+    width 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    max-width 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.5s ease;
+}
+
+/* Center Avatar Hover / Inspecting Expansion */
+.character-slot.pos-center:hover,
+.character-slot.slot-front:hover,
+.character-slot.pos-center.is-inspecting {
+  width: 62% !important;
+  max-width: 440px !important;
+  transform: translateX(-50%) translate3d(0%, 0px, 24px) scale(1.065);
+}
+
+.character-slot.pos-center .character-card-inner::after,
+.character-slot.slot-front .character-card-inner::after {
+  width: 250px;
 }
 
 .character-slot.pos-center .character-card-inner {
@@ -1384,6 +1406,8 @@ body {
 
   .character-slot.pos-center,
   .character-slot.slot-front {
+    width: 58% !important;
+    max-width: 350px !important;
     transform: translateX(-50%) translate3d(0%, 0px, 18px) scale(1.04);
   }
 
@@ -1463,9 +1487,11 @@ body {
     margin-bottom: 6px;
   }
 
-  /* 3-character grounded staging on tablet / mid screens */
+  /* 3-character grounded staging on tablet / mid screens (wider center slot) */
   .character-slot.pos-center,
   .character-slot.slot-front {
+    width: 56% !important;
+    max-width: 295px !important;
     transform: translateX(-50%) translate3d(0%, 0px, 16px) scale(1.03);
     opacity: 1;
   }
@@ -1597,9 +1623,11 @@ body {
     margin-bottom: 4px;
   }
 
-  /* 3-character grounded staging on small mobile screens */
+  /* 3-character grounded staging on small mobile screens (wider center slot) */
   .character-slot.pos-center,
   .character-slot.slot-front {
+    width: 56% !important;
+    max-width: 275px !important;
     transform: translateX(-50%) translate3d(0%, 0px, 14px) scale(1.02);
     opacity: 1;
   }
@@ -1675,6 +1703,8 @@ body {
   }
 
   .character-slot.pos-center {
+    width: 56% !important;
+    max-width: 200px !important;
     transform: translateX(-50%) translate3d(0%, 0px, 10px) scale(1.0);
   }
 
@@ -4575,6 +4605,8 @@ body[data-time-theme="golden-hour"] {
 
   .character-slot.pos-center,
   .character-slot.slot-front {
+    width: 56% !important;
+    max-width: 295px !important;
     transform: translateX(-50%) translate3d(0%, 0px, 16px) scale(1.03) !important;
     opacity: 1 !important;
   }
