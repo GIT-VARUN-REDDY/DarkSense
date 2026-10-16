@@ -4243,6 +4243,164 @@ body[data-time-theme="golden-hour"] {
     transform: scale(1.45) translateY(-18px);
     filter: blur(40px) brightness(1);
   }
+/* ==========================================================================
+   DYNAMIC SILK VEIL PEEK LENS PORTAL (INVERSE ATTIRE REVEAL)
+   ========================================================================== */
+
+/* Accent Aura Glows Per Companion */
+#slot-seraphina {
+  --peek-glow: rgba(186, 230, 253, 0.9);
+  --peek-glow-soft: rgba(186, 230, 253, 0.4);
+  --peek-accent: #bae6fd;
+}
+
+#slot-vespera {
+  --peek-glow: rgba(192, 132, 252, 0.9);
+  --peek-glow-soft: rgba(192, 132, 252, 0.4);
+  --peek-accent: #c084fc;
+}
+
+#slot-calista {
+  --peek-glow: rgba(251, 146, 60, 0.9);
+  --peek-glow-soft: rgba(251, 146, 60, 0.4);
+  --peek-accent: #fb923c;
+}
+
+/* Masked Alternate Attire Portal Layer */
+.avatar-peek-portal {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 28;
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: mask-image, -webkit-mask-image, opacity;
+  -webkit-mask-image: radial-gradient(
+    circle var(--peek-radius, 82px) at var(--peek-x, 50%) var(--peek-y, 50%),
+    #000000 0%,
+    #000000 calc(var(--peek-radius, 82px) * 0.70),
+    rgba(0, 0, 0, 0.85) calc(var(--peek-radius, 82px) * 0.84),
+    rgba(0, 0, 0, 0.2) calc(var(--peek-radius, 82px) * 0.94),
+    transparent var(--peek-radius, 82px)
+  );
+  mask-image: radial-gradient(
+    circle var(--peek-radius, 82px) at var(--peek-x, 50%) var(--peek-y, 50%),
+    #000000 0%,
+    #000000 calc(var(--peek-radius, 82px) * 0.70),
+    rgba(0, 0, 0, 0.85) calc(var(--peek-radius, 82px) * 0.84),
+    rgba(0, 0, 0, 0.2) calc(var(--peek-radius, 82px) * 0.94),
+    transparent var(--peek-radius, 82px)
+  );
+}
+
+.avatar-peek-portal.peek-active {
+  opacity: 1;
+}
+
+/* Figure inside the peek portal: identical positioning & scale */
+.avatar-peek-portal .figure-peek-img {
+  position: absolute !important;
+  bottom: 0px !important;
+  left: 50% !important;
+  width: auto !important;
+  max-width: 100% !important;
+  max-height: calc(100% - 14px) !important;
+  height: calc(100% - 14px) !important;
+  object-fit: contain !important;
+  object-position: bottom center !important;
+  margin: 0 auto 8px !important;
+  transform-origin: bottom center !important;
+  pointer-events: none !important;
+  opacity: 1 !important;
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.88)) brightness(1.06) contrast(1.05) !important;
+  will-change: transform;
+}
+
+#slot-seraphina .figure-peek-img {
+  transform: translateX(-50%) scale(1.40) !important;
+}
+
+#slot-calista .figure-peek-img {
+  transform: translateX(-50%) scale(1.387) !important;
+}
+
+#slot-vespera .figure-peek-img {
+  transform: translateX(-50%) scale(1.387) !important;
+}
+
+/* Glowing Celestial Lens Aura Ring (Sibling to avoid being clipped by portal mask) */
+.peek-lens-aura {
+  position: absolute;
+  width: calc(var(--peek-radius, 82px) * 2);
+  height: calc(var(--peek-radius, 82px) * 2);
+  left: var(--peek-x, 50%);
+  top: var(--peek-y, 50%);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 32;
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1.5px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 
+    0 0 24px var(--peek-glow),
+    0 0 10px rgba(255, 255, 255, 0.85),
+    inset 0 0 16px var(--peek-glow-soft);
+  mix-blend-mode: screen;
+}
+
+.peek-lens-aura.peek-active {
+  opacity: 1;
+}
+
+/* Rotating starlight shimmer border */
+.peek-lens-shimmer-ring {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.6);
+  animation: peekRingRotate 10s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes peekRingRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.peek-starlight-sparkle {
+  position: absolute;
+  font-size: 11px;
+  color: #ffffff;
+  text-shadow: 0 0 10px var(--peek-glow);
+  pointer-events: none;
+  animation: sparkleGlint 2.4s ease-in-out infinite alternate;
+}
+
+.peek-starlight-sparkle.sp-1 {
+  top: 6px;
+  right: 18%;
+}
+
+.peek-starlight-sparkle.sp-2 {
+  bottom: 8px;
+  left: 20%;
+  animation-delay: 1.2s;
+}
+
+@keyframes sparkleGlint {
+  0% { opacity: 0.35; transform: scale(0.8) rotate(0deg); }
+  100% { opacity: 1; transform: scale(1.35) rotate(45deg); filter: drop-shadow(0 0 8px white); }
+}
+
+/* Mobile Responsive Optimization for Peek Lens */
+@media (max-width: 860px) {
+  .avatar-peek-portal .figure-peek-img {
+    max-height: 100% !important;
+    height: 100% !important;
+    margin-bottom: 0 !important;
+    object-position: center bottom !important;
+  }
 }
 
 /* Header Separate Dress Lucid Icon (Chat Stage Page) */

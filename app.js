@@ -413,6 +413,9 @@ function commitMuseSelection(targetKey, isAmbient = false, event = null) {
   if (window.DarkSenseEnhancements?.MuseWardrobeEngine) {
     window.DarkSenseEnhancements.MuseWardrobeEngine.updateButtonUI(targetKey);
   }
+  if (window.DarkSenseEnhancements?.SensualPeekLens) {
+    window.DarkSenseEnhancements.SensualPeekLens.updateActiveMuse(targetKey);
+  }
 
   // Update Initial AI Greeting if chat is pristine and not ambient
   if (!isAmbient) {
