@@ -1572,11 +1572,11 @@
         this.targetX = clientX - rect.left;
         this.targetY = clientY - rect.top;
         const isMobile = window.innerWidth <= 860;
-        this.targetRadius = isMobile ? 88 : 118;
+        this.targetRadius = isMobile ? 95 : 128;
         if (!this.isHovered) {
           this.currentX = this.targetX;
           this.currentY = this.targetY;
-          this.currentRadius = 24;
+          this.currentRadius = 28;
           this.currentOpacity = 0.4;
         }
         this.targetOpacity = 1;
@@ -1664,13 +1664,13 @@
             if (!this.isHovered) {
               this.currentX = this.targetX;
               this.currentY = this.targetY;
-              this.currentRadius = 24;
+              this.currentRadius = 28;
               this.currentOpacity = 0.4;
               this.playWhisperChime();
               if (navigator.vibrate) try { navigator.vibrate(8); } catch(err) {}
             }
             const isMobile = window.innerWidth <= 860;
-            this.targetRadius = isMobile ? 88 : 118;
+            this.targetRadius = isMobile ? 95 : 128;
             this.targetOpacity = 1;
             this.isHovered = true;
             this.startLoop();

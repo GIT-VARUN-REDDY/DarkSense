@@ -4281,34 +4281,38 @@ body[data-time-theme="golden-hour"] {
   --peek-sparkle-color: #fed7aa;
 }
 
-/* Masked Alternate Attire Portal Layer (Crisp Photographic Reveal Edge) */
+/* Masked Alternate Attire Portal Layer (Soft Feathered Organic Reveal - Portfolio Grade) */
 .avatar-peek-portal {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 28;
   opacity: 0;
-  will-change: mask-image, -webkit-mask-image, clip-path, -webkit-clip-path, opacity;
-  -webkit-clip-path: circle(var(--peek-radius, 118px) at var(--peek-x, 50%) var(--peek-y, 50%));
-  clip-path: circle(var(--peek-radius, 118px) at var(--peek-x, 50%) var(--peek-y, 50%));
+  will-change: mask-image, -webkit-mask-image, opacity;
+  /* Pure feathered organic radial mask (No hard clip-path) */
   -webkit-mask-image: radial-gradient(
-    circle var(--peek-radius, 118px) at var(--peek-x, 50%) var(--peek-y, 50%),
-    #000000 0%,
-    #000000 92%,
-    rgba(0, 0, 0, 0.95) 96%,
+    circle var(--peek-radius, 125px) at var(--peek-x, 50%) var(--peek-y, 50%),
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 48%,
+    rgba(0, 0, 0, 0.85) 66%,
+    rgba(0, 0, 0, 0.45) 82%,
+    rgba(0, 0, 0, 0.12) 94%,
     transparent 100%
   );
   mask-image: radial-gradient(
-    circle var(--peek-radius, 118px) at var(--peek-x, 50%) var(--peek-y, 50%),
-    #000000 0%,
-    #000000 92%,
-    rgba(0, 0, 0, 0.95) 96%,
+    circle var(--peek-radius, 125px) at var(--peek-x, 50%) var(--peek-y, 50%),
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 48%,
+    rgba(0, 0, 0, 0.85) 66%,
+    rgba(0, 0, 0, 0.45) 82%,
+    rgba(0, 0, 0, 0.12) 94%,
     transparent 100%
   );
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
+  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .avatar-peek-portal.peek-active {
@@ -4330,7 +4334,7 @@ body[data-time-theme="golden-hour"] {
   transform-origin: bottom center !important;
   pointer-events: none !important;
   opacity: 1 !important;
-  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.88)) brightness(1.06) contrast(1.05) !important;
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.88)) brightness(1.04) contrast(1.03) !important;
   will-change: transform;
 }
 
@@ -4346,87 +4350,14 @@ body[data-time-theme="golden-hour"] {
   transform: translateX(-50%) scale(1.387) !important;
 }
 
-/* Glowing Incandescent Energy Edge / Plasma Contour Ring (Electric Dimensional Slice) */
+/* Portfolio-Grade Pure Organic Reveal: Zero harsh borders, spinners, or artificial rings */
 .peek-lens-aura {
-  position: absolute;
-  width: calc(var(--peek-radius, 118px) * 2);
-  height: calc(var(--peek-radius, 118px) * 2);
-  left: var(--peek-x, 50%);
-  top: var(--peek-y, 50%);
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 32;
-  opacity: 0;
-  border: 2px solid rgba(255, 255, 255, 0.96);
-  box-shadow: 
-    0 0 10px #ffffff,
-    0 0 24px var(--peek-glow),
-    0 0 52px var(--peek-outer-glow),
-    inset 0 0 18px var(--peek-inner-glow),
-    inset 0 0 6px rgba(255, 255, 255, 0.95);
-  transition: opacity 0.15s ease;
+  display: none !important;
 }
 
-.peek-lens-aura::before {
-  content: '';
-  position: absolute;
-  inset: -5px;
-  border-radius: 50%;
-  border: 1.5px solid var(--peek-accent);
-  filter: blur(2px);
-  opacity: 0.85;
-  animation: peekPlasmaPulse 2s ease-in-out infinite alternate;
-}
-
-@keyframes peekPlasmaPulse {
-  0% { transform: scale(0.98); opacity: 0.65; }
-  100% { transform: scale(1.03); opacity: 1; }
-}
-
-.peek-lens-aura.peek-active {
-  opacity: 1;
-}
-
-/* Rotating starlight & ember shimmer boundary */
-.peek-lens-shimmer-ring {
-  position: absolute;
-  inset: -3px;
-  border-radius: 50%;
-  border: 1.5px dashed rgba(255, 255, 255, 0.88);
-  filter: drop-shadow(0 0 6px var(--peek-glow));
-  animation: peekRingRotate 8s linear infinite;
-  opacity: 0.85;
-}
-
-@keyframes peekRingRotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
+.peek-lens-shimmer-ring,
 .peek-starlight-sparkle {
-  position: absolute;
-  font-size: 13px;
-  color: #ffffff;
-  text-shadow: 0 0 10px var(--peek-glow), 0 0 18px var(--peek-outer-glow);
-  pointer-events: none;
-  animation: sparkleGlint 1.8s ease-in-out infinite alternate;
-}
-
-.peek-starlight-sparkle.sp-1 {
-  top: 6px;
-  right: 18%;
-}
-
-.peek-starlight-sparkle.sp-2 {
-  bottom: 8px;
-  left: 20%;
-  animation-delay: 0.9s;
-}
-
-@keyframes sparkleGlint {
-  0% { opacity: 0.4; transform: scale(0.85) rotate(0deg); }
-  100% { opacity: 1; transform: scale(1.4) rotate(45deg); filter: drop-shadow(0 0 8px white); }
+  display: none !important;
 }
 
 /* Mobile Responsive Optimization for Peek Lens */
