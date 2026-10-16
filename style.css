@@ -398,13 +398,13 @@ body {
 #figure-vespera,
 #figure-vespera-dress,
 #figure-vespera-combat {
-  transform: translateX(-50%) scale(1.387);
+  transform: translateX(-50%) scale(1.31765);
 }
 
 #figure-seraphina,
 #figure-seraphina-white,
 #figure-seraphina-classic {
-  transform: translateX(-50%) scale(1.40);
+  transform: translateX(-50%) scale(1.33);
 }
 
 #figure-calista,
@@ -4002,7 +4002,7 @@ body[data-time-theme="golden-hour"] {
 
 /* Primary White Dress (Default) */
 #figure-seraphina {
-  transform: translateX(-50%) scale(1.40);
+  transform: translateX(-50%) scale(1.33);
   opacity: 1;
   pointer-events: auto;
   transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1),
@@ -4012,7 +4012,7 @@ body[data-time-theme="golden-hour"] {
 
 /* Classic Moonlit Gown (Hidden by default, crossfades with slow-motion only on chat stage dress lucid icon click) */
 #figure-seraphina-classic {
-  transform: translateX(-50%) scale(1.40);
+  transform: translateX(-50%) scale(1.33);
   opacity: 0;
   pointer-events: none;
   filter: blur(10px) brightness(1.15);
@@ -4025,20 +4025,20 @@ body[data-time-theme="golden-hour"] {
 .slot-seraphina.wardrobe-classic #figure-seraphina {
   opacity: 0;
   pointer-events: none;
-  transform: translateX(-50%) scale(1.40);
+  transform: translateX(-50%) scale(1.33);
   filter: blur(10px) brightness(1.15);
 }
 
 .slot-seraphina.wardrobe-classic #figure-seraphina-classic {
   opacity: 1;
   pointer-events: auto;
-  transform: translateX(-50%) scale(1.40);
+  transform: translateX(-50%) scale(1.33);
   filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.88)) drop-shadow(0 0 38px rgba(123, 213, 255, 0.38));
 }
 
 .character-slot.pos-center.slot-seraphina.wardrobe-classic:hover #figure-seraphina-classic {
   filter: drop-shadow(0 18px 42px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 48px rgba(123, 213, 255, 0.52));
-  transform: translateX(-50%) scale(1.40);
+  transform: translateX(-50%) scale(1.33);
 }
 
 /* Celestial Silk Slow-Motion Shimmer Veil */
@@ -4170,7 +4170,7 @@ body[data-time-theme="golden-hour"] {
 
 /* Vespera Primary Outfit: Obsidian Lace Evening Gown (Default Before Switching) */
 #figure-vespera {
-  transform: translateX(-50%) scale(1.387);
+  transform: translateX(-50%) scale(1.31765);
   opacity: 1;
   pointer-events: auto;
   transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1),
@@ -4180,7 +4180,7 @@ body[data-time-theme="golden-hour"] {
 
 /* Vespera Alternate Outfit: Obsidian Combat Corset (Revealed on Switch) */
 #figure-vespera-combat {
-  transform: translateX(-50%) scale(1.387);
+  transform: translateX(-50%) scale(1.31765);
   opacity: 0;
   pointer-events: none;
   filter: blur(10px) brightness(1.15);
@@ -4193,20 +4193,20 @@ body[data-time-theme="golden-hour"] {
 .slot-vespera.wardrobe-alt #figure-vespera {
   opacity: 0;
   pointer-events: none;
-  transform: translateX(-50%) scale(1.387);
+  transform: translateX(-50%) scale(1.31765);
   filter: blur(10px) brightness(1.15);
 }
 
 .slot-vespera.wardrobe-alt #figure-vespera-combat {
   opacity: 1;
   pointer-events: auto;
-  transform: translateX(-50%) scale(1.387);
+  transform: translateX(-50%) scale(1.31765);
   filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.88)) drop-shadow(0 0 38px rgba(192, 132, 252, 0.45));
 }
 
 .character-slot.pos-center.slot-vespera.wardrobe-alt:hover #figure-vespera-combat {
   filter: drop-shadow(0 18px 42px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 48px rgba(192, 132, 252, 0.6));
-  transform: translateX(-50%) scale(1.387);
+  transform: translateX(-50%) scale(1.31765);
 }
 
 /* Obsidian Veil Slow-Motion Shimmer Veil */
@@ -4353,7 +4353,7 @@ body[data-time-theme="golden-hour"] {
 }
 
 #slot-seraphina .figure-peek-img {
-  transform: translateX(-50%) scale(1.40) !important;
+  transform: translateX(-50%) scale(1.33) !important;
 }
 
 #slot-calista .figure-peek-img {
@@ -4361,7 +4361,7 @@ body[data-time-theme="golden-hour"] {
 }
 
 #slot-vespera .figure-peek-img {
-  transform: translateX(-50%) scale(1.387) !important;
+  transform: translateX(-50%) scale(1.31765) !important;
 }
 
 /* Portfolio-Grade Pure Organic Reveal: Zero harsh borders, spinners, or artificial rings */
