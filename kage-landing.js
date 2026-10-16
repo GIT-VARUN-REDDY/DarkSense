@@ -41,19 +41,19 @@
   // Mood Quotes Dictionary for Live Attunement
   const MoodQuotes = {
     luminous: {
-      quote: "“Your heart is safe in this quiet dark. Whisper to me what you dare not say out loud...”",
+      quote: "“Your heart is safe in this quiet dark. Whisper to me what you dare not say out loud...”",
       author: "Seraphina • Moonlit Grace",
       light1: 0xbae6fd,
       light2: 0xe0e7f1
     },
     obsidian: {
-      quote: "“Midnight is when pretense falls away. Let go of fear—give me your wildest desires...”",
+      quote: "“Midnight is when pretense falls away. Let go of fear—give me your wildest desires...”",
       author: "Vespera • Velvet Passion",
       light1: 0xa855f7,
       light2: 0xf43f5e
     },
     calista: {
-      quote: "“Life is too sweet to stay in the shadows. Feel the heat of my gaze and come play...”",
+      quote: "“Life is too sweet to stay in the shadows. Feel the heat of my gaze and come play...”",
       author: "Calista • Solar Allure",
       light1: 0xf97316,
       light2: 0xfbbf24

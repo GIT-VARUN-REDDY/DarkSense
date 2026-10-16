@@ -89,6 +89,11 @@ body {
   isolation: isolate;
 }
 
+/* Suppress legacy ambient-backdrop (low-res 2D mesh canvas & glow-orbs) on landing pages to eliminate 8-bit blue banding lines */
+body:not(.chamber-active) .ambient-backdrop {
+  display: none !important;
+}
+
 /* ── Animated Gradient Mesh Canvas ── */
 #mesh-canvas {
   position: absolute;
@@ -1822,7 +1827,7 @@ body {
   overflow: hidden !important;
   scrollbar-width: none !important;
   -ms-overflow-style: none !important;
-  background: transparent;
+  background: #05070a;
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
     filter 0.8s ease;
@@ -1887,8 +1892,8 @@ body {
   border-radius: 50%;
   padding: 1.5px;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.12) 50%, var(--mood-accent-glow) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6), 0 0 16px var(--mood-pill-active-glow);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1899,8 +1904,8 @@ body {
 
 .kage-brand:hover .kage-logo-badge {
   transform: none;
-  border-color: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 6px 26px rgba(0, 0, 0, 0.7), 0 0 25px var(--mood-accent-glow);
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
 .kage-logo-img {
@@ -2006,7 +2011,7 @@ body {
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   border: 1px solid var(--mood-pill-active-border);
   color: var(--mood-pill-active-text);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 0 18px var(--mood-pill-active-glow);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.22);
   transition: all 0.4s ease;
 }
 
@@ -2142,47 +2147,47 @@ body {
 :root,
 body[data-cosmic-mood="luminous"] {
   --mood-accent: #ffffff;
-  --mood-accent-glow: rgba(255, 255, 255, 0.95);
-  --mood-text-glow: rgba(255, 255, 255, 0.7);
+  --mood-accent-glow: rgba(255, 255, 255, 0.6);
+  --mood-text-glow: rgba(255, 255, 255, 0.3);
   --mood-gradient: linear-gradient(135deg, #ffffff 0%, #f8fafc 40%, #e2e8f0 75%, #ffffff 100%);
-  --mood-btn-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(240, 249, 255, 0.42) 100%);
-  --mood-badge-bg: rgba(255, 255, 255, 0.12);
-  --mood-badge-border: rgba(255, 255, 255, 0.65);
+  --mood-btn-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(240, 249, 255, 0.32) 100%);
+  --mood-badge-bg: rgba(255, 255, 255, 0.06);
+  --mood-badge-border: rgba(255, 255, 255, 0.12);
   --mood-author-color: #ffffff;
-  --mood-pill-active-bg: rgba(255, 255, 255, 0.2);
-  --mood-pill-active-border: rgba(255, 255, 255, 0.85);
+  --mood-pill-active-bg: rgba(255, 255, 255, 0.12);
+  --mood-pill-active-border: rgba(255, 255, 255, 0.24);
   --mood-pill-active-text: #ffffff;
-  --mood-pill-active-glow: rgba(255, 255, 255, 0.45);
+  --mood-pill-active-glow: rgba(255, 255, 255, 0.05);
 }
 
 body[data-cosmic-mood="obsidian"] {
   --mood-accent: #c084fc;
-  --mood-accent-glow: rgba(192, 132, 252, 0.85);
-  --mood-text-glow: rgba(168, 85, 247, 0.65);
+  --mood-accent-glow: rgba(192, 132, 252, 0.6);
+  --mood-text-glow: rgba(168, 85, 247, 0.35);
   --mood-gradient: linear-gradient(135deg, #ffffff 0%, #f5d0fe 30%, #c084fc 65%, #a855f7 100%);
   --mood-btn-gradient: linear-gradient(135deg, rgba(168, 85, 247, 0.28) 0%, rgba(192, 132, 252, 0.42) 100%);
-  --mood-badge-bg: rgba(168, 85, 247, 0.16);
-  --mood-badge-border: rgba(192, 132, 252, 0.65);
+  --mood-badge-bg: rgba(168, 85, 247, 0.1);
+  --mood-badge-border: rgba(192, 132, 252, 0.2);
   --mood-author-color: #d8b4fe;
-  --mood-pill-active-bg: rgba(168, 85, 247, 0.22);
-  --mood-pill-active-border: rgba(192, 132, 252, 0.85);
+  --mood-pill-active-bg: rgba(168, 85, 247, 0.16);
+  --mood-pill-active-border: rgba(192, 132, 252, 0.35);
   --mood-pill-active-text: #f5d0fe;
-  --mood-pill-active-glow: rgba(168, 85, 247, 0.45);
+  --mood-pill-active-glow: rgba(168, 85, 247, 0.08);
 }
 
 body[data-cosmic-mood="calista"] {
   --mood-accent: #fb923c;
-  --mood-accent-glow: rgba(251, 146, 60, 0.85);
-  --mood-text-glow: rgba(249, 115, 22, 0.65);
+  --mood-accent-glow: rgba(251, 146, 60, 0.6);
+  --mood-text-glow: rgba(249, 115, 22, 0.35);
   --mood-gradient: linear-gradient(135deg, #ffffff 0%, #ffedd5 30%, #fb923c 65%, #ea580c 100%);
   --mood-btn-gradient: linear-gradient(135deg, rgba(234, 88, 12, 0.3) 0%, rgba(249, 115, 22, 0.45) 100%);
-  --mood-badge-bg: rgba(249, 115, 22, 0.16);
-  --mood-badge-border: rgba(251, 146, 60, 0.65);
+  --mood-badge-bg: rgba(249, 115, 22, 0.1);
+  --mood-badge-border: rgba(251, 146, 60, 0.2);
   --mood-author-color: #fed7aa;
-  --mood-pill-active-bg: rgba(249, 115, 22, 0.22);
-  --mood-pill-active-border: rgba(251, 146, 60, 0.85);
+  --mood-pill-active-bg: rgba(249, 115, 22, 0.16);
+  --mood-pill-active-border: rgba(251, 146, 60, 0.35);
   --mood-pill-active-text: #ffedd5;
-  --mood-pill-active-glow: rgba(249, 115, 22, 0.45);
+  --mood-pill-active-glow: rgba(249, 115, 22, 0.08);
 }
 
 /* ================= KAGE STATIC SLIDE SECTIONS ================= */
@@ -2363,12 +2368,12 @@ body[data-cosmic-mood="calista"] {
   gap: 8px;
   padding: 5px 8px;
   border-radius: 9999px;
-  background: rgba(18, 15, 28, 0.82);
+  background: rgba(16, 14, 26, 0.78);
   backdrop-filter: blur(28px) saturate(180%);
   -webkit-backdrop-filter: blur(28px) saturate(180%);
-  border: 1px solid var(--mood-badge-border);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   margin-bottom: 1.1rem;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 16px var(--mood-pill-active-glow);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.12);
   transition: all 0.4s ease;
 }
 
@@ -2413,7 +2418,7 @@ body[data-cosmic-mood="calista"] {
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid var(--mood-pill-active-border);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 0 20px var(--mood-pill-active-glow);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.18);
   transition: all 0.35s ease;
 }
 
@@ -2458,11 +2463,11 @@ body[data-cosmic-mood="calista"] {
   margin: 0 auto 1.3rem;
   padding: 1rem 1.8rem;
   border-radius: 20px;
-  background: rgba(16, 13, 26, 0.82);
+  background: rgba(14, 12, 24, 0.72);
   backdrop-filter: blur(32px) saturate(180%);
   -webkit-backdrop-filter: blur(32px) saturate(180%);
-  border: 1px solid var(--mood-badge-border);
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 0 20px var(--mood-pill-active-glow);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.12);
   transition: all 0.4s ease;
 }
 
@@ -2527,14 +2532,14 @@ body[data-cosmic-mood="calista"] {
   cursor: pointer;
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5), 0 0 25px var(--mood-text-glow);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.25);
   transition: all 0.4s cubic-bezier(0.2, 0.8, 0.25, 1);
 }
 
 .kage-primary-btn:hover {
   transform: translateY(-2px) scale(1.02);
   border-color: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6), 0 0 35px var(--mood-accent-glow);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
 .kage-secondary-btn {
@@ -2608,10 +2613,10 @@ body[data-cosmic-mood="calista"] {
 
 .muse-monolith-card {
   position: relative;
-  background: rgba(16, 13, 26, 0.82);
+  background: linear-gradient(180deg, rgba(16, 14, 28, 0.72) 0%, rgba(10, 8, 18, 0.88) 100%);
   backdrop-filter: blur(36px) saturate(180%);
   -webkit-backdrop-filter: blur(36px) saturate(180%);
-  border-radius: 22px;
+  border-radius: 24px;
   padding: 2rem 1.8rem 1.8rem;
   display: flex;
   flex-direction: column;
@@ -2619,7 +2624,8 @@ body[data-cosmic-mood="calista"] {
   text-align: center;
   cursor: pointer;
   overflow: hidden;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   outline: none;
 }
@@ -2668,26 +2674,26 @@ body[data-cosmic-mood="calista"] {
 
 /* Archetype Colors */
 .card-luminous {
-  border: 1px solid rgba(186, 230, 253, 0.22);
+  border: 1px solid rgba(186, 230, 253, 0.12);
 }
 
 .card-luminous:hover {
-  border-color: rgba(186, 230, 253, 0.65);
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7), 0 0 40px rgba(186, 230, 253, 0.3);
+  border-color: rgba(186, 230, 253, 0.45);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
 }
 
 .halo-luminous {
-  border-color: rgba(186, 230, 253, 0.5);
-  box-shadow: 0 0 25px rgba(186, 230, 253, 0.35);
+  border-color: rgba(186, 230, 253, 0.4);
+  box-shadow: 0 0 20px rgba(186, 230, 253, 0.25);
 }
 
 .glow-luminous {
-  background: radial-gradient(circle, rgba(186, 230, 253, 0.6) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(186, 230, 253, 0.4) 0%, transparent 70%);
 }
 
 .badge-luminous {
   color: #bae6fd;
-  border: 1px solid rgba(186, 230, 253, 0.45);
+  border: 1px solid rgba(186, 230, 253, 0.35);
   background: rgba(14, 18, 30, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -2697,7 +2703,7 @@ body[data-cosmic-mood="calista"] {
 .pill-luminous {
   color: #bae6fd;
   background: rgba(14, 18, 30, 0.82);
-  border: 1px solid rgba(186, 230, 253, 0.3);
+  border: 1px solid rgba(186, 230, 253, 0.25);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12);
@@ -2705,30 +2711,30 @@ body[data-cosmic-mood="calista"] {
 
 .btn-luminous {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(186, 230, 253, 0.32) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
 .card-obsidian {
-  border: 1px solid rgba(168, 85, 247, 0.25);
+  border: 1px solid rgba(168, 85, 247, 0.14);
 }
 
 .card-obsidian:hover {
-  border-color: rgba(192, 132, 252, 0.65);
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7), 0 0 45px rgba(168, 85, 247, 0.35);
+  border-color: rgba(192, 132, 252, 0.45);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
 }
 
 .halo-obsidian {
-  border-color: rgba(192, 132, 252, 0.5);
-  box-shadow: 0 0 25px rgba(168, 85, 247, 0.4);
+  border-color: rgba(192, 132, 252, 0.4);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.25);
 }
 
 .glow-obsidian {
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.6) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, transparent 70%);
 }
 
 .badge-obsidian {
   color: #d8b4fe;
-  border: 1px solid rgba(192, 132, 252, 0.45);
+  border: 1px solid rgba(192, 132, 252, 0.35);
   background: rgba(22, 14, 34, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -2738,7 +2744,7 @@ body[data-cosmic-mood="calista"] {
 .pill-obsidian {
   color: #d8b4fe;
   background: rgba(22, 14, 34, 0.82);
-  border: 1px solid rgba(192, 132, 252, 0.3);
+  border: 1px solid rgba(192, 132, 252, 0.25);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12);
@@ -2746,30 +2752,30 @@ body[data-cosmic-mood="calista"] {
 
 .btn-obsidian {
   background: linear-gradient(135deg, rgba(168, 85, 247, 0.28) 0%, rgba(217, 70, 239, 0.35) 100%);
-  border: 1px solid rgba(192, 132, 252, 0.5);
+  border: 1px solid rgba(192, 132, 252, 0.4);
 }
 
 .card-calista {
-  border: 1px solid rgba(249, 115, 22, 0.25);
+  border: 1px solid rgba(249, 115, 22, 0.14);
 }
 
 .card-calista:hover {
-  border-color: rgba(251, 146, 60, 0.65);
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7), 0 0 45px rgba(249, 115, 22, 0.35);
+  border-color: rgba(251, 146, 60, 0.45);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
 }
 
 .halo-calista {
-  border-color: rgba(251, 146, 60, 0.5);
-  box-shadow: 0 0 25px rgba(249, 115, 22, 0.4);
+  border-color: rgba(251, 146, 60, 0.4);
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.25);
 }
 
 .glow-calista {
-  background: radial-gradient(circle, rgba(249, 115, 22, 0.6) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.4) 0%, transparent 70%);
 }
 
 .badge-calista {
   color: #fdba74;
-  border: 1px solid rgba(251, 146, 60, 0.45);
+  border: 1px solid rgba(251, 146, 60, 0.35);
   background: rgba(30, 16, 12, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -2779,7 +2785,7 @@ body[data-cosmic-mood="calista"] {
 .pill-calista {
   color: #fdba74;
   background: rgba(30, 16, 12, 0.82);
-  border: 1px solid rgba(251, 146, 60, 0.3);
+  border: 1px solid rgba(251, 146, 60, 0.25);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12);
@@ -2787,7 +2793,7 @@ body[data-cosmic-mood="calista"] {
 
 .btn-calista {
   background: linear-gradient(135deg, rgba(234, 88, 12, 0.32) 0%, rgba(249, 115, 22, 0.45) 100%);
-  border: 1px solid rgba(251, 146, 60, 0.5);
+  border: 1px solid rgba(251, 146, 60, 0.4);
 }
 
 .muse-archetype-badge {
@@ -2878,24 +2884,24 @@ body[data-cosmic-mood="calista"] {
 }
 
 .secret-glass-card {
-  background: rgba(16, 13, 26, 0.82);
+  background: linear-gradient(180deg, rgba(16, 14, 28, 0.72) 0%, rgba(10, 8, 18, 0.88) 100%);
   backdrop-filter: blur(36px) saturate(180%);
   -webkit-backdrop-filter: blur(36px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
   padding: 1.8rem 1.6rem;
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   transition: all 0.4s ease;
 }
 
 .secret-glass-card:hover {
   background: rgba(20, 16, 32, 0.88);
-  border-color: var(--mood-badge-border);
+  border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-4px);
-  box-shadow: 0 26px 65px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 0 30px var(--mood-pill-active-glow);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
 .secret-icon-wrap {
@@ -2960,20 +2966,20 @@ body[data-cosmic-mood="calista"] {
   letter-spacing: 0.08em;
   padding: 13px 36px;
   border-radius: 9999px;
-  background: var(--mood-btn-gradient);
-  border: 1px solid var(--mood-badge-border);
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.45) 0%, rgba(147, 51, 234, 0.6) 100%);
+  border: 1px solid rgba(216, 180, 254, 0.4);
   color: #ffffff;
   cursor: pointer;
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 35px var(--mood-text-glow);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.25);
   transition: all 0.35s cubic-bezier(0.2, 0.8, 0.25, 1);
 }
 
 .kage-grand-btn:hover {
   transform: translateY(-2px) scale(1.02);
   border-color: #ffffff;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 50px var(--mood-accent-glow);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
 /* Responsive adjustments for Kage Landing */
@@ -5678,12 +5684,14 @@ body[data-time-theme="golden-hour"] {
     overflow-x: auto !important;
     scroll-snap-type: x mandatory !important;
     -webkit-overflow-scrolling: touch !important;
-    gap: 14px !important;
+    gap: 16px !important;
     width: 100% !important;
     max-width: 100vw !important;
-    padding: 10px 1.4rem 16px !important;
+    padding: 10px calc((100vw - 84vw) / 2) 16px !important;
     scrollbar-width: none !important;
     box-sizing: border-box !important;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 28px, black calc(100% - 44px), transparent 100%) !important;
+    mask-image: linear-gradient(to right, transparent 0%, black 28px, black calc(100% - 44px), transparent 100%) !important;
   }
 
   .muses-grid-container::-webkit-scrollbar {
@@ -5691,12 +5699,14 @@ body[data-time-theme="golden-hour"] {
   }
 
   .muse-monolith-card {
-    flex: 0 0 82vw !important;
-    max-width: 325px !important;
+    flex: 0 0 84vw !important;
+    max-width: 330px !important;
     scroll-snap-align: center !important;
     padding: 1.45rem 1.25rem !important;
     border-radius: 24px !important;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.07) !important;
+    background: linear-gradient(180deg, rgba(16, 14, 28, 0.72) 0%, rgba(10, 8, 18, 0.88) 100%) !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
   }
 
   .muse-avatar-halo {
@@ -5808,12 +5818,14 @@ body[data-time-theme="golden-hour"] {
     overflow-x: auto !important;
     scroll-snap-type: x mandatory !important;
     -webkit-overflow-scrolling: touch !important;
-    gap: 14px !important;
+    gap: 16px !important;
     width: 100% !important;
     max-width: 100vw !important;
-    padding: 8px 1.4rem 14px !important;
+    padding: 8px calc((100vw - 84vw) / 2) 14px !important;
     scrollbar-width: none !important;
     box-sizing: border-box !important;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 28px, black calc(100% - 44px), transparent 100%) !important;
+    mask-image: linear-gradient(to right, transparent 0%, black 28px, black calc(100% - 44px), transparent 100%) !important;
   }
 
   .secrets-cards-grid::-webkit-scrollbar {
@@ -5821,12 +5833,15 @@ body[data-time-theme="golden-hour"] {
   }
 
   .secret-glass-card {
-    flex: 0 0 80vw !important;
-    max-width: 300px !important;
+    flex: 0 0 84vw !important;
+    max-width: 330px !important;
     scroll-snap-align: center !important;
     padding: 1.35rem 1.25rem !important;
     border-radius: 22px !important;
     text-align: center !important;
+    border: 1px solid rgba(255, 255, 255, 0.07) !important;
+    background: linear-gradient(180deg, rgba(16, 14, 28, 0.72) 0%, rgba(10, 8, 18, 0.88) 100%) !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
   }
 
   .secret-icon-wrap {
@@ -5862,8 +5877,9 @@ body[data-time-theme="golden-hour"] {
     min-width: 230px !important;
     padding: 12px 24px !important;
     font-size: 13px !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 16px rgba(168, 85, 247, 0.35) !important;
-    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.45) 0%, rgba(147, 51, 234, 0.6) 100%) !important;
   }
 
   .lore-rune-secrets {
