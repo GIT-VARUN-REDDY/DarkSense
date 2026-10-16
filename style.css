@@ -4281,7 +4281,7 @@ body[data-time-theme="golden-hour"] {
   --peek-sparkle-color: #fed7aa;
 }
 
-/* Masked Alternate Attire Portal Layer (Soft Feathered Organic Reveal - Portfolio Grade) */
+/* Masked Alternate Attire Portal Layer (Amorphous Fluid Vapor Mask - Completely Dissolved Edge) */
 .avatar-peek-portal {
   position: absolute;
   inset: 0;
@@ -4289,30 +4289,50 @@ body[data-time-theme="golden-hour"] {
   z-index: 28;
   opacity: 0;
   will-change: mask-image, -webkit-mask-image, opacity;
-  /* Pure feathered organic radial mask (No hard clip-path) */
-  -webkit-mask-image: radial-gradient(
-    circle var(--peek-radius, 64px) at var(--peek-x, 50%) var(--peek-y, 50%),
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 1) 48%,
-    rgba(0, 0, 0, 0.85) 66%,
-    rgba(0, 0, 0, 0.45) 82%,
-    rgba(0, 0, 0, 0.12) 94%,
-    transparent 100%
-  );
-  mask-image: radial-gradient(
-    circle var(--peek-radius, 64px) at var(--peek-x, 50%) var(--peek-y, 50%),
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 1) 48%,
-    rgba(0, 0, 0, 0.85) 66%,
-    rgba(0, 0, 0, 0.45) 82%,
-    rgba(0, 0, 0, 0.12) 94%,
-    transparent 100%
-  );
+  /* Dual overlapping organic ellipses creating an unidentifiable, completely diffused vapor shape */
+  -webkit-mask-image: 
+    radial-gradient(
+      ellipse calc(var(--peek-radius, 64px) * 0.92) calc(var(--peek-radius, 64px) * 1.35) at var(--peek-x, 50%) var(--peek-y, 50%),
+      rgba(0, 0, 0, 0.95) 0%,
+      rgba(0, 0, 0, 0.78) 22%,
+      rgba(0, 0, 0, 0.48) 46%,
+      rgba(0, 0, 0, 0.22) 68%,
+      rgba(0, 0, 0, 0.06) 86%,
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse calc(var(--peek-radius, 64px) * 1.25) calc(var(--peek-radius, 64px) * 0.88) at calc(var(--peek-x, 50%) + 3px) calc(var(--peek-y, 50%) - 5px),
+      rgba(0, 0, 0, 0.85) 0%,
+      rgba(0, 0, 0, 0.65) 20%,
+      rgba(0, 0, 0, 0.38) 44%,
+      rgba(0, 0, 0, 0.16) 66%,
+      rgba(0, 0, 0, 0.04) 84%,
+      transparent 100%
+    );
+  mask-image: 
+    radial-gradient(
+      ellipse calc(var(--peek-radius, 64px) * 0.92) calc(var(--peek-radius, 64px) * 1.35) at var(--peek-x, 50%) var(--peek-y, 50%),
+      rgba(0, 0, 0, 0.95) 0%,
+      rgba(0, 0, 0, 0.78) 22%,
+      rgba(0, 0, 0, 0.48) 46%,
+      rgba(0, 0, 0, 0.22) 68%,
+      rgba(0, 0, 0, 0.06) 86%,
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse calc(var(--peek-radius, 64px) * 1.25) calc(var(--peek-radius, 64px) * 0.88) at calc(var(--peek-x, 50%) + 3px) calc(var(--peek-y, 50%) - 5px),
+      rgba(0, 0, 0, 0.85) 0%,
+      rgba(0, 0, 0, 0.65) 20%,
+      rgba(0, 0, 0, 0.38) 44%,
+      rgba(0, 0, 0, 0.16) 66%,
+      rgba(0, 0, 0, 0.04) 84%,
+      transparent 100%
+    );
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
-  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.26s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .avatar-peek-portal.peek-active {
