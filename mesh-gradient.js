@@ -66,6 +66,14 @@
   let lerpProgress = 1;
   const LERP_FRAMES = 140; // ~2.3 s at 60 fps
 
+  let gyroTargetX = 0, gyroTargetY = 0;
+  let gyroX = 0, gyroY = 0;
+
+  window.setMeshGyroTilt = function (gx, gy) {
+    gyroTargetX = gx;
+    gyroTargetY = gy;
+  };
+
   function resize() {
     // Render at half-res for ambient blurry background blobs - cuts GPU shading by 75%!
     W = canvas.width  = Math.max(320, Math.floor(window.innerWidth * 0.5));
@@ -117,13 +125,16 @@
       blob.cb = lerp(blob.cb, tgt.b, k);
       blob.ca = lerp(blob.ca, tgt.a, k * 0.6);
 
+      gyroX += (gyroTargetX - gyroX) * 0.08;
+      gyroY += (gyroTargetY - gyroY) * 0.08;
+
       const t = time * blob.speed;
       const xDrift = Math.sin(t + blob.phaseX) * blob.sx + Math.cos(t * 0.61 + blob.phaseX) * blob.sx * 0.45;
       const yDrift = Math.cos(t * 0.84 + blob.phaseY) * blob.sy + Math.sin(t * 0.47 + blob.phaseY) * blob.sy * 0.45;
       const rPulse = 1 + Math.sin(t * 0.31 + blob.phaseR) * 0.10;
 
-      const x = (blob.px + xDrift) * W;
-      const y = (blob.py + yDrift) * H;
+      const x = (blob.px + xDrift + gyroX * blob.sx * 1.5) * W;
+      const y = (blob.py + yDrift + gyroY * blob.sy * 1.5) * H;
       const r = blob.rad * Math.min(W, H) * rPulse;
 
       const R = Math.round(blob.cr), G = Math.round(blob.cg), B = Math.round(blob.cb);

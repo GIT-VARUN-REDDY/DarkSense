@@ -683,6 +683,16 @@ function updateStageParallax() {
   }
 }
 
+// Mobile Gyroscope Hook for 3D Stage Viewport Parallax
+window.setStageGyroTilt = function (gx, gy) {
+  mouseTargetX = Math.max(-0.6, Math.min(0.6, gx * 0.5));
+  mouseTargetY = Math.max(-0.6, Math.min(0.6, gy * 0.5));
+  isMouseInsideStage = true;
+  if (!parallaxRafId) {
+    parallaxRafId = requestAnimationFrame(updateStageParallax);
+  }
+};
+
 const visualStageEl = document.querySelector('.visual-stage');
 if (visualStageEl) {
   visualStageEl.addEventListener('mousemove', (e) => {
