@@ -1078,6 +1078,12 @@ function initSensualRain() {
   }
 
   function render() {
+    // Skip calculations when hidden or on landing stage to save CPU/battery
+    if (document.hidden || !document.body.classList.contains('chamber-active')) {
+      animFrameId = requestAnimationFrame(render);
+      return;
+    }
+
     const w = window.innerWidth;
     const h = window.innerHeight;
     ctx.clearRect(0, 0, w, h);

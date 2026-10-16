@@ -11,8 +11,10 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20261016_amorphous_reveal_v26">
-  <link rel="icon" type="image/jpeg" href="assets/logo_flower.jpg?v=20261014_crystal_glass_lily_v4">
+  <link rel="stylesheet" href="style.css?v=20261016_perf_v27">
+  <link rel="icon" type="image/jpeg" href="assets/logo_flower.jpg?v=20261016_perf_v27">
+  <!-- Instant Preload Active Hero Avatar for 0ms Visual Latency -->
+  <link rel="preload" as="image" href="assets/avatar_seraphina_white.webp?v=20261016_perf_v27" fetchpriority="high">
 </head>
 
 <body>
@@ -345,18 +347,18 @@
           role="button" aria-label="Select Vespera">
           <div class="character-card-inner">
             <!-- Default Outfit: Obsidian Lace Evening Gown (Active Before Switching) -->
-            <img src="assets/avatar_vespera_dress.png?v=20261015_vespera_default_v2" alt="Vespera ” Obsidian Lace Gown"
-              class="figure-image figure-vespera-dress" id="figure-vespera">
+            <img src="assets/avatar_vespera_dress.webp?v=20261016_perf_v27" alt="Vespera — Obsidian Lace Gown"
+              class="figure-image figure-vespera-dress" id="figure-vespera" decoding="async">
             <!-- Alternate Outfit: Obsidian Combat Corset (Crossfades on Switch) -->
-            <img src="assets/avatar_tifa.png?v=20261015_vespera_default_v2" alt="Vespera ” Obsidian Combat Corset"
-              class="figure-image figure-vespera-combat" id="figure-vespera-combat">
+            <img src="assets/avatar_tifa.webp?v=20261016_perf_v27" alt="Vespera — Obsidian Combat Corset"
+              class="figure-image figure-vespera-combat" id="figure-vespera-combat" decoding="async">
             <!-- Slow-Motion Obsidian Veil -->
             <div class="vespera-obsidian-veil" id="vespera-obsidian-veil"></div>
 
             <!-- Dynamic Silk Veil Peek Lens Portal (Opposite Attire Reveal) -->
             <div class="avatar-peek-portal" id="peek-portal-vespera" aria-hidden="true">
-              <img src="assets/avatar_tifa.png?v=20261015_vespera_default_v2" alt="Vespera Opposite Attire Peek"
-                class="figure-image figure-peek-img" id="peek-img-vespera">
+              <img src="assets/avatar_tifa.webp?v=20261016_perf_v27" alt="Vespera Opposite Attire Peek"
+                class="figure-image figure-peek-img" id="peek-img-vespera" decoding="async">
             </div>
             <div class="peek-lens-aura" id="peek-aura-vespera" aria-hidden="true">
               <div class="peek-lens-shimmer-ring"></div>
@@ -384,18 +386,18 @@
           tabindex="0" role="button" aria-label="Select Seraphina">
           <div class="character-card-inner">
             <!-- Default Outfit: Pure White Silk Dress -->
-            <img src="assets/avatar_seraphina_white.png?v=20261015_white" alt="Seraphina - Luminous White Dress" class="figure-image figure-seraphina-white"
-              id="figure-seraphina">
+            <img src="assets/avatar_seraphina_white.webp?v=20261016_perf_v27" alt="Seraphina - Luminous White Dress" class="figure-image figure-seraphina-white"
+              id="figure-seraphina" fetchpriority="high" decoding="async">
             <!-- Alternate Outfit: Classic Moonlit Gown (Slow Motion Transition) -->
-            <img src="assets/avatar_seraphina_original.png?v=20261015_orig" alt="Seraphina - Classic Moonlit Gown" class="figure-image figure-seraphina-classic"
-              id="figure-seraphina-classic">
+            <img src="assets/avatar_seraphina_original.webp?v=20261016_perf_v27" alt="Seraphina - Classic Moonlit Gown" class="figure-image figure-seraphina-classic"
+              id="figure-seraphina-classic" decoding="async">
             <!-- Slow-Motion Celestial Shimmer Veil -->
             <div class="seraphina-silk-veil" id="seraphina-silk-veil"></div>
 
             <!-- Dynamic Silk Veil Peek Lens Portal (Opposite Attire Reveal) -->
             <div class="avatar-peek-portal" id="peek-portal-seraphina" aria-hidden="true">
-              <img src="assets/avatar_seraphina_original.png?v=20261015_orig" alt="Seraphina Opposite Attire Peek"
-                class="figure-image figure-peek-img" id="peek-img-seraphina">
+              <img src="assets/avatar_seraphina_original.webp?v=20261016_perf_v27" alt="Seraphina Opposite Attire Peek"
+                class="figure-image figure-peek-img" id="peek-img-seraphina" decoding="async">
             </div>
             <div class="peek-lens-aura" id="peek-aura-seraphina" aria-hidden="true">
               <div class="peek-lens-shimmer-ring"></div>
@@ -423,18 +425,18 @@
           role="button" aria-label="Select Calista">
           <div class="character-card-inner">
             <!-- Default Outfit: Crimson Silk Slit Dress (Pixel-Perfect 1:1 Scale Matching) -->
-            <img src="assets/avatar_calista.png?v=20261015_calista_1024_v7" alt="Calista ” Crimson Silk Dress"
-              class="figure-image figure-calista-crimson" id="figure-calista">
+            <img src="assets/avatar_calista.webp?v=20261016_perf_v27" alt="Calista — Crimson Silk Dress"
+              class="figure-image figure-calista-crimson" id="figure-calista" decoding="async">
             <!-- Alternate Outfit: Sun-Kissed Golden Siren (Original Artwork) -->
-            <img src="assets/avatar_calista_old.png?v=20261015_calista_1024_v7" alt="Calista ” Sun-Kissed Siren"
-              class="figure-image figure-calista-gold" id="figure-calista-gold">
+            <img src="assets/avatar_calista_old.webp?v=20261016_perf_v27" alt="Calista — Sun-Kissed Siren"
+              class="figure-image figure-calista-gold" id="figure-calista-gold" decoding="async">
             <!-- Slow-Motion Solar Flame Veil -->
             <div class="calista-flame-veil" id="calista-flame-veil"></div>
 
             <!-- Dynamic Silk Veil Peek Lens Portal (Opposite Attire Reveal) -->
             <div class="avatar-peek-portal" id="peek-portal-calista" aria-hidden="true">
-              <img src="assets/avatar_calista_old.png?v=20261015_calista_1024_v7" alt="Calista Opposite Attire Peek"
-                class="figure-image figure-peek-img" id="peek-img-calista">
+              <img src="assets/avatar_calista_old.webp?v=20261016_perf_v27" alt="Calista Opposite Attire Peek"
+                class="figure-image figure-peek-img" id="peek-img-calista" decoding="async">
             </div>
             <div class="peek-lens-aura" id="peek-aura-calista" aria-hidden="true">
               <div class="peek-lens-shimmer-ring"></div>
@@ -744,13 +746,13 @@
   </div>
 
   <!-- Application Scripts -->
-  <script src="mesh-gradient.js?v=20261016_amorphous_reveal_v26"></script>
+  <script src="mesh-gradient.js?v=20261016_perf_v27"></script>
   <script src="assets/three.min.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <script src="kage-landing.js?v=20261016_amorphous_reveal_v26"></script>
-  <script src="app.js?v=20261016_amorphous_reveal_v26"></script>
-  <script src="ambient-audio.js?v=20261016_amorphous_reveal_v26"></script>
-  <script src="darksense-enhancements.js?v=20261016_amorphous_reveal_v26"></script>
+  <script src="kage-landing.js?v=20261016_perf_v27"></script>
+  <script src="app.js?v=20261016_perf_v27"></script>
+  <script src="ambient-audio.js?v=20261016_perf_v27"></script>
+  <script src="darksense-enhancements.js?v=20261016_perf_v27"></script>
 </body>
 
 </html>

@@ -519,6 +519,11 @@
   function animate() {
     animFrameId = requestAnimationFrame(animate);
 
+    // Pause Three.js particle calculations and WebGL rendering when on chamber stage to save 100% of GPU
+    if (landingStage && landingStage.style.display === 'none' && !isWarping) {
+      return;
+    }
+
     const elapsedTime = clock ? clock.getElapsedTime() : Date.now() * 0.001;
 
     // Smooth Damping for Camera

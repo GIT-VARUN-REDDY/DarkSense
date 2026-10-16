@@ -1469,16 +1469,16 @@
 
     assets: {
       seraphina: {
-        dressed: 'assets/avatar_seraphina_white.png?v=20261015_white',
-        undressed: 'assets/avatar_seraphina_original.png?v=20261015_orig'
+        dressed: 'assets/avatar_seraphina_white.webp?v=20261016_perf_v27',
+        undressed: 'assets/avatar_seraphina_original.webp?v=20261016_perf_v27'
       },
       vespera: {
-        dressed: 'assets/avatar_vespera_dress.png?v=20261015_vespera_default_v2',
-        undressed: 'assets/avatar_tifa.png?v=20261015_vespera_default_v2'
+        dressed: 'assets/avatar_vespera_dress.webp?v=20261016_perf_v27',
+        undressed: 'assets/avatar_tifa.webp?v=20261016_perf_v27'
       },
       calista: {
-        dressed: 'assets/avatar_calista.png?v=20261015_calista_1024_v7',
-        undressed: 'assets/avatar_calista_old.png?v=20261015_calista_1024_v7'
+        dressed: 'assets/avatar_calista.webp?v=20261016_perf_v27',
+        undressed: 'assets/avatar_calista_old.webp?v=20261016_perf_v27'
       }
     },
 

@@ -9,10 +9,18 @@ NGROK_TARGET = "https://cupid-elope-plaything.ngrok-free.dev"
 
 class ProxyHandler(http.server.SimpleHTTPRequestHandler):
     def end_headers(self):
-        # Prevent aggressive browser caching of app.js/index.html
-        self.send_header('Cache-Control', 'no-cache, no-store, must-revalidate')
-        self.send_header('Pragma', 'no-cache')
-        self.send_header('Expires', '0')
+        clean_path = self.path.split('?')[0].lower()
+        ext = os.path.splitext(clean_path)[1]
+
+        # Aggressively cache static assets (images, audio, fonts, scripts) in browser disk cache
+        if ext in ['.png', '.jpg', '.jpeg', '.webp', '.gif', '.svg', '.woff2', '.woff', '.ttf', '.mp3', '.wav', '.ogg']:
+            self.send_header('Cache-Control', 'public, max-age=2592000, immutable')
+        elif ext in ['.js', '.css']:
+            # Versioned assets via ?v= cachebusters
+            self.send_header('Cache-Control', 'public, max-age=86400, stale-while-revalidate=3600')
+        else:
+            self.send_header('Cache-Control', 'no-cache, must-revalidate')
+
         self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
         self.send_header('Access-Control-Allow-Headers', '*')

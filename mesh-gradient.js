@@ -1,4 +1,4 @@
-﻿/**
+/**
  * DARKSENSE — Animated Gradient Mesh Background
  * 8 slowly drifting luminous blobs, mood-reactive with smooth color lerp.
  * Inspired by Apple macOS Sonoma / Linear.app gradient mesh aesthetic.
@@ -67,8 +67,11 @@
   const LERP_FRAMES = 140; // ~2.3 s at 60 fps
 
   function resize() {
-    W = canvas.width  = window.innerWidth;
-    H = canvas.height = window.innerHeight;
+    // Render at half-res for ambient blurry background blobs - cuts GPU shading by 75%!
+    W = canvas.width  = Math.max(320, Math.floor(window.innerWidth * 0.5));
+    H = canvas.height = Math.max(240, Math.floor(window.innerHeight * 0.5));
+    canvas.style.width = '100vw';
+    canvas.style.height = '100vh';
   }
 
   function lerp(a, b, t) { return a + (b - a) * t; }
@@ -81,7 +84,20 @@
     lerpProgress  = 0;
   }
 
-  function draw() {
+  let lastDrawTime = 0;
+  function draw(timestamp) {
+    if (document.hidden) {
+      requestAnimationFrame(draw);
+      return;
+    }
+
+    // Throttle to 30 FPS: ambient gradient blobs are slow and smooth, saves huge GPU power
+    if (timestamp && (timestamp - lastDrawTime < 32)) {
+      requestAnimationFrame(draw);
+      return;
+    }
+    lastDrawTime = timestamp || 0;
+
     ctx.clearRect(0, 0, W, H);
 
     // Deep-space base
@@ -133,7 +149,7 @@
     ctx.fillStyle = vig;
     ctx.fillRect(0, 0, W, H);
 
-    time++;
+    time += 2;
     requestAnimationFrame(draw);
   }
 
