@@ -896,30 +896,72 @@
         }
       };
 
+      const maleBtn = document.getElementById('ritual-gender-male');
+      const femaleBtn = document.getElementById('ritual-gender-female');
+
+      const selectGender = (gender) => {
+        try {
+          localStorage.setItem('darksense_gender_path', gender);
+          localStorage.setItem('darksense_age_verified', 'true');
+        } catch (_) {}
+
+        window.activeGenderPath = gender;
+
+        if (gender === 'female') {
+          document.body.classList.add('body-gender-female');
+          // Update titles/subtitles to indicate awaiting male companions
+          const subSeraphina = document.getElementById('nameplate-seraphina-sub');
+          const nameSeraphina = document.querySelector('#slot-seraphina .nameplate-name');
+          if (subSeraphina) subSeraphina.textContent = 'Awaiting Custom Male Avatar';
+          if (nameSeraphina) nameSeraphina.textContent = 'Male Companion I';
+
+          const subVespera = document.getElementById('nameplate-vespera-sub');
+          const nameVespera = document.querySelector('#slot-vespera .nameplate-name');
+          if (subVespera) subVespera.textContent = 'Awaiting Custom Male Avatar';
+          if (nameVespera) nameVespera.textContent = 'Male Companion II';
+
+          const subCalista = document.getElementById('nameplate-calista-sub');
+          const nameCalista = document.querySelector('#slot-calista .nameplate-name');
+          if (subCalista) subCalista.textContent = 'Awaiting Custom Male Avatar';
+          if (nameCalista) nameCalista.textContent = 'Male Companion III';
+        } else {
+          document.body.classList.remove('body-gender-female');
+        }
+
+        endRitual(false);
+      };
+
+      if (maleBtn) {
+        maleBtn.onclick = (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          selectGender('male');
+        };
+      }
+
+      if (femaleBtn) {
+        femaleBtn.onclick = (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          selectGender('female');
+        };
+      }
+
       if (skipBtn) {
         skipBtn.onclick = (e) => {
           e.preventDefault();
           e.stopPropagation();
-          try {
-            localStorage.setItem('darksense_age_verified', 'true');
-          } catch (_) {}
-          endRitual(false); // Step into the dark -> Lands directly on the Landing Stage!
+          selectGender('male');
         };
       }
 
-      // Also allow clicking anywhere on modal backdrop to dismiss
-      modal.onclick = (e) => {
-        if (e.target === modal || e.target.classList.contains('ritual-backdrop') || e.target.classList.contains('ritual-particle-field')) {
-          endRitual(false);
+      // Check previously saved preference
+      try {
+        const savedGender = localStorage.getItem('darksense_gender_path');
+        if (savedGender === 'female') {
+          document.body.classList.add('body-gender-female');
         }
-      };
-
-      // Auto dismiss after 6 seconds if untouched
-      setTimeout(() => {
-        if (modal.classList.contains('active')) {
-          endRitual(false);
-        }
-      }, 6200);
+      } catch (_) {}
     }
   };
 

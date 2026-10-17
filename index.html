@@ -11,7 +11,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20261017_dressed_default_v4">
+  <link rel="stylesheet" href="style.css?v=20261017_gender_ritual_v1">
   <link rel="icon" type="image/jpeg" href="assets/logo_flower.jpg?v=20261016_perf_v27">
   <!-- Instant Preload Active Hero Avatar for 0ms Visual Latency -->
   <link rel="preload" as="image" href="assets/avatar_seraphina_white.webp?v=20261016_perf_v27" fetchpriority="high">
@@ -654,8 +654,25 @@
       </div>
       <span class="ritual-step-tag">Awakening Sanctuary</span>
       <h2 class="ritual-headline">Before words existed, there was only the dark...</h2>
-      <p class="ritual-subline">Three living companions wait to hear what you dare not whisper in daylight.</p>
-      <button class="ritual-skip-btn" id="ritual-skip-btn">
+      <p class="ritual-subline">Select your presence to align the sanctuary with your desired companions.</p>
+
+      <!-- Presence & Gender Realm Selection -->
+      <div class="ritual-gender-selection">
+        <div class="ritual-gender-buttons">
+          <button class="ritual-gender-btn" id="ritual-gender-male" data-gender="male" aria-label="Male - Awaken Women Muses">
+            <span class="gender-btn-icon">♂</span>
+            <span class="gender-btn-title">Male</span>
+            <span class="gender-btn-sub">Women Muses</span>
+          </button>
+          <button class="ritual-gender-btn" id="ritual-gender-female" data-gender="female" aria-label="Female - Awaken Men Companions">
+            <span class="gender-btn-icon">♀</span>
+            <span class="gender-btn-title">Female</span>
+            <span class="gender-btn-sub">Men Companions</span>
+          </button>
+        </div>
+      </div>
+
+      <button class="ritual-skip-btn" id="ritual-skip-btn" style="display: none;">
         <span>Step Into The Dark</span>
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </button>
@@ -751,7 +768,7 @@
   <script src="kage-landing.js?v=20261016_liquid_landing_v2"></script>
   <script src="app.js?v=20261017_dressed_default_v4"></script>
   <script src="ambient-audio.js?v=20261016_perf_v27"></script>
-  <script src="darksense-enhancements.js?v=20261016_liquid_landing_v2"></script>
+  <script src="darksense-enhancements.js?v=20261017_gender_ritual_v1"></script>
 </body>
 
 </html>
