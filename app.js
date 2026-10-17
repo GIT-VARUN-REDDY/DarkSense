@@ -344,9 +344,15 @@ function suppressHoverUntilMouseMove(event) {
   window.addEventListener('touchstart', doCleanup, { passive: true });
 }
 
+let lastCommitTime = 0;
+
 function commitMuseSelection(targetKey, isAmbient = false, event = null) {
   const target = MUSES[targetKey];
   if (!target) return;
+
+  const now = Date.now();
+  if (!isAmbient && now - lastCommitTime < 320) return;
+  lastCommitTime = now;
 
   if (!isAmbient && window.DarkSenseAudio) {
     window.DarkSenseAudio.playChime('select');
@@ -504,6 +510,11 @@ if (DOM.loopDots) {
 
   // Click / Action: Bring to center as selected
   const onSelect = (e) => {
+    // Only intercept if this slot is actually a side flank companion (pos-left or pos-right)!
+    // If it's already in the center, do NOT stop propagation so flank clicks are never blocked!
+    if (!slot.classList.contains('pos-left') && !slot.classList.contains('pos-right')) {
+      return;
+    }
     e.stopPropagation();
     slot.classList.remove('is-hover-inspected');
     if (DOM.stageViewport) {
@@ -520,10 +531,6 @@ if (DOM.loopDots) {
       onSelect(e);
     }
   });
-
-  slot.addEventListener('touchend', (e) => {
-    onSelect(e);
-  }, { passive: true });
 });
 
 // Stage Viewport Flank Hover Zone Tracking
@@ -584,11 +591,32 @@ if (DOM.stageViewport) {
     clearFlankHover();
   });
 
-  // Stage Viewport Direct Click: Clicking left or right zone or side nameplate brings flank muse to center
+  // Stage Viewport Direct Click / Tap: Left or right flank zone directly brings side companion to center
   DOM.stageViewport.addEventListener('click', (e) => {
-    // If clicking on chevron buttons or loop dots, let those handlers handle it
-    if (e.target.closest('.stage-loop-nav') || e.target.closest('.stage-loop-dots')) {
+    // If clicking on chevron buttons, loop dots, or header controls, let those handle it
+    if (e.target.closest('.stage-loop-nav') || e.target.closest('.stage-loop-dots') || e.target.closest('.chamber-back-btn') || e.target.closest('#btn-dress-toggle')) {
       return;
+    }
+
+    const rect = DOM.stageViewport.getBoundingClientRect();
+    const relX = (e.clientX - rect.left) / rect.width;
+
+    // Prioritized flank zone switching: Left 40% = Left companion, Right 40% = Right companion
+    // Guarantees immediate selection even if center avatar's transparent bounds overlap!
+    if (relX < 0.40) {
+      const leftSlot = DOM.stageViewport.querySelector('.pos-left');
+      if (leftSlot && leftSlot.dataset.muse) {
+        clearFlankHover();
+        commitMuseSelection(leftSlot.dataset.muse, false, e);
+        return;
+      }
+    } else if (relX > 0.60) {
+      const rightSlot = DOM.stageViewport.querySelector('.pos-right');
+      if (rightSlot && rightSlot.dataset.muse) {
+        clearFlankHover();
+        commitMuseSelection(rightSlot.dataset.muse, false, e);
+        return;
+      }
     }
 
     // Direct check: Did the user click a side slot or side nameplate?
@@ -597,29 +625,6 @@ if (DOM.stageViewport) {
       clearFlankHover();
       commitMuseSelection(sideSlot.dataset.muse, false, e);
       return;
-    }
-
-    // If clicking the center nameplate, let center nameplate handler handle it
-    if (e.target.closest('.character-nameplate') || e.target.closest('.character-slot.pos-center')) {
-      return;
-    }
-
-    // Fallback zone detection across stage viewport (center slot widened by 5% on either side)
-    const rect = DOM.stageViewport.getBoundingClientRect();
-    const relX = (e.clientX - rect.left) / rect.width;
-
-    if (relX < 0.39) {
-      const leftSlot = DOM.stageViewport.querySelector('.pos-left');
-      if (leftSlot && leftSlot.dataset.muse) {
-        clearFlankHover();
-        commitMuseSelection(leftSlot.dataset.muse, false, e);
-      }
-    } else if (relX > 0.61) {
-      const rightSlot = DOM.stageViewport.querySelector('.pos-right');
-      if (rightSlot && rightSlot.dataset.muse) {
-        clearFlankHover();
-        commitMuseSelection(rightSlot.dataset.muse, false, e);
-      }
     }
   });
 

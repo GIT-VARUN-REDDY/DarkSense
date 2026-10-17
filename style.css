@@ -547,14 +547,14 @@ body:not(.chamber-active) .ambient-backdrop {
   filter: brightness(1.20) saturate(1.24) drop-shadow(0 18px 42px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 52px rgba(255, 122, 61, 0.55));
 }
 
-/* Left Flank Companion — Total Black Silhouette */
+/* Left Flank Companion — Soft Atmospheric Presence */
 .character-slot.pos-left {
   z-index: 15;
-  opacity: 0.85;
+  opacity: 0.72;
   pointer-events: auto;
   transform-origin: bottom center;
   transform: translateX(-50%) translate3d(-68%, 0px, -15px) rotateY(8deg) scale(0.86);
-  filter: brightness(0) saturate(0) drop-shadow(0 12px 28px rgba(0, 0, 0, 0.95));
+  filter: brightness(0.72) saturate(0.88) drop-shadow(0 12px 28px rgba(0, 0, 0, 0.8));
 }
 
 .character-slot.pos-left:hover,
@@ -562,18 +562,18 @@ body:not(.chamber-active) .ambient-backdrop {
   z-index: 20;
   opacity: 0.98;
   transform: translateX(-50%) translate3d(-68%, 0px, -5px) rotateY(3deg) scale(0.96);
-  filter: brightness(1.20) saturate(1.24) drop-shadow(0 20px 48px rgba(0, 0, 0, 0.98)) drop-shadow(0 0 34px var(--active-glow-hover, rgba(255, 255, 255, 0.45)));
+  filter: brightness(1.15) saturate(1.2) drop-shadow(0 20px 48px rgba(0, 0, 0, 0.98)) drop-shadow(0 0 34px var(--active-glow-hover, rgba(255, 255, 255, 0.45)));
   cursor: pointer;
 }
 
-/* Right Flank Companion — Total Black Silhouette */
+/* Right Flank Companion — Soft Atmospheric Presence */
 .character-slot.pos-right {
   z-index: 15;
-  opacity: 0.85;
+  opacity: 0.72;
   pointer-events: auto;
   transform-origin: bottom center;
   transform: translateX(-50%) translate3d(68%, 0px, -15px) rotateY(-8deg) scale(0.86);
-  filter: brightness(0) saturate(0) drop-shadow(0 12px 28px rgba(0, 0, 0, 0.95));
+  filter: brightness(0.72) saturate(0.88) drop-shadow(0 12px 28px rgba(0, 0, 0, 0.8));
 }
 
 .character-slot.pos-right:hover,
@@ -581,7 +581,7 @@ body:not(.chamber-active) .ambient-backdrop {
   z-index: 20;
   opacity: 0.98;
   transform: translateX(-50%) translate3d(68%, 0px, -5px) rotateY(-3deg) scale(0.96);
-  filter: brightness(1.20) saturate(1.24) drop-shadow(0 20px 48px rgba(0, 0, 0, 0.98)) drop-shadow(0 0 34px var(--active-glow-hover, rgba(255, 255, 255, 0.45)));
+  filter: brightness(1.15) saturate(1.2) drop-shadow(0 20px 48px rgba(0, 0, 0, 0.98)) drop-shadow(0 0 34px var(--active-glow-hover, rgba(255, 255, 255, 0.45)));
   cursor: pointer;
 }
 
@@ -620,19 +620,19 @@ body:not(.chamber-active) .ambient-backdrop {
   cursor: pointer;
 }
 
-/* Fade remaining two avatars to TOTAL DARK while inspecting side avatars */
+/* Softly dim remaining two avatars while inspecting side avatars */
 .stage-3d-viewport:not(.hover-suppressed):has(.character-slot.pos-left:hover) .character-slot:not(.pos-left),
 .stage-3d-viewport:not(.hover-suppressed):has(.character-slot.pos-right:hover) .character-slot:not(.pos-right),
 .stage-3d-viewport:not(.hover-suppressed).inspect-flank-active .character-slot:not(.is-hover-inspected) {
-  opacity: 0.85;
-  filter: brightness(0) saturate(0) drop-shadow(0 12px 28px rgba(0, 0, 0, 0.95)) !important;
+  opacity: 0.65;
+  filter: brightness(0.55) saturate(0.75) drop-shadow(0 12px 28px rgba(0, 0, 0, 0.85)) !important;
   transition: filter 0.35s ease, opacity 0.35s ease;
 }
 
 .stage-3d-viewport:not(.hover-suppressed):has(.character-slot.pos-left:hover) .character-slot:not(.pos-left) .figure-image,
 .stage-3d-viewport:not(.hover-suppressed):has(.character-slot.pos-right:hover) .character-slot:not(.pos-right) .figure-image,
 .stage-3d-viewport:not(.hover-suppressed).inspect-flank-active .character-slot:not(.is-hover-inspected) .figure-image {
-  filter: brightness(0) saturate(0) !important;
+  filter: brightness(0.55) saturate(0.75) !important;
   transition: filter 0.35s ease;
 }
 
@@ -1424,14 +1424,14 @@ body:not(.chamber-active) .ambient-backdrop {
 
   .character-slot.pos-left {
     transform: translateX(-50%) translate3d(-66%, 0px, -18px) rotateY(7deg) scale(0.85);
-    opacity: 0.85;
-    filter: brightness(0) saturate(0);
+    opacity: 0.72;
+    filter: brightness(0.72) saturate(0.88);
   }
 
   .character-slot.pos-right {
     transform: translateX(-50%) translate3d(66%, 0px, -18px) rotateY(-7deg) scale(0.85);
-    opacity: 0.85;
-    filter: brightness(0) saturate(0);
+    opacity: 0.72;
+    filter: brightness(0.72) saturate(0.88);
   }
 
   .glass-chat-stage {
@@ -1509,14 +1509,14 @@ body:not(.chamber-active) .ambient-backdrop {
 
   .character-slot.pos-left {
     transform: translateX(-50%) translate3d(-64%, 0px, -16px) rotateY(6deg) scale(0.84);
-    opacity: 0.85;
-    filter: brightness(0) saturate(0);
+    opacity: 0.72;
+    filter: brightness(0.72) saturate(0.88);
   }
 
   .character-slot.pos-right {
     transform: translateX(-50%) translate3d(64%, 0px, -16px) rotateY(-6deg) scale(0.84);
-    opacity: 0.85;
-    filter: brightness(0) saturate(0);
+    opacity: 0.72;
+    filter: brightness(0.72) saturate(0.88);
   }
 
   /* Compact Sensual Nameplate */
@@ -1645,14 +1645,14 @@ body:not(.chamber-active) .ambient-backdrop {
 
   .character-slot.pos-left {
     transform: translateX(-50%) translate3d(-62%, 0px, -14px) rotateY(4deg) scale(0.82);
-    opacity: 0.85;
-    filter: brightness(0) saturate(0);
+    opacity: 0.72;
+    filter: brightness(0.72) saturate(0.88);
   }
 
   .character-slot.pos-right {
     transform: translateX(-50%) translate3d(62%, 0px, -14px) rotateY(-4deg) scale(0.82);
-    opacity: 0.85;
-    filter: brightness(0) saturate(0);
+    opacity: 0.72;
+    filter: brightness(0.72) saturate(0.88);
   }
 
   .character-nameplate {
@@ -4289,10 +4289,15 @@ body[data-time-theme="golden-hour"] {
 }
 
 /* Masked Alternate Attire Portal Layer (Amorphous Fluid Vapor Mask - Completely Dissolved Edge) */
+.avatar-peek-portal,
+.avatar-peek-portal * {
+  pointer-events: none !important;
+}
+
 .avatar-peek-portal {
   position: absolute;
   inset: 0;
-  pointer-events: none;
+  pointer-events: none !important;
   z-index: 28;
   opacity: 0;
   will-change: mask-image, -webkit-mask-image, opacity;
@@ -4586,18 +4591,29 @@ body[data-time-theme="golden-hour"] {
     max-width: 295px !important;
     transform: translateX(-50%) translate3d(0%, 0px, 16px) scale(1.03) !important;
     opacity: 1 !important;
+    pointer-events: none !important;
+  }
+
+  .character-slot.pos-center .character-card-inner,
+  .character-slot.pos-center .character-nameplate,
+  .character-slot.pos-center .figure-image {
+    pointer-events: auto !important;
   }
 
   .character-slot.pos-left {
     transform: translateX(-50%) translate3d(-54%, 0px, -12px) rotateY(6deg) scale(0.85) !important;
-    opacity: 0.85 !important;
-    filter: brightness(0) saturate(0) !important;
+    opacity: 0.72 !important;
+    filter: brightness(0.72) saturate(0.88) !important;
+    pointer-events: auto !important;
+    z-index: 35 !important;
   }
 
   .character-slot.pos-right {
     transform: translateX(-50%) translate3d(54%, 0px, -12px) rotateY(-6deg) scale(0.85) !important;
-    opacity: 0.85 !important;
-    filter: brightness(0) saturate(0) !important;
+    opacity: 0.72 !important;
+    filter: brightness(0.72) saturate(0.88) !important;
+    pointer-events: auto !important;
+    z-index: 35 !important;
   }
 
   /* Mobile Loop Nav Chevrons — Flat transform without translateZ to keep strictly on-screen */
