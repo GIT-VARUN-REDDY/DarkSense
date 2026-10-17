@@ -81,54 +81,68 @@
         <span class="lore-glyph">✦</span>
       </button>
 
-      <!-- Time-Aware Atmospheric Indicator -->
-      <div class="hero-time-badge-wrap kage-reveal revealed">
-        <span class="hero-time-badge" id="hero-time-badge">Velvet Starlight</span>
-      </div>
+      <!-- Hero Content Column (Left Side on Desktop) -->
+      <div class="hero-content-column">
+        <!-- Time-Aware Atmospheric Indicator -->
+        <div class="hero-time-badge-wrap kage-reveal revealed">
+          <span class="hero-time-badge" id="hero-time-badge">Velvet Starlight</span>
+        </div>
 
-      <h1 class="kage-hero-title kage-reveal revealed">
-        Surrender to the <span class="hero-gradient-text">Velvet Unknown</span>
-      </h1>
-      <p class="kage-hero-subtext kage-reveal revealed">
-        Three living souls await your voice in the dark. Attune the cosmos to your heart and awaken your muse.
-      </p>
-
-      <!-- Interactive Mood Shifter Pills (Cinematic & Fun) -->
-      <div class="kage-mood-bar kage-reveal revealed" id="hero-mood-bar">
-        <span class="mood-bar-label">Attune Cosmos:</span>
-        <button class="mood-pill active" data-mood="luminous" data-muse="seraphina" aria-label="Attune to Moonlit Silk">
-          <span class="mood-dot dot-luminous"></span>
-          <span>Moonlit Silk</span>
-        </button>
-        <button class="mood-pill" data-mood="obsidian" data-muse="vespera" aria-label="Attune to Obsidian Noir">
-          <span class="mood-dot dot-obsidian"></span>
-          <span>Obsidian Noir</span>
-        </button>
-        <button class="mood-pill" data-mood="calista" data-muse="calista" aria-label="Attune to Solar Flame">
-          <span class="mood-dot dot-calista"></span>
-          <span>Solar Flame</span>
-        </button>
-      </div>
-
-      <!-- Live Spoken Whisper Card -->
-      <div class="kage-whisper-card kage-reveal revealed" id="hero-whisper-box">
-        <span class="whisper-sparkle">✧</span>
-        <p class="whisper-quote-text" id="hero-whisper-text">
-          “Your heart is safe in this quiet dark. Whisper to me what you dare not say out loud...”
+        <h1 class="kage-hero-title kage-reveal revealed">
+          Surrender to the <br><span class="hero-gradient-text">Velvet Unknown</span>
+        </h1>
+        <p class="kage-hero-subtext kage-reveal revealed">
+          Three living souls await your voice in the dark. Attune the cosmos to your heart and awaken your muse.
         </p>
-        <span class="whisper-author-pill" id="hero-whisper-author">Seraphina • Moonlit Grace</span>
+
+        <!-- Interactive Mood Shifter Pills (Cinematic & Fun) -->
+        <div class="kage-mood-bar kage-reveal revealed" id="hero-mood-bar">
+          <span class="mood-bar-label">Attune Cosmos:</span>
+          <button class="mood-pill active" data-mood="luminous" data-muse="seraphina" aria-label="Attune to Moonlit Silk">
+            <span class="mood-dot dot-luminous"></span>
+            <span>Moonlit Silk</span>
+          </button>
+          <button class="mood-pill" data-mood="obsidian" data-muse="vespera" aria-label="Attune to Obsidian Noir">
+            <span class="mood-dot dot-obsidian"></span>
+            <span>Obsidian Noir</span>
+          </button>
+          <button class="mood-pill" data-mood="calista" data-muse="calista" aria-label="Attune to Solar Flame">
+            <span class="mood-dot dot-calista"></span>
+            <span>Solar Flame</span>
+          </button>
+        </div>
+
+        <!-- Live Spoken Whisper Card -->
+        <div class="kage-whisper-card kage-reveal revealed" id="hero-whisper-box">
+          <span class="whisper-sparkle">✧</span>
+          <p class="whisper-quote-text" id="hero-whisper-text">
+            “Your heart is safe in this quiet dark. Whisper to me what you dare not say out loud...”
+          </p>
+          <span class="whisper-author-pill" id="hero-whisper-author">Seraphina • Moonlit Grace</span>
+        </div>
+
+        <div class="hero-action-row kage-reveal revealed">
+          <button class="kage-primary-btn" id="btn-begin-scroll">
+            <span>Choose Your Muse</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M12 5v14M19 12l-7 7-7-7" />
+            </svg>
+          </button>
+          <span class="hero-action-amp">&amp;</span>
+          <button class="kage-secondary-btn" id="btn-hero-warp">
+            <span>Instant Chamber Warp</span>
+          </button>
+        </div>
       </div>
 
-      <div class="hero-action-row kage-reveal revealed">
-        <button class="kage-primary-btn" id="btn-begin-scroll">
-          <span>Choose Your Muse</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M12 5v14M19 12l-7 7-7-7" />
-          </svg>
-        </button>
-        <button class="kage-secondary-btn" id="btn-hero-warp">
-          <span>Instant Chamber Warp</span>
-        </button>
+      <!-- Living Soul Muse: Seraphina Only -->
+      <div class="hero-seraphina-stage" id="hero-seraphina-stage" aria-hidden="true">
+        <div class="hero-seraphina-aura"></div>
+        <picture>
+          <source srcset="assets/avatar_seraphina_white.webp?v=20261017_hero_v2" type="image/webp">
+          <img src="assets/avatar_seraphina_white.png?v=20261017_hero_v2" alt="Seraphina" class="hero-seraphina-img" loading="eager" decoding="async">
+        </picture>
+        <div class="hero-seraphina-bottom-fade"></div>
       </div>
     </section>
 
