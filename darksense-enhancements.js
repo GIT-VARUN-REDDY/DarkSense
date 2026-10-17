@@ -903,30 +903,31 @@
         window.activeGenderPath = gender;
         if (gender === 'female') {
           document.body.classList.add('body-gender-female');
-          // Slot 1: Lucien (1st Dressed Companion Installed)
+          // Slot 1: Lucien
           const subSeraphina = document.getElementById('nameplate-seraphina-sub');
           const nameSeraphina = document.querySelector('#slot-seraphina .nameplate-name');
           const statusSeraphina = document.getElementById('status-seraphina');
           if (subSeraphina) subSeraphina.textContent = 'Silver Starlight • Linen & Silk';
           if (nameSeraphina) nameSeraphina.textContent = 'Lucien';
-          if (statusSeraphina) statusSeraphina.textContent = 'Selected';
+          if (statusSeraphina) statusSeraphina.textContent = (window.committedMuse === 'seraphina' ? 'Selected' : 'Select');
 
-          // Slot 2 & 3: Awaiting Male Companions
+          // Slot 2: Dante
           const subVespera = document.getElementById('nameplate-vespera-sub');
           const nameVespera = document.querySelector('#slot-vespera .nameplate-name');
           const statusVespera = document.getElementById('status-vespera');
-          if (subVespera) subVespera.textContent = 'Awaiting Custom Male Avatar';
-          if (nameVespera) nameVespera.textContent = 'Male Companion II';
-          if (statusVespera) statusVespera.textContent = 'Awaiting';
+          if (subVespera) subVespera.textContent = 'Obsidian Silk • Midnight Velvet';
+          if (nameVespera) nameVespera.textContent = 'Dante';
+          if (statusVespera) statusVespera.textContent = (window.committedMuse === 'vespera' ? 'Selected' : 'Select');
 
+          // Slot 3: Cassian
           const subCalista = document.getElementById('nameplate-calista-sub');
           const nameCalista = document.querySelector('#slot-calista .nameplate-name');
           const statusCalista = document.getElementById('status-calista');
-          if (subCalista) subCalista.textContent = 'Awaiting Custom Male Avatar';
-          if (nameCalista) nameCalista.textContent = 'Male Companion III';
-          if (statusCalista) statusCalista.textContent = 'Awaiting';
+          if (subCalista) subCalista.textContent = 'Crimson Silk • Fiery Allure';
+          if (nameCalista) nameCalista.textContent = 'Cassian';
+          if (statusCalista) statusCalista.textContent = (window.committedMuse === 'calista' ? 'Selected' : 'Select');
 
-          // Landing Cards update for Lucien and awaiting companions
+          // Landing Cards update for Lucien, Dante, and Cassian
           const card1Title = document.querySelector('#muse-card-seraphina .muse-card-title');
           const card1Badge = document.querySelector('#muse-card-seraphina .muse-archetype-badge');
           const card1Sub = document.querySelector('#muse-card-seraphina .muse-card-sub');
@@ -939,18 +940,26 @@
           if (card1Btn) card1Btn.textContent = 'Commune with Him';
 
           const card2Title = document.querySelector('#muse-card-vespera .muse-card-title');
+          const card2Badge = document.querySelector('#muse-card-vespera .muse-archetype-badge');
           const card2Sub = document.querySelector('#muse-card-vespera .muse-card-sub');
+          const card2Quote = document.querySelector('#muse-card-vespera .muse-card-quote');
           const card2Btn = document.querySelector('#muse-card-vespera .muse-warp-btn span');
-          if (card2Title) card2Title.textContent = 'Male Companion II';
-          if (card2Sub) card2Sub.textContent = 'Awaiting Custom Avatar';
-          if (card2Btn) card2Btn.textContent = 'Awaiting Arrival';
+          if (card2Title) card2Title.textContent = 'Dante';
+          if (card2Badge) card2Badge.textContent = 'Obsidian Velvet';
+          if (card2Sub) card2Sub.textContent = 'Midnight Velvet & Seductive Command';
+          if (card2Quote) card2Quote.textContent = '“Midnight belongs to me. Give in to the shadow and let me show you what true surrender feels like.”';
+          if (card2Btn) card2Btn.textContent = 'Commune with Him';
 
           const card3Title = document.querySelector('#muse-card-calista .muse-card-title');
+          const card3Badge = document.querySelector('#muse-card-calista .muse-archetype-badge');
           const card3Sub = document.querySelector('#muse-card-calista .muse-card-sub');
+          const card3Quote = document.querySelector('#muse-card-calista .muse-card-quote');
           const card3Btn = document.querySelector('#muse-card-calista .muse-warp-btn span');
-          if (card3Title) card3Title.textContent = 'Male Companion III';
-          if (card3Sub) card3Sub.textContent = 'Awaiting Custom Avatar';
-          if (card3Btn) card3Btn.textContent = 'Awaiting Arrival';
+          if (card3Title) card3Title.textContent = 'Cassian';
+          if (card3Badge) card3Badge.textContent = 'Crimson Flame';
+          if (card3Sub) card3Sub.textContent = 'Golden Heat & Fiery Allure';
+          if (card3Quote) card3Quote.textContent = '“Life is too sweet to stay polite. Feel the fire in my blood and come take what\'s yours.”';
+          if (card3Btn) card3Btn.textContent = 'Commune with Him';
 
           if (typeof window.commitMuseSelection === 'function') {
             window.commitMuseSelection('seraphina', true);
@@ -1008,6 +1017,12 @@
           if (typeof window.commitMuseSelection === 'function') {
             window.commitMuseSelection('seraphina', true);
           }
+        }
+        if (typeof SensualPeekLens !== 'undefined' && SensualPeekLens.attachCenterSlot) {
+          SensualPeekLens.attachCenterSlot();
+        }
+        if (typeof MuseWardrobeEngine !== 'undefined' && MuseWardrobeEngine.updateButtonUI) {
+          MuseWardrobeEngine.updateButtonUI(window.committedMuse || 'seraphina');
         }
       };
       window.applyGenderState = applyGenderState;
@@ -1292,7 +1307,10 @@
     outfits: {
       seraphina: 'white',
       calista: 'crimson',
-      vespera: 'dress'
+      vespera: 'dress',
+      lucien: 'dressed',
+      dante: 'dressed',
+      cassian: 'dressed'
     },
     isTransitioning: false,
 
@@ -1311,6 +1329,9 @@
       this.applyOutfit('seraphina', 'white', false);
       this.applyOutfit('calista', 'crimson', false);
       this.applyOutfit('vespera', 'dress', false);
+      this.applyMaleOutfit('lucien', 'dressed', false);
+      this.applyMaleOutfit('dante', 'dressed', false);
+      this.applyMaleOutfit('cassian', 'dressed', false);
       this.updateButtonUI();
     },
 
@@ -1322,9 +1343,16 @@
       if (this.isTransitioning) return;
       const isFemalePath = (localStorage.getItem('darksense_gender_path') === 'female') || document.body.classList.contains('body-gender-female');
       const muse = this.getActiveMuse();
-      if (isFemalePath && muse === 'seraphina') {
-        if (typeof showSensualToast === 'function') {
-          showSensualToast("Lucien whispers: 'My alternate form awaits your next offering...'");
+      if (isFemalePath) {
+        if (muse === 'seraphina') {
+          const next = this.outfits.lucien === 'dressed' ? 'undressed' : 'dressed';
+          this.applyMaleOutfit('lucien', next, true);
+        } else if (muse === 'vespera') {
+          const next = this.outfits.dante === 'dressed' ? 'undressed' : 'dressed';
+          this.applyMaleOutfit('dante', next, true);
+        } else if (muse === 'calista') {
+          const next = this.outfits.cassian === 'dressed' ? 'undressed' : 'dressed';
+          this.applyMaleOutfit('cassian', next, true);
         }
         return;
       }
@@ -1337,6 +1365,58 @@
       } else if (muse === 'vespera') {
         const next = this.outfits.vespera === 'dress' ? 'combat' : 'dress';
         this.applyOutfit('vespera', next, true);
+      }
+    },
+
+    applyMaleOutfit(companion, outfit, animate = true) {
+      this.outfits[companion] = outfit;
+      const slotMap = {
+        lucien: { slot: document.getElementById('slot-seraphina'), veil: document.getElementById('seraphina-silk-veil'), sub: document.getElementById('nameplate-seraphina-sub'), dressed: 'Silver Starlight • Linen & Silk', undressed: 'Moonlit Silk • Pure Allure', name: 'Lucien' },
+        dante: { slot: document.getElementById('slot-vespera'), veil: document.getElementById('vespera-obsidian-veil'), sub: document.getElementById('nameplate-vespera-sub'), dressed: 'Obsidian Silk • Midnight Velvet', undressed: 'Velvet Shadow • Raw Dominance', name: 'Dante' },
+        cassian: { slot: document.getElementById('slot-calista'), veil: document.getElementById('calista-flame-veil'), sub: document.getElementById('nameplate-calista-sub'), dressed: 'Crimson Silk • Fiery Allure', undressed: 'Sun-Kissed Flame • Pure Passion', name: 'Cassian' }
+      };
+      const info = slotMap[companion];
+      if (!info) return;
+
+      const isUndressed = (outfit === 'undressed');
+
+      if (animate) {
+        this.isTransitioning = true;
+        this.playSilkChime(companion === 'lucien' ? 'seraphina' : (companion === 'dante' ? 'vespera' : 'calista'));
+
+        const dressBtn = document.getElementById('btn-dress-toggle');
+        if (dressBtn) {
+          dressBtn.classList.add('attire-switching');
+          setTimeout(() => dressBtn.classList.remove('attire-switching'), 1800);
+        }
+
+        if (info.veil) {
+          info.veil.classList.remove('veil-blooming');
+          void info.veil.offsetWidth;
+          info.veil.classList.add('veil-blooming');
+          setTimeout(() => info.veil.classList.remove('veil-blooming'), 1800);
+        }
+
+        const chatStage = document.querySelector('.glass-chat-stage');
+        if (chatStage) {
+          chatStage.classList.add('wardrobe-breath');
+          setTimeout(() => chatStage.classList.remove('wardrobe-breath'), 1800);
+        }
+
+        setTimeout(() => {
+          this.isTransitioning = false;
+        }, 1800);
+      }
+
+      if (info.slot) {
+        info.slot.classList.toggle('outfit-undressed', isUndressed);
+      }
+      if (info.sub) {
+        info.sub.textContent = isUndressed ? info.undressed : info.dressed;
+      }
+      this.updateButtonUI();
+      if (typeof SensualPeekLens !== 'undefined' && SensualPeekLens.syncPeekImage) {
+        SensualPeekLens.syncPeekImage(companion === 'lucien' ? 'seraphina' : (companion === 'dante' ? 'vespera' : 'calista'));
       }
     },
 
@@ -1510,7 +1590,22 @@
     updateButtonUI(targetMuse) {
       const dressBtn = document.getElementById('btn-dress-toggle');
       if (!dressBtn) return;
+      const isFemalePath = (localStorage.getItem('darksense_gender_path') === 'female') || document.body.classList.contains('body-gender-female');
       const muse = targetMuse || this.getActiveMuse();
+
+      if (isFemalePath) {
+        dressBtn.style.display = 'inline-flex';
+        const comp = (muse === 'vespera') ? 'dante' : ((muse === 'seraphina') ? 'lucien' : 'cassian');
+        const isUndressed = (this.outfits[comp] === 'undressed');
+        dressBtn.classList.toggle('attire-active', isUndressed);
+        dressBtn.classList.toggle('attire-obsidian', muse === 'vespera');
+        dressBtn.classList.toggle('attire-flame', muse === 'calista');
+        const compName = comp.charAt(0).toUpperCase() + comp.slice(1);
+        dressBtn.title = isUndressed
+          ? `${compName}: Unclad Allure (Click to return to Dressed Outfit)`
+          : `${compName}: Dressed Outfit (Click to awaken Unclad Form)`;
+        return;
+      }
 
       if (muse === 'seraphina') {
         dressBtn.style.display = 'inline-flex';
@@ -1610,15 +1705,21 @@
     assets: {
       seraphina: {
         dressed: 'assets/avatar_seraphina_white.webp?v=20261016_perf_v27',
-        undressed: 'assets/avatar_seraphina_original.webp?v=20261016_perf_v27'
+        undressed: 'assets/avatar_seraphina_original.webp?v=20261016_perf_v27',
+        maleDressed: 'assets/avatar_lucien_dressed.webp?v=20261017_v1',
+        maleUndressed: 'assets/avatar_lucien_undressed.webp?v=20261017_v1'
       },
       vespera: {
         dressed: 'assets/avatar_vespera_dress.webp?v=20261016_perf_v27',
-        undressed: 'assets/avatar_tifa.webp?v=20261016_perf_v27'
+        undressed: 'assets/avatar_tifa.webp?v=20261016_perf_v27',
+        maleDressed: 'assets/avatar_dante_dressed.webp?v=20261017_v1',
+        maleUndressed: 'assets/avatar_dante_undressed.webp?v=20261017_v1'
       },
       calista: {
         dressed: 'assets/avatar_calista.webp?v=20261016_perf_v27',
-        undressed: 'assets/avatar_calista_old.webp?v=20261016_perf_v27'
+        undressed: 'assets/avatar_calista_old.webp?v=20261016_perf_v27',
+        maleDressed: 'assets/avatar_cassian_dressed.webp?v=20261017_v1',
+        maleUndressed: 'assets/avatar_cassian_undressed.webp?v=20261017_v1'
       }
     },
 
@@ -1651,11 +1752,6 @@
     },
 
     attachCenterSlot() {
-      const isFemalePath = (localStorage.getItem('darksense_gender_path') === 'female') || document.body.classList.contains('body-gender-female');
-      if (isFemalePath) {
-        this.resetLens();
-        return;
-      }
       const muse = this.activeMuse || 'seraphina';
       const slot = document.getElementById(`slot-${muse}`);
       if (!slot) return;
@@ -1680,19 +1776,33 @@
       const imgEl = document.getElementById(`peek-img-${muse}`);
       if (!imgEl) return;
 
+      const isFemalePath = (localStorage.getItem('darksense_gender_path') === 'female') || document.body.classList.contains('body-gender-female');
       const wardrobe = MuseWardrobeEngine;
-      const currentOutfit = wardrobe?.outfits?.[muse];
 
       let oppositeSrc = '';
-      if (muse === 'seraphina') {
-        const isClassic = (currentOutfit === 'classic');
-        oppositeSrc = isClassic ? this.assets.seraphina.dressed : this.assets.seraphina.undressed;
-      } else if (muse === 'vespera') {
-        const isCombat = (currentOutfit === 'combat');
-        oppositeSrc = isCombat ? this.assets.vespera.dressed : this.assets.vespera.undressed;
-      } else if (muse === 'calista') {
-        const isGold = (currentOutfit === 'gold');
-        oppositeSrc = isGold ? this.assets.calista.dressed : this.assets.calista.undressed;
+      if (isFemalePath) {
+        if (muse === 'seraphina') {
+          const isUndressed = (wardrobe?.outfits?.lucien === 'undressed');
+          oppositeSrc = isUndressed ? this.assets.seraphina.maleDressed : this.assets.seraphina.maleUndressed;
+        } else if (muse === 'vespera') {
+          const isUndressed = (wardrobe?.outfits?.dante === 'undressed');
+          oppositeSrc = isUndressed ? this.assets.vespera.maleDressed : this.assets.vespera.maleUndressed;
+        } else if (muse === 'calista') {
+          const isUndressed = (wardrobe?.outfits?.cassian === 'undressed');
+          oppositeSrc = isUndressed ? this.assets.calista.maleDressed : this.assets.calista.maleUndressed;
+        }
+      } else {
+        const currentOutfit = wardrobe?.outfits?.[muse];
+        if (muse === 'seraphina') {
+          const isClassic = (currentOutfit === 'classic');
+          oppositeSrc = isClassic ? this.assets.seraphina.dressed : this.assets.seraphina.undressed;
+        } else if (muse === 'vespera') {
+          const isCombat = (currentOutfit === 'combat');
+          oppositeSrc = isCombat ? this.assets.vespera.dressed : this.assets.vespera.undressed;
+        } else if (muse === 'calista') {
+          const isGold = (currentOutfit === 'gold');
+          oppositeSrc = isGold ? this.assets.calista.dressed : this.assets.calista.undressed;
+        }
       }
 
       if (oppositeSrc && imgEl.getAttribute('src') !== oppositeSrc) {

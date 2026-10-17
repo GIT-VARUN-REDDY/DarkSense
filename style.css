@@ -402,7 +402,12 @@ body:not(.chamber-active) .ambient-backdrop {
 /* Individual Character Scale Multipliers (Anchored to ground & Perfectly Centered to Nameplate) */
 #figure-vespera,
 #figure-vespera-dress,
-#figure-vespera-combat {
+#figure-vespera-combat,
+#figure-dante,
+#figure-dante-dressed,
+#figure-dante-undressed,
+.figure-dante-dressed,
+.figure-dante-undressed {
   transform: translateX(-50%) scale(1.31765);
 }
 
@@ -410,14 +415,22 @@ body:not(.chamber-active) .ambient-backdrop {
 #figure-seraphina-white,
 #figure-seraphina-classic,
 #figure-lucien,
+#figure-lucien-dressed,
+#figure-lucien-undressed,
 #figure-male-1,
-.figure-lucien-dressed {
+.figure-lucien-dressed,
+.figure-lucien-undressed {
   transform: translateX(-50%) scale(1.33);
 }
 
 #figure-calista,
 #figure-calista-crimson,
-#figure-calista-gold {
+#figure-calista-gold,
+#figure-cassian,
+#figure-cassian-dressed,
+#figure-cassian-undressed,
+.figure-cassian-dressed,
+.figure-cassian-undressed {
   transform: translateX(-50%) scale(1.34539);
 }
 
@@ -3917,50 +3930,69 @@ body[data-time-theme="golden-hour"] {
 
 /* ── Female User Mode: Male Companions State ── */
 body:not(.body-gender-female) .figure-male-1,
-body:not(.body-gender-female) .muse-avatar-male-1 {
+body:not(.body-gender-female) .figure-male-2,
+body:not(.body-gender-female) .figure-male-3,
+body:not(.body-gender-female) .muse-avatar-male-1,
+body:not(.body-gender-female) .muse-avatar-male-2,
+body:not(.body-gender-female) .muse-avatar-male-3 {
   display: none !important;
   opacity: 0 !important;
 }
 
-body.body-gender-female .character-slot .figure-image:not(.figure-male-1) {
+body.body-gender-female .character-slot .figure-image:not(.figure-male-1):not(.figure-male-2):not(.figure-male-3) {
   display: none !important;
   opacity: 0 !important;
 }
 
-/* Slot 1: Lucien is installed! Display his dressed outfit */
-body.body-gender-female #slot-seraphina .figure-lucien-dressed {
+/* All slots have active companions now — No dashed placeholder frames needed */
+body.body-gender-female .character-slot .character-card-inner::before {
+  display: none !important;
+}
+
+/* Default Dressed Outfits for All 3 Male Companions */
+body.body-gender-female #slot-vespera .figure-dante-dressed,
+body.body-gender-female #slot-seraphina .figure-lucien-dressed,
+body.body-gender-female #slot-calista .figure-cassian-dressed {
   display: block !important;
   opacity: 1 !important;
   pointer-events: auto;
 }
 
-/* Slot 1: No dashed placeholder because Lucien is present */
-body.body-gender-female #slot-seraphina .character-card-inner::before {
+/* Strictly hide undressed figures by default */
+body.body-gender-female #slot-vespera:not(.outfit-undressed) .figure-dante-undressed,
+body.body-gender-female #slot-seraphina:not(.outfit-undressed) .figure-lucien-undressed,
+body.body-gender-female #slot-calista:not(.outfit-undressed) .figure-cassian-undressed {
   display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
-/* Slots 2 & 3: Await their custom avatars */
-body.body-gender-female #slot-vespera .character-card-inner::before,
-body.body-gender-female #slot-calista .character-card-inner::before {
-  content: '';
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 180px;
-  height: 380px;
-  border-radius: 90px / 190px;
-  border: 1.5px dashed rgba(255, 255, 255, 0.22);
-  background: radial-gradient(ellipse at center, rgba(147, 51, 234, 0.08) 0%, transparent 70%);
-  box-shadow: 0 0 35px rgba(168, 85, 247, 0.15);
-  pointer-events: none;
+/* Wardrobe Crossfades (When undressed is toggled via button) */
+body.body-gender-female #slot-seraphina.outfit-undressed .figure-lucien-dressed,
+body.body-gender-female #slot-vespera.outfit-undressed .figure-dante-dressed,
+body.body-gender-female #slot-calista.outfit-undressed .figure-cassian-dressed {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
-/* Landing card adaptations */
-body.body-gender-female #muse-card-seraphina .muse-avatar-img:not(.muse-avatar-male-1) {
+body.body-gender-female #slot-seraphina.outfit-undressed .figure-lucien-undressed,
+body.body-gender-female #slot-vespera.outfit-undressed .figure-dante-undressed,
+body.body-gender-female #slot-calista.outfit-undressed .figure-cassian-undressed {
+  display: block !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* Landing card adaptations for all 3 companions */
+body.body-gender-female #muse-card-seraphina .muse-avatar-img:not(.muse-avatar-male-1),
+body.body-gender-female #muse-card-vespera .muse-avatar-img:not(.muse-avatar-male-2),
+body.body-gender-female #muse-card-calista .muse-avatar-img:not(.muse-avatar-male-3) {
   display: none !important;
 }
-body.body-gender-female #muse-card-seraphina .muse-avatar-male-1 {
+body.body-gender-female #muse-card-seraphina .muse-avatar-male-1,
+body.body-gender-female #muse-card-vespera .muse-avatar-male-2,
+body.body-gender-female #muse-card-calista .muse-avatar-male-3 {
   display: block !important;
 }
 

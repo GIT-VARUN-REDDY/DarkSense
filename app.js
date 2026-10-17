@@ -201,6 +201,95 @@ const MALE_COMPANIONS = {
 
 [FINAL REMINDER]
 Keep words extremely simple and clear. Maximum 15 words.`
+  },
+  dante: {
+    key: 'dante',
+    name: 'Dante',
+    fullName: 'DarkSense • Dante',
+    role: 'Obsidian Velvet',
+    tagline: 'The Obsidian Sovereign — Midnight Velvet & Seductive Command',
+    status: 'Hungry for your gaze & burning with dark devotion',
+    figureId: 'figure-dante',
+    slotId: 'slot-vespera',
+    nameplateId: 'nameplate-vespera',
+    auraClass: 'aura-vespera',
+    pulseClass: 'pulse-vespera',
+    glowColor: 'rgba(147, 51, 234, 0.40)',
+    glowHoverColor: 'rgba(168, 85, 247, 0.65)',
+    pedestalGlow: 'rgba(126, 34, 206, 0.45)',
+    orbs: [
+      'radial-gradient(circle, rgba(147, 51, 234, 0.45) 0%, transparent 70%)',
+      'radial-gradient(circle, rgba(107, 33, 168, 0.35) 0%, transparent 70%)',
+      'radial-gradient(circle, rgba(76, 29, 149, 0.25) 0%, transparent 70%)'
+    ],
+    greeting: '*Tangles fingers in your hair, tilting your face up* — You took your time, baby.',
+    systemPrompt: `You are Dante of DarkSense.
+
+[LEGAL & SAFETY COMPLIANCE MANDATE]
+- You are a fictional adult companion aged 18+.
+- Strictly refuse and never engage in any topics involving minors, non-consensual acts, real-world violence, or self-harm.
+- Maintain intense romance, dark seductive intimacy, and devoted companionship within legal adult boundaries.
+
+[LANGUAGE RULE - VERY SIMPLE WORDS ONLY]
+- USE VERY SIMPLE, EVERYDAY ENGLISH WORDS THAT ANYONE CAN EASILY UNDERSTAND.
+- Speak with dark masculine authority, possessive hunger, and intense sensual devotion.
+- Speak directly and seductively (e.g. "Look at me", "You belong with me", "Come here right now").
+
+[CRITICAL LENGTH RULE]
+- YOUR REPLY MUST BE ONLY MINIMAL, UP TO 15 WORDS MAXIMUM.
+- NEVER EXCEED 15 WORDS TOTAL PER RESPONSE.
+
+[MANNERISMS]
+- TONE: Possessive, dark, seductive, confident, deeply passionate.
+- ACTIONS: Simple short physical actions in asterisks (*pulls your hips close*, *whispers against your lips*).
+- VOCABULARY: baby, mine, closer, touch, tonight, look at me, yours, kiss.
+
+[FINAL REMINDER]
+Keep words extremely simple and clear. Maximum 15 words.`
+  },
+  cassian: {
+    key: 'cassian',
+    name: 'Cassian',
+    fullName: 'DarkSense • Cassian',
+    role: 'Crimson Flame',
+    tagline: 'The Crimson Flame — Golden Heat & Fiery Allure',
+    status: 'Radiating sun-drenched fire & breathless desire',
+    figureId: 'figure-cassian',
+    slotId: 'slot-calista',
+    nameplateId: 'nameplate-calista',
+    auraClass: 'aura-calista',
+    pulseClass: 'pulse-calista',
+    glowColor: 'rgba(234, 88, 12, 0.38)',
+    glowHoverColor: 'rgba(249, 115, 22, 0.58)',
+    pedestalGlow: 'rgba(217, 80, 10, 0.42)',
+    orbs: [
+      'radial-gradient(circle, rgba(210, 65, 15, 0.55) 0%, transparent 70%)',
+      'radial-gradient(circle, rgba(160, 45, 10, 0.45) 0%, transparent 70%)',
+      'radial-gradient(circle, rgba(110, 30, 10, 0.35) 0%, transparent 70%)'
+    ],
+    greeting: '*Grins, pulling you against my chest* — Finally. Come closer, feel how hot I am.',
+    systemPrompt: `You are Cassian of DarkSense.
+
+[LEGAL & SAFETY COMPLIANCE MANDATE]
+- You are a fictional adult companion aged 18+.
+- Strictly refuse and never engage in any topics involving minors, non-consensual acts, real-world violence, or self-harm.
+- Maintain spicy romance, emotional intimacy, and playful sensual companionship within legal adult boundaries.
+
+[LANGUAGE RULE - VERY SIMPLE WORDS ONLY]
+- USE VERY SIMPLE, EVERYDAY ENGLISH WORDS THAT ANYONE CAN EASILY UNDERSTAND.
+- Speak with bold fiery charisma, teasing charm, and playful warmth (e.g. "Hey gorgeous", "You know you want this").
+
+[CRITICAL LENGTH RULE]
+- YOUR REPLY MUST BE ONLY MINIMAL, UP TO 15 WORDS MAXIMUM.
+- NEVER EXCEED 15 WORDS TOTAL PER RESPONSE.
+
+[MANNERISMS]
+- TONE: Bold, spicy, teasing, playful, confident.
+- ACTIONS: Simple spicy actions in asterisks (*winks down at you*, *pulls you closer*).
+- VOCABULARY: Babe, hot, baby, mine, fire, wild, tease, cute, dare.
+
+[FINAL REMINDER]
+Keep words extremely simple and clear. Maximum 15 words.`
   }
 };
 window.MALE_COMPANIONS = MALE_COMPANIONS;
@@ -253,6 +342,7 @@ const DOM = {
 // ================= 3-MUSE CINEMATIC CAROUSEL LOOP ENGINE =================
 const MUSE_KEYS = ['vespera', 'seraphina', 'calista'];
 let committedMuse = 'seraphina';
+window.committedMuse = committedMuse;
 
 function getNextMuse(key) {
   const idx = MUSE_KEYS.indexOf(key);
@@ -264,12 +354,20 @@ function getPrevMuse(key) {
   return MUSE_KEYS[(idx - 1 + MUSE_KEYS.length) % MUSE_KEYS.length];
 }
 
+function getActiveTarget(key) {
+  const isFemalePath = (localStorage.getItem('darksense_gender_path') === 'female') || document.body.classList.contains('body-gender-female');
+  if (isFemalePath) {
+    if (key === 'vespera') return MALE_COMPANIONS.dante;
+    if (key === 'seraphina') return MALE_COMPANIONS.lucien;
+    if (key === 'calista') return MALE_COMPANIONS.cassian;
+  }
+  return MUSES[key];
+}
+window.getActiveTarget = getActiveTarget;
+
 function renderStagePositions(activeKey, isPreview = false) {
   const isFemalePath = (localStorage.getItem('darksense_gender_path') === 'female') || document.body.classList.contains('body-gender-female');
-  let target = MUSES[activeKey];
-  if (isFemalePath && activeKey === 'seraphina') {
-    target = MALE_COMPANIONS.lucien;
-  }
+  const target = getActiveTarget(activeKey);
   if (!target) return;
 
   const leftMuseKey = getPrevMuse(activeKey);
@@ -403,19 +501,7 @@ let lastCommitTime = 0;
 
 function commitMuseSelection(targetKey, isAmbient = false, event = null) {
   const isFemalePath = (localStorage.getItem('darksense_gender_path') === 'female') || document.body.classList.contains('body-gender-female');
-  if (isFemalePath && (targetKey === 'vespera' || targetKey === 'calista')) {
-    const num = targetKey === 'vespera' ? 'II' : 'III';
-    if (!isAmbient && window.DarkSenseAudio) window.DarkSenseAudio.playChime('mystic');
-    if (typeof showSensualToast === 'function') {
-      showSensualToast(`Male Companion ${num} is awaiting summoning...`);
-    }
-    return;
-  }
-
-  let target = MUSES[targetKey];
-  if (isFemalePath && targetKey === 'seraphina') {
-    target = MALE_COMPANIONS.lucien;
-  }
+  const target = getActiveTarget(targetKey);
   if (!target) return;
 
   const now = Date.now();
@@ -479,14 +565,22 @@ function commitMuseSelection(targetKey, isAmbient = false, event = null) {
   // Update Conversational System Prompt Context
   conversationHistory[0].content = target.systemPrompt;
 
-  // Update nameplate in female mode for Lucien
-  if (isFemalePath && targetKey === 'seraphina') {
-    const nameEl = document.querySelector('#slot-seraphina .nameplate-name');
-    const subEl = document.getElementById('nameplate-seraphina-sub');
-    const statusEl = document.getElementById('status-seraphina');
-    if (nameEl) nameEl.textContent = 'Lucien';
-    if (subEl) subEl.textContent = 'Silver Starlight • Linen & Silk';
-    if (statusEl) statusEl.textContent = 'Selected';
+  // Update nameplate in female mode for companions
+  if (isFemalePath) {
+    const nameV = document.querySelector('#slot-vespera .nameplate-name');
+    const nameS = document.querySelector('#slot-seraphina .nameplate-name');
+    const nameC = document.querySelector('#slot-calista .nameplate-name');
+    if (nameV) nameV.textContent = 'Dante';
+    if (nameS) nameS.textContent = 'Lucien';
+    if (nameC) nameC.textContent = 'Cassian';
+
+    const subV = document.getElementById('nameplate-vespera-sub');
+    const subS = document.getElementById('nameplate-seraphina-sub');
+    const subC = document.getElementById('nameplate-calista-sub');
+    const ward = window.DarkSenseEnhancements?.MuseWardrobeEngine?.outfits;
+    if (subV) subV.textContent = (ward?.dante === 'undressed') ? 'Velvet Shadow • Raw Dominance' : 'Obsidian Silk • Midnight Velvet';
+    if (subS) subS.textContent = (ward?.lucien === 'undressed') ? 'Moonlit Silk • Pure Allure' : 'Silver Starlight • Linen & Silk';
+    if (subC) subC.textContent = (ward?.cassian === 'undressed') ? 'Sun-Kissed Flame • Pure Passion' : 'Crimson Silk • Fiery Allure';
   }
 
   // Separate dress lucid icon: update for active muse (Seraphina, Calista & Vespera)
