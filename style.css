@@ -2290,7 +2290,7 @@ body[data-cosmic-mood="calista"] {
   justify-content: flex-start;
   padding-top: 80px;
   padding-bottom: 2rem;
-  padding-left: clamp(2rem, 5.5vw, 6rem);
+  padding-left: clamp(1rem, 2.5vw, 3.5rem);
   padding-right: 2rem;
   overflow: hidden;
   position: absolute;
@@ -2345,14 +2345,11 @@ body[data-cosmic-mood="calista"] {
 }
 
 .emblem-flower-img {
-  width: 76%;
-  height: 76%;
-  object-fit: cover;
-  border-radius: 50%;
-  mix-blend-mode: screen;
-  mask-image: radial-gradient(circle, black 65%, transparent 100%);
-  -webkit-mask-image: radial-gradient(circle, black 65%, transparent 100%);
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.95));
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+  pointer-events: none;
+  filter: drop-shadow(0 0 8px rgba(224, 242, 254, 0.95)) drop-shadow(0 0 16px rgba(255, 255, 255, 0.8));
 }
 
 @keyframes emblemRotate {
@@ -2418,28 +2415,28 @@ body[data-cosmic-mood="calista"] {
 /* Muse 1: Calista (Left Flank) */
 .hero-muse-figure.muse-calista {
   left: -2vw;
-  width: 32vw;
-  max-width: 440px;
-  height: 80vh;
+  width: 19vw;
+  max-width: 275px;
+  height: 84vh;
   z-index: 3;
   justify-content: flex-start;
   animation: heroFloatCalista 8.5s ease-in-out infinite -2.5s;
 }
 
 .hero-muse-figure.muse-calista .hero-muse-img {
-  max-height: 80vh;
+  max-height: 84vh;
   object-position: bottom left;
-  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 30px rgba(249, 115, 22, 0.22));
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 26px rgba(249, 115, 22, 0.22));
 }
 
 .aura-calista {
   position: absolute;
   bottom: 8%;
   left: -10%;
-  width: 420px;
-  height: 520px;
+  width: 380px;
+  height: 480px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(249, 115, 22, 0.35) 0%, rgba(225, 29, 72, 0.16) 45%, transparent 70%);
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.32) 0%, rgba(225, 29, 72, 0.14) 45%, transparent 70%);
   filter: blur(42px);
   pointer-events: none;
   opacity: 0.78;
@@ -2477,19 +2474,19 @@ body[data-cosmic-mood="calista"] {
 
 /* Muse 2: Seraphina (Center-Right Heroine) */
 .hero-muse-figure.muse-seraphina {
-  right: clamp(10vw, 15vw, 19vw);
-  width: 38vw;
-  max-width: 510px;
-  height: 92vh;
+  right: clamp(17vw, 21.5vw, 25vw);
+  width: 32vw;
+  max-width: 440px;
+  height: 90vh;
   z-index: 5;
   justify-content: center;
   animation: heroFloatSeraphina 7s ease-in-out infinite;
 }
 
 .hero-muse-figure.muse-seraphina .hero-muse-img {
-  max-height: 92vh;
+  max-height: 90vh;
   object-position: bottom center;
-  filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.78)) drop-shadow(0 0 38px rgba(224, 242, 254, 0.28));
+  filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.78)) drop-shadow(0 0 34px rgba(224, 242, 254, 0.28));
 }
 
 .aura-seraphina {
@@ -2497,10 +2494,10 @@ body[data-cosmic-mood="calista"] {
   bottom: 12%;
   left: 50%;
   transform: translateX(-50%);
-  width: 520px;
-  height: 620px;
+  width: 480px;
+  height: 580px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(224, 242, 254, 0.4) 0%, rgba(168, 85, 247, 0.18) 45%, rgba(56, 189, 248, 0.08) 65%, transparent 75%);
+  background: radial-gradient(circle, rgba(224, 242, 254, 0.38) 0%, rgba(168, 85, 247, 0.16) 45%, rgba(56, 189, 248, 0.08) 65%, transparent 75%);
   filter: blur(48px);
   pointer-events: none;
   opacity: 0.92;
@@ -2513,7 +2510,7 @@ body[data-cosmic-mood="calista"] {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 3;
+  z-index: 6;
   animation: heroSwirlPulse 6s ease-in-out infinite;
 }
 
@@ -2538,42 +2535,48 @@ body[data-cosmic-mood="calista"] {
 @keyframes heroSwirlPulse {
   0%, 100% {
     opacity: 0.85;
-    filter: drop-shadow(0 0 10px rgba(224, 242, 254, 0.65));
+    filter: drop-shadow(0 0 8px rgba(224, 242, 254, 0.65));
   }
   50% {
     opacity: 1;
-    filter: drop-shadow(0 0 24px rgba(224, 242, 254, 0.95));
+    filter: drop-shadow(0 0 20px rgba(224, 242, 254, 0.95));
   }
 }
 
 .swirl-flower-petal {
   position: absolute;
-  width: 26px;
-  height: 26px;
   pointer-events: none;
+  z-index: 7;
+}
+
+.swirl-flower-petal.petal-waist {
+  top: 67%;
+  left: 23%;
+  width: 32px;
+  height: 32px;
   animation: petalFloat 5s ease-in-out infinite alternate;
 }
-.swirl-flower-petal.petal-1 {
-  top: 55%;
-  left: 45%;
-  animation-delay: -1s;
+
+.swirl-flower-petal.petal-shoulder {
+  top: 36%;
+  right: 12%;
+  width: 44px;
+  height: 44px;
+  animation: petalFloat 6s ease-in-out infinite alternate -2s;
 }
-.swirl-flower-petal.petal-2 {
-  top: 42%;
-  left: 28%;
-  width: 28px;
-  height: 28px;
-  animation-delay: -2.5s;
-}
-.petal-flower-svg {
+
+.petal-lily-img {
+  display: block;
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0 0 6px rgba(224, 242, 254, 0.95)) drop-shadow(0 0 12px rgba(255, 255, 255, 0.8));
+  object-fit: contain;
+  pointer-events: none;
+  filter: drop-shadow(0 0 10px rgba(224, 242, 254, 1)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.9)) brightness(1.2);
 }
 
 @keyframes petalFloat {
   0% { transform: translateY(0px) rotate(0deg); }
-  100% { transform: translateY(-8px) rotate(8deg); }
+  100% { transform: translateY(-7px) rotate(6deg); }
 }
 
 .hero-starlight-swirl .starlight-sparkle {
@@ -2583,55 +2586,19 @@ body[data-cosmic-mood="calista"] {
   text-shadow: 0 0 10px #bae6fd, 0 0 20px #ffffff;
   animation: sparkleBlink 3s ease-in-out infinite;
 }
-.hero-starlight-swirl .st-1 { top: 52%; right: 28%; animation-delay: 0.2s; font-size: 16px; }
-.hero-starlight-swirl .st-2 { top: 38%; left: 16%; animation-delay: 1.4s; font-size: 13px; }
-.hero-starlight-swirl .st-3 { top: 20%; right: 26%; animation-delay: 2.1s; font-size: 15px; }
+.hero-starlight-swirl .st-1 { top: 43%; right: 15%; animation-delay: 0.2s; font-size: 15px; }
+.hero-starlight-swirl .st-2 { top: 64%; left: 29%; animation-delay: 1.4s; font-size: 13px; }
 
 @keyframes sparkleBlink {
   0%, 100% { opacity: 0.3; transform: scale(0.8); }
   50% { opacity: 1; transform: scale(1.25); }
 }
 
-/* Floating Crystal Lily Badge above Seraphina */
-.hero-floating-crystal-lily {
-  position: absolute;
-  top: 13%;
-  right: 6%;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.22) 0%, rgba(186, 230, 253, 0.1) 50%, transparent 70%);
-  backdrop-filter: blur(10px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  box-shadow: 0 0 22px rgba(224, 242, 254, 0.7);
-  animation: floatingLilyBob 6s ease-in-out infinite;
-  z-index: 6;
-}
-.floating-lily-ring {
-  position: absolute;
-  inset: -2px;
-  border-radius: 50%;
-  border: 1px solid rgba(224, 242, 254, 0.4);
-}
-.floating-lily-svg {
-  width: 78%;
-  height: 78%;
-  filter: drop-shadow(0 0 8px rgba(224, 242, 254, 0.95));
-}
-
-@keyframes floatingLilyBob {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-8px) rotate(4deg); }
-}
-
 /* Muse 3: Vespera (Right Flank) */
 .hero-muse-figure.muse-vespera {
   right: 0vw;
-  width: 30vw;
-  max-width: 410px;
+  width: 24vw;
+  max-width: 340px;
   height: 82vh;
   z-index: 4;
   justify-content: flex-end;
@@ -2641,17 +2608,17 @@ body[data-cosmic-mood="calista"] {
 .hero-muse-figure.muse-vespera .hero-muse-img {
   max-height: 82vh;
   object-position: bottom right;
-  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 26px rgba(168, 85, 247, 0.24));
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 24px rgba(168, 85, 247, 0.24));
 }
 
 .aura-vespera {
   position: absolute;
   bottom: 10%;
   right: -8%;
-  width: 420px;
-  height: 520px;
+  width: 380px;
+  height: 480px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.36) 0%, rgba(30, 27, 75, 0.32) 45%, transparent 70%);
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.32) 0%, rgba(30, 27, 75, 0.28) 45%, transparent 70%);
   filter: blur(42px);
   pointer-events: none;
   opacity: 0.78;
@@ -2747,7 +2714,7 @@ body[data-cosmic-mood="calista"] {
 .hero-content-column {
   position: relative;
   z-index: 10;
-  max-width: 620px;
+  max-width: 440px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -2755,10 +2722,13 @@ body[data-cosmic-mood="calista"] {
   text-align: left;
   margin-top: auto;
   margin-bottom: auto;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95);
-  background: radial-gradient(ellipse at 35% 50%, rgba(7, 6, 12, 0.55) 0%, rgba(7, 6, 12, 0.2) 60%, transparent 100%);
-  border-radius: 28px;
-  padding: 0.8rem 1.4rem 0.8rem 0;
+  margin-left: clamp(15vw, 17.5vw, 20vw);
+  background: none !important;
+  border-radius: 0;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.95), 0 0 32px rgba(0, 0, 0, 0.75);
 }
 
 .kage-pill-badge {
@@ -4022,8 +3992,10 @@ body[data-time-theme="golden-hour"] {
 }
 
 .lore-rune-hero {
-  top: 104px;
-  right: calc(clamp(1.8rem, 4vw, 3.6rem) + 92px);
+  top: auto;
+  bottom: 24px;
+  left: 24px;
+  z-index: 15;
 }
 
 .lore-rune-muses-1 {
@@ -6191,14 +6163,7 @@ body[data-time-theme="golden-hour"] {
   }
 
   .lore-rune-hero {
-    top: max(68px, calc(env(safe-area-inset-top, 0px) + 62px)) !important;
-    right: 18px !important;
-    width: 32px !important;
-    height: 32px !important;
-    background: rgba(14, 12, 26, 0.85) !important;
-    border: 1px solid rgba(255, 255, 255, 0.25) !important;
-    backdrop-filter: blur(16px) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
+    display: none !important;
   }
 
   /* ── SLIDE 1: MUSES HORIZONTAL SNAP CAROUSEL ── */
