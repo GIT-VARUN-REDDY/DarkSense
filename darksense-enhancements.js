@@ -527,8 +527,8 @@
      */
     formatSensualText(raw) {
       if (!raw) return '';
-      // 1. Strip roleplay asterisks e.g. *holds your hand softly* or (action)
-      let t = raw.replace(/\*[^*]+\*/g, ' ').replace(/\([^)]+\)/g, ' ').trim();
+      // 1. Strip roleplay brackets [...] or asterisks *...* or (action)
+      let t = raw.replace(/\*[^*]+\*/g, ' ').replace(/\[[^\]]+\]/g, ' ').replace(/\([^)]+\)/g, ' ').trim();
       if (!t) return '';
 
       // 2. Remove emojis, quotes, and markdown artifacts
