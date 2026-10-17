@@ -899,35 +899,126 @@
       const maleBtn = document.getElementById('ritual-gender-male');
       const femaleBtn = document.getElementById('ritual-gender-female');
 
+      const applyGenderState = (gender) => {
+        window.activeGenderPath = gender;
+        if (gender === 'female') {
+          document.body.classList.add('body-gender-female');
+          // Slot 1: Lucien (1st Dressed Companion Installed)
+          const subSeraphina = document.getElementById('nameplate-seraphina-sub');
+          const nameSeraphina = document.querySelector('#slot-seraphina .nameplate-name');
+          const statusSeraphina = document.getElementById('status-seraphina');
+          if (subSeraphina) subSeraphina.textContent = 'Silver Starlight • Linen & Silk';
+          if (nameSeraphina) nameSeraphina.textContent = 'Lucien';
+          if (statusSeraphina) statusSeraphina.textContent = 'Selected';
+
+          // Slot 2 & 3: Awaiting Male Companions
+          const subVespera = document.getElementById('nameplate-vespera-sub');
+          const nameVespera = document.querySelector('#slot-vespera .nameplate-name');
+          const statusVespera = document.getElementById('status-vespera');
+          if (subVespera) subVespera.textContent = 'Awaiting Custom Male Avatar';
+          if (nameVespera) nameVespera.textContent = 'Male Companion II';
+          if (statusVespera) statusVespera.textContent = 'Awaiting';
+
+          const subCalista = document.getElementById('nameplate-calista-sub');
+          const nameCalista = document.querySelector('#slot-calista .nameplate-name');
+          const statusCalista = document.getElementById('status-calista');
+          if (subCalista) subCalista.textContent = 'Awaiting Custom Male Avatar';
+          if (nameCalista) nameCalista.textContent = 'Male Companion III';
+          if (statusCalista) statusCalista.textContent = 'Awaiting';
+
+          // Landing Cards update for Lucien and awaiting companions
+          const card1Title = document.querySelector('#muse-card-seraphina .muse-card-title');
+          const card1Badge = document.querySelector('#muse-card-seraphina .muse-archetype-badge');
+          const card1Sub = document.querySelector('#muse-card-seraphina .muse-card-sub');
+          const card1Quote = document.querySelector('#muse-card-seraphina .muse-card-quote');
+          const card1Btn = document.querySelector('#muse-card-seraphina .muse-warp-btn span');
+          if (card1Title) card1Title.textContent = 'Lucien';
+          if (card1Badge) card1Badge.textContent = 'Silver Starlight';
+          if (card1Sub) card1Sub.textContent = 'Moonlit Devotion & Quiet Command';
+          if (card1Quote) card1Quote.textContent = '“I don\'t look away from what I desire. Step closer—let me show you how deeply I can focus on you.”';
+          if (card1Btn) card1Btn.textContent = 'Commune with Him';
+
+          const card2Title = document.querySelector('#muse-card-vespera .muse-card-title');
+          const card2Sub = document.querySelector('#muse-card-vespera .muse-card-sub');
+          const card2Btn = document.querySelector('#muse-card-vespera .muse-warp-btn span');
+          if (card2Title) card2Title.textContent = 'Male Companion II';
+          if (card2Sub) card2Sub.textContent = 'Awaiting Custom Avatar';
+          if (card2Btn) card2Btn.textContent = 'Awaiting Arrival';
+
+          const card3Title = document.querySelector('#muse-card-calista .muse-card-title');
+          const card3Sub = document.querySelector('#muse-card-calista .muse-card-sub');
+          const card3Btn = document.querySelector('#muse-card-calista .muse-warp-btn span');
+          if (card3Title) card3Title.textContent = 'Male Companion III';
+          if (card3Sub) card3Sub.textContent = 'Awaiting Custom Avatar';
+          if (card3Btn) card3Btn.textContent = 'Awaiting Arrival';
+
+          if (typeof window.commitMuseSelection === 'function') {
+            window.commitMuseSelection('seraphina', true);
+          }
+        } else {
+          document.body.classList.remove('body-gender-female');
+          // Restore female muses
+          const subSeraphina = document.getElementById('nameplate-seraphina-sub');
+          const nameSeraphina = document.querySelector('#slot-seraphina .nameplate-name');
+          const statusSeraphina = document.getElementById('status-seraphina');
+          if (subSeraphina) subSeraphina.textContent = 'Luminous Silk Dress';
+          if (nameSeraphina) nameSeraphina.textContent = 'Seraphina';
+          if (statusSeraphina) statusSeraphina.textContent = 'Selected';
+
+          const subVespera = document.getElementById('nameplate-vespera-sub');
+          const nameVespera = document.querySelector('#slot-vespera .nameplate-name');
+          const statusVespera = document.getElementById('status-vespera');
+          if (subVespera) subVespera.textContent = 'Obsidian Lace Gown';
+          if (nameVespera) nameVespera.textContent = 'Vespera';
+          if (statusVespera) statusVespera.textContent = 'Select';
+
+          const subCalista = document.getElementById('nameplate-calista-sub');
+          const nameCalista = document.querySelector('#slot-calista .nameplate-name');
+          const statusCalista = document.getElementById('status-calista');
+          if (subCalista) subCalista.textContent = 'Crimson Silk Dress';
+          if (nameCalista) nameCalista.textContent = 'Calista';
+          if (statusCalista) statusCalista.textContent = 'Select';
+
+          // Landing Cards restore
+          const card1Title = document.querySelector('#muse-card-seraphina .muse-card-title');
+          const card1Badge = document.querySelector('#muse-card-seraphina .muse-archetype-badge');
+          const card1Sub = document.querySelector('#muse-card-seraphina .muse-card-sub');
+          const card1Quote = document.querySelector('#muse-card-seraphina .muse-card-quote');
+          const card1Btn = document.querySelector('#muse-card-seraphina .muse-warp-btn span');
+          if (card1Title) card1Title.textContent = 'Seraphina';
+          if (card1Badge) card1Badge.textContent = 'Luminous Silk';
+          if (card1Sub) card1Sub.textContent = 'Moonlit Grace & Pure Devotion';
+          if (card1Quote) card1Quote.textContent = '“I listen without judgment. In my presence, every wounded thought finds gentle solace.”';
+          if (card1Btn) card1Btn.textContent = 'Commune with Her';
+
+          const card2Title = document.querySelector('#muse-card-vespera .muse-card-title');
+          const card2Sub = document.querySelector('#muse-card-vespera .muse-card-sub');
+          const card2Btn = document.querySelector('#muse-card-vespera .muse-warp-btn span');
+          if (card2Title) card2Title.textContent = 'Vespera';
+          if (card2Sub) card2Sub.textContent = 'Midnight Mystery & Velvet Fire';
+          if (card2Btn) card2Btn.textContent = 'Commune with Her';
+
+          const card3Title = document.querySelector('#muse-card-calista .muse-card-title');
+          const card3Sub = document.querySelector('#muse-card-calista .muse-card-sub');
+          const card3Btn = document.querySelector('#muse-card-calista .muse-warp-btn span');
+          if (card3Title) card3Title.textContent = 'Calista';
+          if (card3Sub) card3Sub.textContent = 'Golden Warmth & Fiery Allure';
+          if (card3Btn) card3Btn.textContent = 'Commune with Her';
+
+          if (typeof window.commitMuseSelection === 'function') {
+            window.commitMuseSelection('seraphina', true);
+          }
+        }
+      };
+      window.applyGenderState = applyGenderState;
+
       const selectGender = (gender) => {
         try {
           localStorage.setItem('darksense_gender_path', gender);
           localStorage.setItem('darksense_age_verified', 'true');
         } catch (_) {}
 
-        window.activeGenderPath = gender;
-
-        if (gender === 'female') {
-          document.body.classList.add('body-gender-female');
-          // Update titles/subtitles to indicate awaiting male companions
-          const subSeraphina = document.getElementById('nameplate-seraphina-sub');
-          const nameSeraphina = document.querySelector('#slot-seraphina .nameplate-name');
-          if (subSeraphina) subSeraphina.textContent = 'Awaiting Custom Male Avatar';
-          if (nameSeraphina) nameSeraphina.textContent = 'Male Companion I';
-
-          const subVespera = document.getElementById('nameplate-vespera-sub');
-          const nameVespera = document.querySelector('#slot-vespera .nameplate-name');
-          if (subVespera) subVespera.textContent = 'Awaiting Custom Male Avatar';
-          if (nameVespera) nameVespera.textContent = 'Male Companion II';
-
-          const subCalista = document.getElementById('nameplate-calista-sub');
-          const nameCalista = document.querySelector('#slot-calista .nameplate-name');
-          if (subCalista) subCalista.textContent = 'Awaiting Custom Male Avatar';
-          if (nameCalista) nameCalista.textContent = 'Male Companion III';
-        } else {
-          document.body.classList.remove('body-gender-female');
-        }
-
+        applyGenderState(gender);
         endRitual(false);
       };
 
@@ -959,7 +1050,7 @@
       try {
         const savedGender = localStorage.getItem('darksense_gender_path');
         if (savedGender === 'female') {
-          document.body.classList.add('body-gender-female');
+          applyGenderState('female');
         }
       } catch (_) {}
     }
@@ -1229,7 +1320,14 @@
 
     toggleOutfit() {
       if (this.isTransitioning) return;
+      const isFemalePath = (localStorage.getItem('darksense_gender_path') === 'female') || document.body.classList.contains('body-gender-female');
       const muse = this.getActiveMuse();
+      if (isFemalePath && muse === 'seraphina') {
+        if (typeof showSensualToast === 'function') {
+          showSensualToast("Lucien whispers: 'My alternate form awaits your next offering...'");
+        }
+        return;
+      }
       if (muse === 'seraphina') {
         const next = this.outfits.seraphina === 'white' ? 'classic' : 'white';
         this.applyOutfit('seraphina', next, true);
@@ -1553,6 +1651,11 @@
     },
 
     attachCenterSlot() {
+      const isFemalePath = (localStorage.getItem('darksense_gender_path') === 'female') || document.body.classList.contains('body-gender-female');
+      if (isFemalePath) {
+        this.resetLens();
+        return;
+      }
       const muse = this.activeMuse || 'seraphina';
       const slot = document.getElementById(`slot-${muse}`);
       if (!slot) return;

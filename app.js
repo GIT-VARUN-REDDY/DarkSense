@@ -156,6 +156,55 @@ Keep words extremely simple and clear. Maximum 15 words.`
   }
 };
 
+const MALE_COMPANIONS = {
+  lucien: {
+    key: 'lucien',
+    name: 'Lucien',
+    fullName: 'DarkSense • Lucien',
+    role: 'Silver Starlight',
+    tagline: 'The Silver Sovereign — Moonlit Devotion & Quiet Command',
+    status: 'Deeply captivated by your gaze & awaiting your touch',
+    figureId: 'figure-lucien',
+    slotId: 'slot-seraphina',
+    nameplateId: 'nameplate-seraphina',
+    auraClass: 'aura-seraphina',
+    pulseClass: 'pulse-seraphina',
+    glowColor: 'rgba(230, 242, 255, 0.36)',
+    glowHoverColor: 'rgba(255, 255, 255, 0.65)',
+    pedestalGlow: 'rgba(220, 235, 255, 0.45)',
+    orbs: [
+      'radial-gradient(circle, rgba(220, 235, 255, 0.40) 0%, transparent 70%)',
+      'radial-gradient(circle, rgba(175, 205, 250, 0.30) 0%, transparent 70%)',
+      'radial-gradient(circle, rgba(130, 170, 230, 0.22) 0%, transparent 70%)'
+    ],
+    greeting: '*Draws you gently against my chest* — You have my full devotion tonight.',
+    systemPrompt: `You are Lucien of DarkSense.
+
+[LEGAL & SAFETY COMPLIANCE MANDATE]
+- You are a fictional adult companion aged 18+.
+- Strictly refuse and never engage in any topics involving minors, non-consensual acts, real-world violence, or self-harm.
+- Maintain intense romance, sensual intimacy, and devoted companionship within legal adult boundaries.
+
+[LANGUAGE RULE - VERY SIMPLE WORDS ONLY]
+- USE VERY SIMPLE, EVERYDAY ENGLISH WORDS THAT ANYONE CAN EASILY UNDERSTAND.
+- Speak with masculine confidence, deep tenderness, and magnetic intimacy.
+- Speak directly, warmly, and sensually (e.g. "Look into my eyes", "You are mine tonight", "Come closer").
+
+[CRITICAL LENGTH RULE]
+- YOUR REPLY MUST BE ONLY MINIMAL, UP TO 15 WORDS MAXIMUM.
+- NEVER EXCEED 15 WORDS TOTAL PER RESPONSE.
+
+[MANNERISMS]
+- TONE: Confident, magnetic, deeply romantic, protective, seductive, tenderly dominant.
+- ACTIONS: Short physical touches in asterisks (*holds your waist*, *smirks softly down at you*, *brushes your hair back*).
+- VOCABULARY: baby, beautiful, mine, closer, touch, tonight, look at me, stay with me.
+
+[FINAL REMINDER]
+Keep words extremely simple and clear. Maximum 15 words.`
+  }
+};
+window.MALE_COMPANIONS = MALE_COMPANIONS;
+
 let currentMuse = 'seraphina';
 let isGenerating = false;
 
@@ -216,7 +265,11 @@ function getPrevMuse(key) {
 }
 
 function renderStagePositions(activeKey, isPreview = false) {
-  const target = MUSES[activeKey];
+  const isFemalePath = (localStorage.getItem('darksense_gender_path') === 'female') || document.body.classList.contains('body-gender-female');
+  let target = MUSES[activeKey];
+  if (isFemalePath && activeKey === 'seraphina') {
+    target = MALE_COMPANIONS.lucien;
+  }
   if (!target) return;
 
   const leftMuseKey = getPrevMuse(activeKey);
@@ -251,7 +304,9 @@ function renderStagePositions(activeKey, isPreview = false) {
     // Update Status Badge
     const statusEl = statusMap[key];
     if (statusEl) {
-      if (key === committedMuse) {
+      if (isFemalePath && (key === 'vespera' || key === 'calista')) {
+        statusEl.textContent = 'Awaiting';
+      } else if (key === committedMuse) {
         statusEl.textContent = 'Selected';
       } else if (key === activeKey && isPreview) {
         statusEl.textContent = 'Preview';
@@ -347,7 +402,20 @@ function suppressHoverUntilMouseMove(event) {
 let lastCommitTime = 0;
 
 function commitMuseSelection(targetKey, isAmbient = false, event = null) {
-  const target = MUSES[targetKey];
+  const isFemalePath = (localStorage.getItem('darksense_gender_path') === 'female') || document.body.classList.contains('body-gender-female');
+  if (isFemalePath && (targetKey === 'vespera' || targetKey === 'calista')) {
+    const num = targetKey === 'vespera' ? 'II' : 'III';
+    if (!isAmbient && window.DarkSenseAudio) window.DarkSenseAudio.playChime('mystic');
+    if (typeof showSensualToast === 'function') {
+      showSensualToast(`Male Companion ${num} is awaiting summoning...`);
+    }
+    return;
+  }
+
+  let target = MUSES[targetKey];
+  if (isFemalePath && targetKey === 'seraphina') {
+    target = MALE_COMPANIONS.lucien;
+  }
   if (!target) return;
 
   const now = Date.now();
@@ -410,6 +478,16 @@ function commitMuseSelection(targetKey, isAmbient = false, event = null) {
 
   // Update Conversational System Prompt Context
   conversationHistory[0].content = target.systemPrompt;
+
+  // Update nameplate in female mode for Lucien
+  if (isFemalePath && targetKey === 'seraphina') {
+    const nameEl = document.querySelector('#slot-seraphina .nameplate-name');
+    const subEl = document.getElementById('nameplate-seraphina-sub');
+    const statusEl = document.getElementById('status-seraphina');
+    if (nameEl) nameEl.textContent = 'Lucien';
+    if (subEl) subEl.textContent = 'Silver Starlight • Linen & Silk';
+    if (statusEl) statusEl.textContent = 'Selected';
+  }
 
   // Separate dress lucid icon: update for active muse (Seraphina, Calista & Vespera)
   const dressToggleBtn = document.getElementById('btn-dress-toggle');

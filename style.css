@@ -408,7 +408,10 @@ body:not(.chamber-active) .ambient-backdrop {
 
 #figure-seraphina,
 #figure-seraphina-white,
-#figure-seraphina-classic {
+#figure-seraphina-classic,
+#figure-lucien,
+#figure-male-1,
+.figure-lucien-dressed {
   transform: translateX(-50%) scale(1.33);
 }
 
@@ -3912,13 +3915,33 @@ body[data-time-theme="golden-hour"] {
   color: #94a3b8;
 }
 
-/* ── Female User Mode: Empty Avatars State (Awaiting Male Avatars) ── */
-body.body-gender-female .character-slot .figure-image {
+/* ── Female User Mode: Male Companions State ── */
+body:not(.body-gender-female) .figure-male-1,
+body:not(.body-gender-female) .muse-avatar-male-1 {
   display: none !important;
   opacity: 0 !important;
 }
 
-body.body-gender-female .character-slot .character-card-inner::before {
+body.body-gender-female .character-slot .figure-image:not(.figure-male-1) {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+/* Slot 1: Lucien is installed! Display his dressed outfit */
+body.body-gender-female #slot-seraphina .figure-lucien-dressed {
+  display: block !important;
+  opacity: 1 !important;
+  pointer-events: auto;
+}
+
+/* Slot 1: No dashed placeholder because Lucien is present */
+body.body-gender-female #slot-seraphina .character-card-inner::before {
+  display: none !important;
+}
+
+/* Slots 2 & 3: Await their custom avatars */
+body.body-gender-female #slot-vespera .character-card-inner::before,
+body.body-gender-female #slot-calista .character-card-inner::before {
   content: '';
   position: absolute;
   bottom: 30px;
@@ -3931,6 +3954,14 @@ body.body-gender-female .character-slot .character-card-inner::before {
   background: radial-gradient(ellipse at center, rgba(147, 51, 234, 0.08) 0%, transparent 70%);
   box-shadow: 0 0 35px rgba(168, 85, 247, 0.15);
   pointer-events: none;
+}
+
+/* Landing card adaptations */
+body.body-gender-female #muse-card-seraphina .muse-avatar-img:not(.muse-avatar-male-1) {
+  display: none !important;
+}
+body.body-gender-female #muse-card-seraphina .muse-avatar-male-1 {
+  display: block !important;
 }
 
 /* ── 14. Muse Affinity System Pill & Nav Additions ── */
