@@ -646,14 +646,14 @@
         }
       } else {
         if (companionKey === 'vespera') {
-          // Vespera: husky, dark, sultry velvet noir
-          return { pitch: 0.78, rate: 0.82, volume: 1.0 };
+          // Vespera: Japanese Anime Onee-san / Gothic Noir pitch (sultry, cool, melodic velvet)
+          return { pitch: 1.22, rate: 0.88, volume: 1.0 };
         } else if (companionKey === 'seraphina') {
-          // Seraphina: husky-soft, tender breath, deeply romantic
-          return { pitch: 0.86, rate: 0.84, volume: 1.0 };
+          // Seraphina: Japanese Anime Sweet Heroine pitch (gentle, pure, celestial, soft & sweet)
+          return { pitch: 1.32, rate: 0.92, volume: 1.0 };
         } else {
-          // Calista: warm husky siren, playful allure
-          return { pitch: 0.90, rate: 0.86, volume: 1.0 };
+          // Calista: Japanese Anime Playful Siren pitch (cute, vibrant, golden fire, teasing)
+          return { pitch: 1.38, rate: 0.95, volume: 1.0 };
         }
       }
     },
