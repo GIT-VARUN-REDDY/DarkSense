@@ -3564,74 +3564,19 @@ body[data-time-theme="golden-hour"] {
   transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease !important;
 }
 
-/* ── 12. Hidden Lore Collectibles ── */
-.lore-rune {
-  position: absolute;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgba(18, 15, 28, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 30;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
-}
-
-.lore-rune:hover {
-  transform: scale(1.22);
-  border-color: #ffffff;
-  box-shadow: 0 0 24px var(--mood-accent-glow, rgba(255, 255, 255, 0.85));
-}
-
-.lore-glyph {
-  font-size: 13px;
-  color: var(--mood-accent, #bae6fd);
-  transition: color 0.3s ease;
-}
-
-.lore-rune-pulse {
-  position: absolute;
-  inset: -4px;
-  border-radius: 50%;
-  border: 1px solid var(--mood-accent, #bae6fd);
-  opacity: 0.4;
-  animation: runePulseAnimation 2.8s infinite ease-out;
-}
-
-@keyframes runePulseAnimation {
-  0% { transform: scale(0.85); opacity: 0.7; }
-  100% { transform: scale(1.6); opacity: 0; }
-}
-
-.lore-rune-hero {
-  top: 15%;
-  right: 6%;
-}
-
-.lore-rune-muses-1 {
-  bottom: -15px;
-  left: 20%;
-}
-
-.lore-rune-muses-2 {
-  bottom: -15px;
-  right: 20%;
-}
-
-.lore-rune-secrets {
-  top: 10%;
-  left: 5%;
-}
-
+/* ── 12. Hidden Lore Collectibles (Permanently Removed) ── */
+.lore-rune,
+.lore-rune-pulse,
+.lore-glyph,
+.lore-rune-hero,
+.lore-rune-muses-1,
+.lore-rune-muses-2,
+.lore-rune-secrets,
 .lore-rune-chamber {
-  top: 25px;
-  right: 25px;
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
 }
 
 /* Lore Discovery Modal */
