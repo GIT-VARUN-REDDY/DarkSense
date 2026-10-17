@@ -447,14 +447,29 @@
   }
 
   // =========================================================================
-  // 8. VOICE MODE TOGGLE (Speech to Text & Archetype TTS)
+  // 8. VOICE MODE TOGGLE (Speech to Text & Sensual Archetype TTS)
   // =========================================================================
   const VoiceEngine = {
     recognition: null,
     isListening: false,
     ttsEnabled: true,
+    cachedVoices: [],
+    currentSessionId: 0,
+    isPlaying: false,
 
     init() {
+      // 1. Preload and cache available synthesizer voices
+      if (typeof window !== 'undefined' && window.speechSynthesis) {
+        const loadVoices = () => {
+          this.cachedVoices = window.speechSynthesis.getVoices() || [];
+        };
+        loadVoices();
+        if (window.speechSynthesis.onvoiceschanged !== undefined) {
+          window.speechSynthesis.onvoiceschanged = loadVoices;
+        }
+      }
+
+      // 2. Speech to text (Microphone whisper)
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
       if (SpeechRecognition) {
         this.recognition = new SpeechRecognition();
@@ -490,6 +505,7 @@
       }
 
       this.bindButtons();
+      this.bindMessageReplay();
     },
 
     toggleListen() {
@@ -506,32 +522,227 @@
       }
     },
 
+    /**
+     * Clean and format text for intimate, sensual pacing with natural breathing gaps.
+     */
+    formatSensualText(raw) {
+      if (!raw) return '';
+      // 1. Strip roleplay asterisks e.g. *holds your hand softly* or (action)
+      let t = raw.replace(/\*[^*]+\*/g, ' ').replace(/\([^)]+\)/g, ' ').trim();
+      if (!t) return '';
+
+      // 2. Remove emojis, quotes, and markdown artifacts
+      t = t.replace(/[\u{1F300}-\u{1FAD6}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '');
+      t = t.replace(/["“”«»]/g, '');
+
+      // 3. Remove leading dashes or colons
+      t = t.replace(/^[\s\-—–:,.]+/, '');
+
+      // 4. Transform em-dashes and colons into subtle breathing pauses
+      t = t.replace(/\s*[-—–;]\s*/g, '... ');
+
+      // 5. Ensure commas have clean space
+      t = t.replace(/,\s*/g, ', ');
+
+      // 6. Natural breathing pause before intimate vocatives if not already punctuated
+      t = t.replace(/([a-zA-Z])\s+(baby|babe|darling|sweetheart|my love)\b/gi, '$1, $2');
+
+      // 7. Clean up repeated punctuation
+      t = t.replace(/,\s*,/g, ',');
+      t = t.replace(/,\s*\.\.\./g, '...');
+      t = t.replace(/\.\.\.\s*,/g, '...');
+      t = t.replace(/\.{4,}/g, '...');
+      t = t.replace(/\s+/g, ' ').trim();
+
+      // 8. Remove duplicate trailing dots
+      t = t.replace(/\.\.\.\s*([.?!])/g, '$1');
+
+      return t;
+    },
+
+    /**
+     * Split text into intimate breathing phrases for sequenced playback with breathing pauses.
+     */
+    splitIntoPhrases(cleanText) {
+      if (!cleanText) return [];
+      const parts = cleanText.split(/(?<=[.?!…])\s+/);
+      return parts.map(p => p.trim()).filter(Boolean);
+    },
+
+    /**
+     * Select the optimal voice based on gender path and companion archetype.
+     */
+    getBestVoice(gender, companionKey) {
+      const voices = (this.cachedVoices && this.cachedVoices.length > 0)
+        ? this.cachedVoices
+        : (window.speechSynthesis ? window.speechSynthesis.getVoices() : []);
+      if (!voices || voices.length === 0) return null;
+
+      const enVoices = voices.filter(v => v.lang.startsWith('en'));
+      const pool = enVoices.length > 0 ? enVoices : voices;
+
+      if (gender === 'male') {
+        // Exclude explicit female names
+        const nonFemale = pool.filter(v => {
+          const n = v.name.toLowerCase();
+          return !n.includes('female') && !n.includes('zira') && !n.includes('aria') && 
+                 !n.includes('jenny') && !n.includes('samantha') && !n.includes('victoria') &&
+                 !n.includes('karen') && !n.includes('susan') && !n.includes('hazel') &&
+                 !n.includes('linda') && !n.includes('heera') && !n.includes('catherine');
+        });
+        const mList = nonFemale.length > 0 ? nonFemale : pool;
+
+        if (companionKey === 'dante') {
+          // Dante: deep, commanding, midnight velvet
+          return mList.find(v => v.name.includes('Christopher') || v.name.includes('David') || v.name.includes('Guy')) ||
+                 mList.find(v => v.name.includes('Male') || v.name.includes('Mark')) || mList[0];
+        } else if (companionKey === 'lucien') {
+          // Lucien: smooth, tender, moonlit baritone
+          return mList.find(v => v.name.includes('Guy') || v.name.includes('Mark') || v.name.includes('David')) ||
+                 mList.find(v => v.name.includes('Male')) || mList[0];
+        } else {
+          // Cassian: bold, warm, fiery charisma
+          return mList.find(v => v.name.includes('Ryan') || v.name.includes('David') || v.name.includes('Mark')) ||
+                 mList.find(v => v.name.includes('Male')) || mList[0];
+        }
+      } else {
+        // Female gender path (Seraphina, Vespera, Calista)
+        // Exclude explicit male names
+        const nonMale = pool.filter(v => {
+          const n = v.name.toLowerCase();
+          return !n.includes('male') && !n.includes('david') && !n.includes('mark') && 
+                 !n.includes('guy') && !n.includes('christopher') && !n.includes('ryan') &&
+                 !n.includes('daniel') && !n.includes('george') && !n.includes('richard');
+        });
+        const fList = nonMale.length > 0 ? nonMale : pool;
+
+        if (companionKey === 'vespera') {
+          // Vespera: husky, low velvet, sultry noir
+          return fList.find(v => v.name.includes('Aria') || v.name.includes('Zira') || v.name.includes('Victoria')) || fList[0];
+        } else if (companionKey === 'seraphina') {
+          // Seraphina: soft, breathy, deeply romantic
+          return fList.find(v => v.name.includes('Jenny') || v.name.includes('Natural') || v.name.includes('Zira')) || fList[0];
+        } else {
+          // Calista: warm husky amber, rich siren
+          return fList.find(v => v.name.includes('Aria') || v.name.includes('Natural') || v.name.includes('Zira')) || fList[0];
+        }
+      }
+    },
+
+    /**
+     * Get acoustic pitch, rate, and volume tuning.
+     */
+    getAcousticConfig(gender, companionKey) {
+      if (gender === 'male') {
+        if (companionKey === 'dante') {
+          // Dante: deep, seductive rumble, commanding
+          return { pitch: 0.72, rate: 0.82, volume: 1.0 };
+        } else if (companionKey === 'lucien') {
+          // Lucien: deep romantic baritone, gentle tender breathing
+          return { pitch: 0.80, rate: 0.84, volume: 1.0 };
+        } else {
+          // Cassian: warm chest voice, passionate, fiery allure
+          return { pitch: 0.84, rate: 0.86, volume: 1.0 };
+        }
+      } else {
+        if (companionKey === 'vespera') {
+          // Vespera: husky, dark, sultry velvet noir
+          return { pitch: 0.78, rate: 0.82, volume: 1.0 };
+        } else if (companionKey === 'seraphina') {
+          // Seraphina: husky-soft, tender breath, deeply romantic
+          return { pitch: 0.86, rate: 0.84, volume: 1.0 };
+        } else {
+          // Calista: warm husky siren, playful allure
+          return { pitch: 0.90, rate: 0.86, volume: 1.0 };
+        }
+      }
+    },
+
+    /**
+     * Speak text with sequenced breathing gaps between clauses.
+     */
     speak(text, museKey) {
       if (!this.ttsEnabled || !window.speechSynthesis) return;
 
-      window.speechSynthesis.cancel(); // Stop any pending speech
-      const cleanText = text.replace(/\*[^*]+\*/g, '').trim(); // Strip asterisk roleplay actions
-      if (!cleanText) return;
+      // Increment session ID to cancel any ongoing phrase sequences
+      const sessionId = ++this.currentSessionId;
+      window.speechSynthesis.cancel();
 
-      const utter = new SpeechSynthesisUtterance(cleanText);
+      const isFemalePath = (localStorage.getItem('darksense_gender_path') === 'female') || document.body.classList.contains('body-gender-female');
+      const activeSlot = museKey || window.committedMuse || 'seraphina';
 
-      // Archetype voice properties
-      if (museKey === 'vespera') {
-        utter.pitch = 0.78; // Deep, sultry, velvet
-        utter.rate = 0.82;
-      } else if (museKey === 'calista') {
-        utter.pitch = 1.05; // Playful, vibrant, warm
-        utter.rate = 0.95;
-      } else {
-        utter.pitch = 1.15; // Soft, celestial, high, gentle
-        utter.rate = 0.86;
+      // Companion key mapping
+      let companion = activeSlot;
+      if (isFemalePath) {
+        companion = (activeSlot === 'vespera') ? 'dante' : ((activeSlot === 'seraphina') ? 'lucien' : 'cassian');
       }
 
-      const voices = window.speechSynthesis.getVoices();
-      const femaleVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Female') || v.name.includes('Natural') || v.name.includes('Zira') || v.name.includes('Samantha') || v.name.includes('Victoria')));
-      if (femaleVoice) utter.voice = femaleVoice;
+      const gender = isFemalePath ? 'male' : 'female';
+      const cleanText = this.formatSensualText(text);
+      if (!cleanText) return;
 
-      window.speechSynthesis.speak(utter);
+      const phrases = this.splitIntoPhrases(cleanText);
+      if (phrases.length === 0) return;
+
+      const voice = this.getBestVoice(gender, companion);
+      const acoustic = this.getAcousticConfig(gender, companion);
+
+      this.updatePlayingUI(true);
+
+      const speakPhrase = (index) => {
+        if (sessionId !== this.currentSessionId || !this.ttsEnabled) {
+          this.updatePlayingUI(false);
+          return;
+        }
+
+        if (index >= phrases.length) {
+          this.updatePlayingUI(false);
+          return;
+        }
+
+        const utter = new SpeechSynthesisUtterance(phrases[index]);
+        if (voice) utter.voice = voice;
+        utter.pitch = acoustic.pitch;
+        utter.rate = acoustic.rate;
+        utter.volume = acoustic.volume;
+
+        utter.onend = () => {
+          if (sessionId !== this.currentSessionId) return;
+          if (index + 1 < phrases.length) {
+            // Intimate breathing gap between phrases (~260ms pause)
+            setTimeout(() => {
+              if (sessionId === this.currentSessionId && this.ttsEnabled) {
+                speakPhrase(index + 1);
+              }
+            }, 260);
+          } else {
+            this.updatePlayingUI(false);
+          }
+        };
+
+        utter.onerror = () => {
+          this.updatePlayingUI(false);
+        };
+
+        try {
+          window.speechSynthesis.speak(utter);
+        } catch (_) {
+          this.updatePlayingUI(false);
+        }
+      };
+
+      speakPhrase(0);
+    },
+
+    updatePlayingUI(active) {
+      this.isPlaying = active;
+      const ttsBtn = document.getElementById('voice-speech-toggle');
+      if (ttsBtn) {
+        ttsBtn.classList.toggle('speaking-active', active);
+        ttsBtn.title = active
+          ? 'Whispering now... click to mute'
+          : (this.ttsEnabled ? 'Vocal Whisper: ON (Click to mute)' : 'Vocal Whisper: OFF');
+      }
     },
 
     updateMicUI(active) {
@@ -557,9 +768,27 @@
           e.preventDefault();
           this.ttsEnabled = !this.ttsEnabled;
           ttsBtn.classList.toggle('tts-off', !this.ttsEnabled);
-          ttsBtn.title = this.ttsEnabled ? 'Vocal Whisper: ON' : 'Vocal Whisper: OFF';
           if (!this.ttsEnabled && window.speechSynthesis) {
+            this.currentSessionId++;
             window.speechSynthesis.cancel();
+            this.updatePlayingUI(false);
+          }
+          ttsBtn.title = this.ttsEnabled ? 'Vocal Whisper: ON' : 'Vocal Whisper: OFF';
+        });
+      }
+    },
+
+    bindMessageReplay() {
+      // Allow clicking any AI message bubble to replay its whisper
+      const msgStream = document.getElementById('message-stream');
+      if (msgStream) {
+        msgStream.addEventListener('click', (e) => {
+          const bubble = e.target.closest('.message-row.ai .bubble-content');
+          if (bubble) {
+            const text = bubble.textContent.trim();
+            if (text) {
+              this.speak(text, window.committedMuse || 'seraphina');
+            }
           }
         });
       }
@@ -1136,7 +1365,6 @@
                 setTimeout(() => {
                   const replyText = bubble.textContent.trim();
                   spawnMessageReactions(node.querySelector('.message-bubble'), replyText);
-                  VoiceEngine.speak(replyText, window.committedMuse || 'seraphina');
                   AffinitySystem.add(window.committedMuse || 'seraphina', 4);
                 }, 400);
               }
