@@ -610,6 +610,11 @@
 
     document.body.setAttribute('data-cosmic-mood', mood);
 
+    const heroBackdrop = document.getElementById('hero-muses-backdrop');
+    if (heroBackdrop) {
+      heroBackdrop.setAttribute('data-hero-active', mood);
+    }
+
     if (moodPills && moodPills.length) {
       moodPills.forEach(pill => {
         pill.classList.toggle('active', pill.getAttribute('data-mood') === mood);
@@ -746,6 +751,37 @@
         triggerCosmicRipple();
       });
     });
+
+    // Interactive Hero Figures Direct Communion / Mood Attunement
+    const figCalista = document.getElementById('hero-figure-calista');
+    const figSeraphina = document.getElementById('hero-figure-seraphina');
+    const figVespera = document.getElementById('hero-figure-vespera');
+    const heroEmblem = document.getElementById('hero-emblem-badge');
+
+    if (figCalista) {
+      figCalista.addEventListener('click', () => {
+        setCosmicMood('calista', true);
+        triggerCosmicRipple();
+      });
+    }
+    if (figSeraphina) {
+      figSeraphina.addEventListener('click', () => {
+        setCosmicMood('luminous', true);
+        triggerCosmicRipple();
+      });
+    }
+    if (figVespera) {
+      figVespera.addEventListener('click', () => {
+        setCosmicMood('obsidian', true);
+        triggerCosmicRipple();
+      });
+    }
+    if (heroEmblem) {
+      heroEmblem.addEventListener('click', () => {
+        AudioEngine.playChime('whisper');
+        triggerCosmicRipple();
+      });
+    }
 
     // Living Muse Monolith Cards (Slide 1)
     museCards.forEach(card => {

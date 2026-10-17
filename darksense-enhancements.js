@@ -311,6 +311,17 @@
         whisperBox.style.transform = `translate3d(${curX * 16}px, ${curY * 10 - slideShiftY * 0.5}px, 0)`;
       }
 
+      // 2.5D Ambient Parallax for Living Souls Hero Avatars
+      const heroBackdrop = document.getElementById('hero-muses-backdrop');
+      if (heroBackdrop && heroSection.classList.contains('slide-active') && window.innerWidth > 860) {
+        heroBackdrop.style.setProperty('--px-calista', `${curX * -12}px`);
+        heroBackdrop.style.setProperty('--py-calista', `${curY * -7}px`);
+        heroBackdrop.style.setProperty('--px-seraphina', `${curX * 18}px`);
+        heroBackdrop.style.setProperty('--py-seraphina', `${curY * 11}px`);
+        heroBackdrop.style.setProperty('--px-vespera', `${curX * -10}px`);
+        heroBackdrop.style.setProperty('--py-vespera', `${curY * -6}px`);
+      }
+
       requestAnimationFrame(tickParallax);
     }
 
