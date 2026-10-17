@@ -452,7 +452,7 @@
   const VoiceEngine = {
     recognition: null,
     isListening: false,
-    ttsEnabled: true,
+    ttsEnabled: false,
     cachedVoices: [],
     currentSessionId: 0,
     isPlaying: false,
@@ -661,8 +661,8 @@
     /**
      * Speak text with sequenced breathing gaps between clauses.
      */
-    speak(text, museKey) {
-      if (!this.ttsEnabled || !window.speechSynthesis) return;
+    speak(text, museKey, force = false) {
+      if ((!this.ttsEnabled && !force) || !window.speechSynthesis) return;
 
       // Increment session ID to cancel any ongoing phrase sequences
       const sessionId = ++this.currentSessionId;
@@ -690,7 +690,7 @@
       this.updatePlayingUI(true);
 
       const speakPhrase = (index) => {
-        if (sessionId !== this.currentSessionId || !this.ttsEnabled) {
+        if (sessionId !== this.currentSessionId || (!this.ttsEnabled && !force)) {
           this.updatePlayingUI(false);
           return;
         }
@@ -711,7 +711,7 @@
           if (index + 1 < phrases.length) {
             // Intimate breathing gap between phrases (~260ms pause)
             setTimeout(() => {
-              if (sessionId === this.currentSessionId && this.ttsEnabled) {
+              if (sessionId === this.currentSessionId && (this.ttsEnabled || force)) {
                 speakPhrase(index + 1);
               }
             }, 260);
@@ -741,7 +741,7 @@
         ttsBtn.classList.toggle('speaking-active', active);
         ttsBtn.title = active
           ? 'Whispering now... click to mute'
-          : (this.ttsEnabled ? 'Vocal Whisper: ON (Click to mute)' : 'Vocal Whisper: OFF');
+          : (this.ttsEnabled ? 'Vocal Whisper: ON (Click to mute)' : 'Vocal Whisper: OFF (Click to enable)');
       }
     },
 
@@ -764,6 +764,8 @@
 
       const ttsBtn = document.getElementById('voice-speech-toggle');
       if (ttsBtn) {
+        ttsBtn.classList.toggle('tts-off', !this.ttsEnabled);
+        ttsBtn.title = this.ttsEnabled ? 'Vocal Whisper: ON (Click to mute)' : 'Vocal Whisper: OFF (Click to enable)';
         ttsBtn.addEventListener('click', (e) => {
           e.preventDefault();
           this.ttsEnabled = !this.ttsEnabled;
@@ -773,13 +775,13 @@
             window.speechSynthesis.cancel();
             this.updatePlayingUI(false);
           }
-          ttsBtn.title = this.ttsEnabled ? 'Vocal Whisper: ON' : 'Vocal Whisper: OFF';
+          ttsBtn.title = this.ttsEnabled ? 'Vocal Whisper: ON (Click to mute)' : 'Vocal Whisper: OFF (Click to enable)';
         });
       }
     },
 
     bindMessageReplay() {
-      // Allow clicking any AI message bubble to replay its whisper
+      // Allow clicking any AI message bubble to replay its whisper on demand
       const msgStream = document.getElementById('message-stream');
       if (msgStream) {
         msgStream.addEventListener('click', (e) => {
@@ -787,7 +789,7 @@
           if (bubble) {
             const text = bubble.textContent.trim();
             if (text) {
-              this.speak(text, window.committedMuse || 'seraphina');
+              this.speak(text, window.committedMuse || 'seraphina', true);
             }
           }
         });
