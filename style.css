@@ -547,14 +547,14 @@ body:not(.chamber-active) .ambient-backdrop {
   filter: brightness(1.20) saturate(1.24) drop-shadow(0 18px 42px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 52px rgba(255, 122, 61, 0.55));
 }
 
-/* Left Flank Companion — Total Black Silhouette */
+/* Left Flank Companion — Soft Atmospheric Presence */
 .character-slot.pos-left {
   z-index: 15;
-  opacity: 0.85;
+  opacity: 0.72;
   pointer-events: auto;
   transform-origin: bottom center;
   transform: translateX(-50%) translate3d(-68%, 0px, -15px) rotateY(8deg) scale(0.86);
-  filter: brightness(0) saturate(0) drop-shadow(0 12px 28px rgba(0, 0, 0, 0.95));
+  filter: brightness(0.72) saturate(0.88) drop-shadow(0 12px 28px rgba(0, 0, 0, 0.8));
 }
 
 .character-slot.pos-left:hover,
@@ -562,18 +562,18 @@ body:not(.chamber-active) .ambient-backdrop {
   z-index: 20;
   opacity: 0.98;
   transform: translateX(-50%) translate3d(-68%, 0px, -5px) rotateY(3deg) scale(0.96);
-  filter: brightness(1.20) saturate(1.24) drop-shadow(0 20px 48px rgba(0, 0, 0, 0.98)) drop-shadow(0 0 34px var(--active-glow-hover, rgba(255, 255, 255, 0.45)));
+  filter: brightness(1.15) saturate(1.2) drop-shadow(0 20px 48px rgba(0, 0, 0, 0.98)) drop-shadow(0 0 34px var(--active-glow-hover, rgba(255, 255, 255, 0.45)));
   cursor: pointer;
 }
 
-/* Right Flank Companion — Total Black Silhouette */
+/* Right Flank Companion — Soft Atmospheric Presence */
 .character-slot.pos-right {
   z-index: 15;
-  opacity: 0.85;
+  opacity: 0.72;
   pointer-events: auto;
   transform-origin: bottom center;
   transform: translateX(-50%) translate3d(68%, 0px, -15px) rotateY(-8deg) scale(0.86);
-  filter: brightness(0) saturate(0) drop-shadow(0 12px 28px rgba(0, 0, 0, 0.95));
+  filter: brightness(0.72) saturate(0.88) drop-shadow(0 12px 28px rgba(0, 0, 0, 0.8));
 }
 
 .character-slot.pos-right:hover,
@@ -581,7 +581,7 @@ body:not(.chamber-active) .ambient-backdrop {
   z-index: 20;
   opacity: 0.98;
   transform: translateX(-50%) translate3d(68%, 0px, -5px) rotateY(-3deg) scale(0.96);
-  filter: brightness(1.20) saturate(1.24) drop-shadow(0 20px 48px rgba(0, 0, 0, 0.98)) drop-shadow(0 0 34px var(--active-glow-hover, rgba(255, 255, 255, 0.45)));
+  filter: brightness(1.15) saturate(1.2) drop-shadow(0 20px 48px rgba(0, 0, 0, 0.98)) drop-shadow(0 0 34px var(--active-glow-hover, rgba(255, 255, 255, 0.45)));
   cursor: pointer;
 }
 
@@ -1424,14 +1424,14 @@ body:not(.chamber-active) .ambient-backdrop {
 
   .character-slot.pos-left {
     transform: translateX(-50%) translate3d(-66%, 0px, -18px) rotateY(7deg) scale(0.85);
-    opacity: 0.85;
-    filter: brightness(0) saturate(0);
+    opacity: 0.72;
+    filter: brightness(0.72) saturate(0.88);
   }
 
   .character-slot.pos-right {
     transform: translateX(-50%) translate3d(66%, 0px, -18px) rotateY(-7deg) scale(0.85);
-    opacity: 0.85;
-    filter: brightness(0) saturate(0);
+    opacity: 0.72;
+    filter: brightness(0.72) saturate(0.88);
   }
 
   .glass-chat-stage {
@@ -1509,14 +1509,14 @@ body:not(.chamber-active) .ambient-backdrop {
 
   .character-slot.pos-left {
     transform: translateX(-50%) translate3d(-64%, 0px, -16px) rotateY(6deg) scale(0.84);
-    opacity: 0.85;
-    filter: brightness(0) saturate(0);
+    opacity: 0.72;
+    filter: brightness(0.72) saturate(0.88);
   }
 
   .character-slot.pos-right {
     transform: translateX(-50%) translate3d(64%, 0px, -16px) rotateY(-6deg) scale(0.84);
-    opacity: 0.85;
-    filter: brightness(0) saturate(0);
+    opacity: 0.72;
+    filter: brightness(0.72) saturate(0.88);
   }
 
   /* Compact Sensual Nameplate */
@@ -1645,14 +1645,14 @@ body:not(.chamber-active) .ambient-backdrop {
 
   .character-slot.pos-left {
     transform: translateX(-50%) translate3d(-62%, 0px, -14px) rotateY(4deg) scale(0.82);
-    opacity: 0.85;
-    filter: brightness(0) saturate(0);
+    opacity: 0.72;
+    filter: brightness(0.72) saturate(0.88);
   }
 
   .character-slot.pos-right {
     transform: translateX(-50%) translate3d(62%, 0px, -14px) rotateY(-4deg) scale(0.82);
-    opacity: 0.85;
-    filter: brightness(0) saturate(0);
+    opacity: 0.72;
+    filter: brightness(0.72) saturate(0.88);
   }
 
   .character-nameplate {
@@ -2283,127 +2283,7 @@ body[data-cosmic-mood="calista"] {
 
 /* ================= SECTION 1: HERO EXPERIENCE ================= */
 .kage-hero-section {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100vh;
-  height: 100dvh;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  padding-top: 80px;
-  padding-bottom: 2rem;
-  padding-left: clamp(2.5rem, 6.5vw, 8.5rem);
-  padding-right: 2rem;
-  overflow: hidden;
-  text-align: left;
-}
-
-.hero-content-column {
-  position: relative;
-  z-index: 10;
-  max-width: 540px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  margin-top: auto;
-  margin-bottom: auto;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.95), 0 0 32px rgba(0, 0, 0, 0.75);
-}
-
-.hero-content-column .kage-hero-title {
-  margin: 0 0 0.85rem 0;
-  text-align: left;
-}
-
-.hero-content-column .kage-hero-subtext {
-  margin: 0 0 1.15rem 0;
-  text-align: left;
-}
-
-.hero-content-column .kage-mood-bar {
-  margin-bottom: 1.15rem;
-}
-
-.hero-content-column .kage-whisper-card {
-  margin: 0 0 1.25rem 0;
-  align-items: flex-start;
-  text-align: left;
-  max-width: 480px;
-  width: 100%;
-}
-
-.hero-content-column .whisper-quote-text {
-  text-align: left;
-}
-
-.hero-content-column .hero-action-row {
-  justify-content: flex-start;
-}
-
-/* ── Hero Seraphina Sole Muse Display ── */
-.hero-seraphina-stage {
-  position: absolute;
-  right: clamp(3vw, 8vw, 13vw);
-  bottom: 0;
-  width: 36vw;
-  max-width: 490px;
-  height: 92vh;
-  z-index: 4;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  pointer-events: none;
-  animation: heroFloatSeraphina 7.5s ease-in-out infinite;
-  will-change: transform;
-}
-
-.hero-seraphina-img {
-  display: block;
-  width: auto;
-  height: 100%;
-  max-height: 92vh;
-  object-fit: contain;
-  object-position: bottom center;
-  user-select: none;
-  -webkit-user-drag: none;
-  pointer-events: none;
-  filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.82)) drop-shadow(0 0 45px rgba(186, 230, 253, 0.28));
-}
-
-.hero-seraphina-aura {
-  position: absolute;
-  bottom: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 520px;
-  height: 620px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(186, 230, 253, 0.35) 0%, rgba(168, 85, 247, 0.14) 45%, rgba(56, 189, 248, 0.05) 65%, transparent 75%);
-  filter: blur(50px);
-  pointer-events: none;
-  opacity: 0.88;
-  z-index: -1;
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.hero-seraphina-bottom-fade {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 18%;
-  background: linear-gradient(to top, rgba(7, 6, 12, 1) 0%, rgba(7, 6, 12, 0.45) 50%, transparent 100%);
-  pointer-events: none;
-}
-
-@keyframes heroFloatSeraphina {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-11px) rotate(0.35deg); }
+  text-align: center;
 }
 
 .kage-pill-badge {
@@ -4722,16 +4602,16 @@ body[data-time-theme="golden-hour"] {
 
   .character-slot.pos-left {
     transform: translateX(-50%) translate3d(-54%, 0px, -12px) rotateY(6deg) scale(0.85) !important;
-    opacity: 0.85 !important;
-    filter: brightness(0) saturate(0) !important;
+    opacity: 0.72 !important;
+    filter: brightness(0.72) saturate(0.88) !important;
     pointer-events: auto !important;
     z-index: 35 !important;
   }
 
   .character-slot.pos-right {
     transform: translateX(-50%) translate3d(54%, 0px, -12px) rotateY(-6deg) scale(0.85) !important;
-    opacity: 0.85 !important;
-    filter: brightness(0) saturate(0) !important;
+    opacity: 0.72 !important;
+    filter: brightness(0.72) saturate(0.88) !important;
     pointer-events: auto !important;
     z-index: 35 !important;
   }
@@ -5673,59 +5553,7 @@ body[data-time-theme="golden-hour"] {
     box-sizing: border-box !important;
   }
 
-  /* ── SLIDE 0: HERO SECTION RESPONSIVE ── */
-  .kage-hero-section {
-    padding: 76px 1.2rem 1.5rem !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    text-align: center !important;
-  }
-
-  .hero-content-column {
-    align-items: center !important;
-    text-align: center !important;
-    max-width: 100% !important;
-    margin: 0 auto !important;
-  }
-
-  .hero-content-column .kage-hero-title {
-    text-align: center !important;
-    margin: 0.25rem auto 0.55rem !important;
-  }
-
-  .hero-content-column .kage-hero-subtext {
-    text-align: center !important;
-    margin: 0 auto 0.6rem !important;
-  }
-
-  .hero-content-column .kage-whisper-card {
-    align-items: center !important;
-    text-align: center !important;
-    margin: 0 auto 0.75rem !important;
-  }
-
-  .hero-content-column .whisper-quote-text {
-    text-align: center !important;
-  }
-
-  .hero-content-column .hero-action-row {
-    justify-content: center !important;
-  }
-
-  .hero-seraphina-stage {
-    right: auto !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    width: 78vw !important;
-    max-width: 340px !important;
-    height: 58vh !important;
-    opacity: 0.24 !important;
-    filter: blur(1px) !important;
-    pointer-events: none !important;
-    z-index: 1 !important;
-  }
-
+  /* ── SLIDE 0: HERO SECTION MAJESTIC EXPANSION ── */
   .hero-time-badge-wrap {
     margin-bottom: 0.2rem !important;
   }
@@ -5833,7 +5661,14 @@ body[data-time-theme="golden-hour"] {
   }
 
   .lore-rune-hero {
-    display: none !important;
+    top: max(68px, calc(env(safe-area-inset-top, 0px) + 62px)) !important;
+    right: 18px !important;
+    width: 32px !important;
+    height: 32px !important;
+    background: rgba(14, 12, 26, 0.85) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
   }
 
   /* ── SLIDE 1: MUSES HORIZONTAL SNAP CAROUSEL ── */
