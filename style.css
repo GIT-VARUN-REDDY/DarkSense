@@ -560,7 +560,6 @@ body:not(.chamber-active) .ambient-backdrop {
 
 .character-slot.pos-left .figure-image {
   filter: brightness(0) !important;
-  opacity: 1 !important;
   transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -590,7 +589,6 @@ body:not(.chamber-active) .ambient-backdrop {
 
 .character-slot.pos-right .figure-image {
   filter: brightness(0) !important;
-  opacity: 1 !important;
   transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -654,7 +652,6 @@ body:not(.chamber-active) .ambient-backdrop {
 .stage-3d-viewport:not(.hover-suppressed):has(.character-slot.pos-right:hover) .character-slot:not(.pos-right) .figure-image,
 .stage-3d-viewport:not(.hover-suppressed).inspect-flank-active .character-slot:not(.is-hover-inspected) .figure-image {
   filter: brightness(0) !important;
-  opacity: 1 !important;
   transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -1457,7 +1454,6 @@ body:not(.chamber-active) .ambient-backdrop {
 
   .character-slot.pos-left .figure-image {
     filter: brightness(0) !important;
-    opacity: 1 !important;
   }
 
   .character-slot.pos-right {
@@ -1468,7 +1464,6 @@ body:not(.chamber-active) .ambient-backdrop {
 
   .character-slot.pos-right .figure-image {
     filter: brightness(0) !important;
-    opacity: 1 !important;
   }
 
   .glass-chat-stage {
@@ -1552,7 +1547,6 @@ body:not(.chamber-active) .ambient-backdrop {
 
   .character-slot.pos-left .figure-image {
     filter: brightness(0) !important;
-    opacity: 1 !important;
   }
 
   .character-slot.pos-right {
@@ -1563,7 +1557,6 @@ body:not(.chamber-active) .ambient-backdrop {
 
   .character-slot.pos-right .figure-image {
     filter: brightness(0) !important;
-    opacity: 1 !important;
   }
 
   /* Compact Sensual Nameplate */
@@ -1698,7 +1691,6 @@ body:not(.chamber-active) .ambient-backdrop {
 
   .character-slot.pos-left .figure-image {
     filter: brightness(0) !important;
-    opacity: 1 !important;
   }
 
   .character-slot.pos-right {
@@ -1709,7 +1701,6 @@ body:not(.chamber-active) .ambient-backdrop {
 
   .character-slot.pos-right .figure-image {
     filter: brightness(0) !important;
-    opacity: 1 !important;
   }
 
   .character-nameplate {
@@ -1784,7 +1775,6 @@ body:not(.chamber-active) .ambient-backdrop {
 
   .character-slot.pos-left .figure-image {
     filter: brightness(0) !important;
-    opacity: 1 !important;
   }
 
   .character-slot.pos-right {
@@ -1795,7 +1785,6 @@ body:not(.chamber-active) .ambient-backdrop {
 
   .character-slot.pos-right .figure-image {
     filter: brightness(0) !important;
-    opacity: 1 !important;
   }
 }
 
@@ -4075,6 +4064,25 @@ body[data-time-theme="golden-hour"] {
   position: relative;
 }
 
+/* STRICT WARDROBE DEFAULTS:
+   By default, all muses MUST wear their primary dressed outfits.
+   Alternate outfits are 100% hidden unless toggled via the button. */
+.character-slot:not(.wardrobe-classic) #figure-seraphina-classic,
+.character-slot:not(.wardrobe-alt) #figure-calista-gold,
+.character-slot:not(.wardrobe-alt) #figure-vespera-combat {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
+.character-slot:not(.wardrobe-classic) #figure-seraphina,
+.character-slot:not(.wardrobe-alt) #figure-calista,
+.character-slot:not(.wardrobe-alt) #figure-vespera {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+}
+
 /* Primary White Dress (Default) */
 #figure-seraphina {
   transform: translateX(-50%) scale(1.33);
@@ -4679,7 +4687,6 @@ body[data-time-theme="golden-hour"] {
 
   .character-slot.pos-left .figure-image {
     filter: brightness(0) !important;
-    opacity: 1 !important;
   }
 
   .character-slot.pos-left.is-hover-inspected .figure-image {
@@ -4696,7 +4703,6 @@ body[data-time-theme="golden-hour"] {
 
   .character-slot.pos-right .figure-image {
     filter: brightness(0) !important;
-    opacity: 1 !important;
   }
 
   .character-slot.pos-right.is-hover-inspected .figure-image {
