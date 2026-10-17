@@ -3939,9 +3939,14 @@ body:not(.body-gender-female) .muse-avatar-male-3 {
   opacity: 0 !important;
 }
 
-body.body-gender-female .character-slot .figure-image:not(.figure-male-1):not(.figure-male-2):not(.figure-male-3) {
+body.body-gender-female .character-slot .figure-image:not(.figure-male-1):not(.figure-male-2):not(.figure-male-3):not(.figure-peek-img) {
   display: none !important;
   opacity: 0 !important;
+}
+
+body.body-gender-female .character-slot .avatar-peek-portal .figure-peek-img {
+  display: block !important;
+  opacity: 1 !important;
 }
 
 /* All slots have active companions now — No dashed placeholder frames needed */
